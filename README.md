@@ -18,6 +18,7 @@ Référence de départ : le positionnement d'Exode Naturel (baume déodorant à 
 | `instagram/calendrier.md` | Calendrier de publication sur 3 semaines |
 | `instagram/prompts-visuels.md` | Prompts prêts à coller pour générer chaque visuel (IA ou brief photographe) |
 | `instagram/mockup.html` | Aperçu interactif de la page Instagram (profil, highlights, grille des 15 posts) |
+| **`maroc/`** | **Version Maroc, prioritaire** : petits pots style K-beauty, prix en dirhams, paiement à la livraison, transporteurs, réglementation AMMPS, adaptations Instagram, CSV Shopify en DH |
 
 ## Par où commencer
 
@@ -26,3 +27,7 @@ Référence de départ : le positionnement d'Exode Naturel (baume déodorant à 
 3. Préparer les highlights (`instagram/highlights.md`) avant le premier post.
 4. Programmer les 15 posts avec `instagram/posts.md` + `instagram/calendrier.md`.
 5. Demain : monter la boutique avec `shopify/preparation-demain.md` et importer `shopify/products.csv`.
+
+## Version Maroc
+
+La vente se fait au Maroc, en petits pots de 20 g (format K-beauty, référence Nuri Seoul à confirmer avec une photo). Tout ce qui concerne le format, les prix, la fabrication, la livraison, le paiement et la réglementation est dans le dossier `maroc/`, qui prévaut sur `product/` et `shopify/`. Commencer par `maroc/README.md`.
