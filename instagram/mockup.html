@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Exody Instagram</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Figtree:wght@400;500;600;700&display=swap">
+</head>
+<body>
+<style>
+:root{
+  --ground:#EDE4D3; --ink:#141414; --muted:#6B6257; --panel:#FAF7F1; --panel-line:#DCD2BF;
+  --screen:#FFFFFF; --screen-ink:#262626; --screen-muted:#737373; --line:#DBDBDB; --follow:#1F3D2B; --follow-ink:#FAF7F1; --chip:#EFEFEF;
+  --green:#1F3D2B; --gold:#C9A24D; --sand:#EDE4D3; --cream:#FAF7F1; --seed:#141414; --blue:#BFD7E3;
+  --display:'Unbounded',system-ui,sans-serif; --body:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --ground:#141414; --ink:#F3EEE4; --muted:#A99F92; --panel:#1C1A17; --panel-line:#33302A;
+    --screen:#000000; --screen-ink:#F5F5F5; --screen-muted:#A8A8A8; --line:#262626; --follow:#C9A24D; --follow-ink:#141414; --chip:#262626; }
+}
+:root[data-theme="dark"]{ --ground:#141414; --ink:#F3EEE4; --muted:#A99F92; --panel:#1C1A17; --panel-line:#33302A;
+  --screen:#000000; --screen-ink:#F5F5F5; --screen-muted:#A8A8A8; --line:#262626; --follow:#C9A24D; --follow-ink:#141414; --chip:#262626; }
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:28px 48px}
+header.top{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;margin-bottom:22px}
+header.top h1{font-family:var(--display);font-weight:800;font-size:clamp(22px,3vw,30px);margin:0;letter-spacing:-.02em}
+header.top h1 .seed{display:inline-block;width:.62em;height:.62em;background:var(--ink);border-radius:60% 60% 60% 60%/70% 70% 40% 40%;transform:rotate(18deg) translateY(.02em);margin:0 .02em;vertical-align:-.02em}
+header.top p{margin:0;color:var(--muted);max-width:60ch}
+.layout{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:28px;align-items:start}
+@media (max-width:900px){.layout{grid-template-columns:1fr}}
+
+/* Phone */
+.phone{background:var(--screen);color:var(--screen-ink);border:1px solid var(--line);border-radius:28px;overflow:hidden;max-width:100%;box-shadow:0 20px 50px rgba(20,20,20,.12)}
+.bar{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 8px;font-weight:700;font-size:16px}
+.bar .h{display:flex;align-items:center;gap:6px}
+.bar svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.head{display:flex;align-items:center;gap:22px;padding:6px 16px 10px}
+.avatar{width:86px;height:86px;border-radius:50%;background:var(--green);display:grid;place-items:center;flex:none;box-shadow:0 0 0 2px var(--screen),0 0 0 4px var(--gold)}
+.avatar .s{width:34px;height:40px;background:var(--seed);border-radius:60% 60% 60% 60%/70% 70% 40% 40%;transform:rotate(18deg)}
+.stats{display:flex;flex:1;justify-content:space-around;text-align:center}
+.stats b{display:block;font-size:17px;font-weight:700}
+.stats span{font-size:13px;color:var(--screen-muted)}
+.bio{padding:0 16px 12px;font-size:14px;line-height:1.4}
+.bio .name{font-weight:700}
+.bio .cat{color:var(--screen-muted);font-size:13px}
+.bio pre{margin:4px 0 0;font:inherit;white-space:pre-wrap}
+.bio a{color:#00376b;text-decoration:none;font-weight:600}
+:root[data-theme="dark"] .bio a{color:#E0F1FF}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .bio a{color:#E0F1FF}}
+.btns{display:flex;gap:6px;padding:0 16px 14px}
+.btns button{flex:1;border:0;border-radius:8px;padding:8px;font:600 14px var(--body);background:var(--chip);color:var(--screen-ink);cursor:default}
+.btns button.follow{background:var(--follow);color:var(--follow-ink)}
+.hl{display:flex;gap:14px;padding:2px 16px 14px;overflow-x:auto;scrollbar-width:none}
+.hl::-webkit-scrollbar{display:none}
+.hl button{flex:none;width:66px;border:0;background:none;padding:0;cursor:pointer;color:var(--screen-ink);font:12px var(--body)}
+.hl .c{width:62px;height:62px;border-radius:50%;background:var(--sand);display:grid;place-items:center;margin:0 auto 5px;box-shadow:0 0 0 2px var(--screen),0 0 0 3px var(--line);transition:box-shadow .15s}
+.hl button[aria-pressed="true"] .c{box-shadow:0 0 0 2px var(--screen),0 0 0 4px var(--gold)}
+.hl .c svg{width:30px;height:30px;stroke:var(--green);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hl .t{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tabs{display:flex;border-top:1px solid var(--line)}
+.tabs div{flex:1;display:grid;place-items:center;height:44px;color:var(--screen-muted)}
+.tabs div.on{color:var(--screen-ink);border-bottom:1.5px solid currentColor}
+.tabs svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.tile{position:relative;aspect-ratio:3/4;border:0;padding:0;background:var(--sand);cursor:pointer;overflow:hidden;text-align:left;font-family:var(--body);color:var(--seed)}
+.tile:focus-visible,.hl button:focus-visible{outline:3px solid var(--gold);outline-offset:-3px}
+.tile[aria-pressed="true"]::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 3px var(--gold)}
+.tile .badge{position:absolute;top:6px;right:6px;width:18px;height:18px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35))}
+.tile .badge svg{width:18px;height:18px;fill:#fff;stroke:#fff;stroke-width:1.5}
+.tile .pin{position:absolute;top:6px;left:6px;width:16px;height:16px;fill:#fff;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35))}
+.art{position:absolute;inset:0;padding:10px;display:flex;flex-direction:column;justify-content:flex-end;gap:4px}
+.art .big{font-family:var(--display);font-weight:700;font-size:clamp(10px,2.6vw,14px);line-height:1.15;letter-spacing:-.01em;text-wrap:balance}
+.art .huge{font-family:var(--display);font-weight:800;font-size:clamp(16px,4.4vw,22px);line-height:1;letter-spacing:-.03em}
+.art .big,.art .huge,.art .sm{position:relative;z-index:1}
+.art .huge.fit{font-size:clamp(11px,3vw,15px);letter-spacing:.02em}
+.art .sm{font-size:clamp(8px,1.9vw,10.5px);font-weight:600;opacity:.85;line-height:1.2}
+.g{background:var(--green);color:var(--cream)}
+.k{background:var(--seed);color:var(--sand)}
+.b{background:var(--blue);color:var(--green)}
+.w{background:var(--cream);color:var(--seed)}
+.gold{color:var(--gold)}
+.jar{position:relative;width:34%;aspect-ratio:1/1.05;margin:auto auto 6px}
+.jar .lid{position:absolute;left:4%;right:4%;top:0;height:18%;background:var(--gold);border-radius:3px 3px 1px 1px}
+.jar .body{position:absolute;left:0;right:0;top:16%;bottom:0;background:var(--green);border-radius:6px 6px 9px 9px}
+.jar .lab{position:absolute;left:12%;right:12%;top:42%;height:34%;background:var(--cream);border-radius:2px;display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:clamp(5px,1.4vw,8px);color:var(--seed);letter-spacing:-.02em}
+.jar .lab i{position:absolute;bottom:14%;width:9%;aspect-ratio:1;border-radius:50%;background:var(--dot,#8B7B6B)}
+.seeds{position:absolute;inset:0;pointer-events:none}
+.seeds i{position:absolute;width:6%;height:9%;background:var(--seed);border-radius:60% 60% 60% 60%/70% 70% 40% 40%}
+.dots{display:flex;gap:6%;justify-content:center;margin:auto 0 8px}
+.dots i{width:10%;aspect-ratio:1;border-radius:50%;box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.quote{position:absolute;left:10%;right:10%;top:10%;height:42%;background:var(--cream);border-radius:6px;padding:8% 9%;font-size:clamp(7px,1.7vw,9.5px);line-height:1.3;color:var(--seed);box-shadow:0 4px 12px rgba(20,20,20,.08)}
+.quote::before{content:"\201C";position:absolute;top:-2%;left:6%;font:800 clamp(24px,7vw,42px)/1 var(--display);color:var(--gold)}
+.list{position:absolute;left:10%;right:10%;top:10%;font-size:clamp(6px,1.4vw,7.5px);line-height:1.5;color:var(--seed);opacity:.55;filter:blur(.4px)}
+.list s{display:block;text-decoration:none}
+.strike{font-size:clamp(7px,1.7vw,9px);line-height:1.5;opacity:.6}
+.strike s{display:block}
+.reelshade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,.65))}
+.photo{position:absolute;inset:0;background:radial-gradient(120% 80% at 30% 20%,#B8A896 0%,#8B7B6B 55%,#5C5047 100%)}
+.play{position:absolute;left:50%;top:38%;width:22%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:rgba(255,255,255,.85);display:grid;place-items:center}
+.play::after{content:"";width:0;height:0;border-left:9px solid var(--green);border-top:6px solid transparent;border-bottom:6px solid transparent;margin-left:3px}
+.tri{display:inline-flex;height:6px;width:24px;overflow:hidden;border-radius:2px;margin-bottom:6px}
+.tri i{flex:1}.tri i:nth-child(1){background:#1E4C9A}.tri i:nth-child(2){background:#fff}.tri i:nth-child(3){background:#D63C3C}
+.confetti i{position:absolute;width:5%;height:2.4%;background:var(--gold);border-radius:1px}
+.fan{position:absolute;left:0;right:0;bottom:36%;display:flex;justify-content:center;gap:2%}
+.fan .jar{width:16%;margin:0}
+.fan .jar .lab{font-size:0}
+.sticker{position:absolute;right:10%;top:12%;width:26%;aspect-ratio:1;border-radius:50%;background:var(--gold);color:var(--seed);display:grid;place-items:center;font:800 clamp(5px,1.3vw,7px) var(--display);transform:rotate(-12deg)}
+.xo{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;place-items:center;padding-bottom:28%}
+.xo i{border-radius:50%;background:var(--cream);box-shadow:inset 0 0 0 2px var(--panel-line)}
+.xo i:first-child{width:52%;aspect-ratio:1;position:relative}
+.xo i:last-child{width:22%;aspect-ratio:1;position:relative}
+.xo i::after{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font:800 clamp(12px,3.4vw,20px) var(--display)}
+.xo i:first-child::after{content:"\00D7";color:#D63C3C}
+.xo i:last-child::after{content:"\2713";color:var(--green)}
+.drop{position:absolute;left:50%;top:26%;width:26%;aspect-ratio:1/1.2;transform:translateX(-50%) rotate(45deg);background:var(--green);border-radius:0 50% 50% 50%}
+.bug{position:absolute;left:62%;top:38%;width:16%;aspect-ratio:1.4;background:var(--gold);border-radius:50%}
+.bug::before,.bug::after{content:"";position:absolute;width:30%;height:2px;background:var(--gold);top:50%}
+.bug::before{left:-32%}.bug::after{right:-32%}
+
+/* Panel */
+.panel{background:var(--panel);border:1px solid var(--panel-line);border-radius:18px;padding:22px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);max-height:calc(100vh - 32px);overflow:auto}
+.panel .eyebrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:var(--muted);font-size:13px;margin-bottom:8px}
+.pill{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--panel-line);border-radius:999px;padding:2px 10px;font-weight:600;font-size:12px;color:var(--ink)}
+.pill.g{background:var(--green);color:var(--cream);border-color:transparent}
+.panel h2{font-family:var(--display);font-weight:700;font-size:clamp(18px,2.2vw,24px);margin:0 0 14px;letter-spacing:-.02em;text-wrap:balance}
+.panel h3{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:22px 0 8px}
+.preview{width:min(100%,300px);aspect-ratio:4/5;border-radius:10px;overflow:hidden;position:relative;background:var(--sand);color:var(--seed)}
+.preview .art .big{font-size:clamp(15px,2vw,20px)}
+.preview .art .huge{font-size:clamp(40px,6vw,64px)}
+.preview .art .sm{font-size:clamp(11px,1.3vw,13px)}
+.preview .art .huge.fit{font-size:clamp(28px,4vw,40px)}
+.preview .jar .lab{font-size:11px}.preview .quote{font-size:13px}.preview .list{font-size:10px}.preview .strike{font-size:12px}.preview .sticker{font-size:10px}
+.preview .xo i::after{font-size:30px}
+.cap{font-family:var(--body);white-space:pre-wrap;font-size:14.5px;line-height:1.5;margin:0;background:var(--screen);color:var(--screen-ink);border:1px solid var(--line);border-radius:10px;padding:14px}
+.cap .tag{color:#00376b}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .cap .tag{color:#9CC7F5}}
+:root[data-theme="dark"] .cap .tag{color:#9CC7F5}
+.slides{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.slides li{display:grid;grid-template-columns:28px 1fr;gap:8px;font-size:14px}
+.slides li b{font-family:var(--display);font-weight:700;font-size:11px;color:var(--gold);padding-top:3px}
+.stories{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.story{aspect-ratio:9/16;border-radius:10px;padding:12px 10px;font-size:12px;line-height:1.35;display:flex;flex-direction:column;gap:6px;overflow:hidden}
+.story.s{background:var(--sand);color:var(--seed)}.story.g{background:var(--green);color:var(--cream)}
+.story b{font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:-.01em}
+.story .n{margin-top:auto;font-size:10px;opacity:.7}
+.copy{margin-top:10px;border:1px solid var(--panel-line);background:transparent;color:var(--ink);border-radius:8px;padding:8px 12px;font:600 13px var(--body);cursor:pointer}
+.copy:focus-visible{outline:3px solid var(--gold)}
+.close{display:none;position:absolute;top:12px;right:12px;border:0;background:var(--chip);color:var(--ink);width:34px;height:34px;border-radius:50%;font-size:18px;cursor:pointer}
+@media (max-width:900px){
+  .panel{position:fixed;inset:0;z-index:20;border-radius:0;max-height:none;padding-top:calc(env(safe-area-inset-top,0px) + 56px);transform:translateY(100%);transition:transform .25s}
+  .panel.open{transform:none}
+  .close{display:block;top:calc(env(safe-area-inset-top,0px) + 12px)}
+}
+@media (prefers-reduced-motion:reduce){.panel{transition:none}}
+.legend{margin-top:18px;color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;gap:6px 18px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend svg{width:16px;height:16px;fill:var(--muted);stroke:var(--muted);stroke-width:1.5}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <h1>ex<span class="seed" aria-hidden="true"></span>dy sur Instagram</h1>
+    <p>Aperçu du profil <strong>@exody.naturel</strong> tel qu'il sera après les 15 premiers posts. Touche un post ou un highlight pour voir son contenu.</p>
+  </header>
+
+  <div class="layout">
+    <section class="phone" aria-label="Profil Instagram Exody">
+      <div class="bar">
+        <div class="h"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>exody.naturel</div>
+        <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+      </div>
+      <div class="head">
+        <div class="avatar" aria-label="Photo de profil : graine de nigelle sur fond vert"><div class="s"></div></div>
+        <div class="stats">
+          <div><b>15</b><span>publications</span></div>
+          <div><b>0</b><span>abonnés</span></div>
+          <div><b>0</b><span>abonnements</span></div>
+        </div>
+      </div>
+      <div class="bio">
+        <div class="name">Exody | Déo naturel à la nigelle</div>
+        <div class="cat">Beauté, cosmétiques et soins personnels</div>
+<pre>🌱 Le déo naturel à l'huile de nigelle
+✅ 5 ingrédients · 0 sel d'aluminium
+🇫🇷 Fabriqué en France · 1 pot = 3 mois
+👇 -15 % avec le code EXODY15</pre>
+        <a href="#" onclick="return false">🔗 exody.fr</a>
+      </div>
+      <div class="btns"><button class="follow" type="button">Suivre</button><button type="button">Contacter</button></div>
+      <div class="hl" id="hl" role="list" aria-label="Highlights"></div>
+      <div class="tabs">
+        <div class="on" aria-label="Publications"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg></div>
+        <div aria-label="Reels"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M3 8h18M8 3l3 5M14 3l3 5M10 12l5 3-5 3z"/></svg></div>
+        <div aria-label="Identifié"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="10" r="3"/><path d="M6 19c1.5-3 4-4 6-4s4.5 1 6 4"/></svg></div>
+      </div>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <aside class="panel" id="panel" aria-live="polite">
+      <button class="close" id="close" type="button" aria-label="Fermer">×</button>
+      <div id="panelBody"></div>
+    </aside>
+  </div>
+
+  <div class="legend">
+    <span><svg viewBox="0 0 24 24"><rect x="3" y="7" width="14" height="14" rx="2"/><path d="M7 3h14v14" fill="none"/></svg>carrousel</span>
+    <span><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4" fill="none"/><path d="M3 8h18M8 3l3 5M14 3l3 5" fill="none"/><path d="M10 12l5 3-5 3z"/></svg>reel</span>
+    <span><svg viewBox="0 0 24 24"><path d="M14 3l-1 6 5 3-1 1h-4v8h-2v-8H7l-1-1 5-3-1-6z"/></svg>épinglé en haut du profil</span>
+    <span>Grille dans l'ordre Instagram : 3 posts épinglés, puis du plus récent au plus ancien.</span>
+  </div>
+</div>
+
+<script>
+const I = {
+  car: '<svg viewBox="0 0 24 24"><rect x="3" y="7" width="14" height="14" rx="2"/><path d="M7 3h14v14" fill="none"/></svg>',
+  reel: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4" fill="none"/><path d="M3 8h18M8 3l3 5M14 3l3 5" fill="none"/><path d="M10 12l5 3-5 3z"/></svg>',
+  pin: '<svg class="pin" viewBox="0 0 24 24"><path d="M14 3l-1 6 5 3-1 1h-4v8h-2v-8H7l-1-1 5-3-1-6z"/></svg>'
+};
+const jar = (dot, txt) => `<div class="jar" style="--dot:${dot}"><div class="lid"></div><div class="body"></div><div class="lab">${txt===undefined?'exody':txt}<i></i></div></div>`;
+const seeds = (n, seed) => { let s=''; let r=seed; for(let i=0;i<n;i++){ r=(r*9301+49297)%233280; const x=8+(r/233280)*84; r=(r*9301+49297)%233280; const y=8+(r/233280)*56; r=(r*9301+49297)%233280; const a=(r/233280)*90-45; s+=`<i style="left:${x}%;top:${y}%;transform:rotate(${a}deg)"></i>`;} return `<div class="seeds">${s}</div>`; };
+const confetti = () => { let s=''; let r=7; for(let i=0;i<22;i++){ r=(r*9301+49297)%233280; const x=(r/233280)*94; r=(r*9301+49297)%233280; const y=(r/233280)*50; r=(r*9301+49297)%233280; const a=(r/233280)*180; s+=`<i style="left:${x}%;top:${y}%;transform:rotate(${a}deg)"></i>`;} return `<div class="seeds confetti">${s}</div>`; };
+
+const POSTS = [
+ {n:1, date:'Lun 21 sept · 12:15', fmt:'car', pinned:true, title:'Voici Exody', cls:'', art:()=>jar('#8B7B6B')+`<div class="big">Salut, on est Exody.</div><div class="sm">Le déo naturel à l'huile de nigelle</div>`,
+  slides:['Packshot Musc sur pierre sable. « Salut, on est Exody. »','Gros plan graines de nigelle. « Un déo naturel à l\'huile de nigelle. »','Flat lay des 5 bols. « 5 ingrédients. On te les montre. »','Fond vert. « 0 sel d\'aluminium. 0 alcool. 0 blabla. »','Noisette sur un doigt. « 1 pot = 3 mois. Fabriqué en France. »','Wordmark. « Le site ouvre jeudi. Abonne-toi. »'],
+  cap:`Salut, on est Exody 👋
+
+On a fait un déo qui marche vraiment, sans sel d'aluminium, avec 5 ingrédients que tu peux lire sans dictionnaire :
+🌱 huile de nigelle
+🌽 fécule de maïs
+🥥 huile de coco
+🐝 cire d'abeille
+🧂 bicarbonate
+
+Notre secret, c'est la nigelle. L'huile que l'Égypte antique utilisait déjà en soin, et l'un des actifs naturels les plus étudiés pour son action contre les bactéries. Or ce sont les bactéries qui font l'odeur, pas la sueur.
+
+Le résultat : un baume qui dure 3 mois, fabriqué en France, en 6 parfums.
+
+Le site ouvre jeudi. Abonne-toi, le code de lancement arrive ici en premier.
+
+Transpire tranquille. 🌿
+
+#exody #deodorantnaturel #huiledenigelle #nigelle #habbasawda #madeinfrance #cleanbeauty #cosmetiquenaturelle #sansaluminium #nouveautebeaute`},
+ {n:2, date:'Mar 22 sept · 18:30', fmt:'reel', title:'Lis la compo de ton déo', cls:'w', art:()=>`<div class="list"><s>Aqua, Aluminium Chlorohydrate,</s><s>Alcohol Denat., Parfum, PEG-40,</s><s>Propylene Glycol, BHT, Limonene,</s><s>Linalool, Steareth-2, Citral,</s><s>Butane, Isobutane, Propane, …</s></div><div class="huge">23</div><div class="big">ingrédients. Tu en connais combien ?</div>`,
+  slides:['0-2 s · Main qui tient un spray sans marque. « Lis la compo de ton déo. Vas-y, je t\'attends. »','2-8 s · L\'étiquette défile. Voix : « 23 ingrédients. Tu en connais combien ? »','8-14 s · Pot Exody, les 5 ingrédients apparaissent un par un.','14-20 s · Application d\'une noisette. « 5 ingrédients. 0 sel d\'aluminium. »'],
+  cap:`On a compté. 23 ingrédients dans un déo classique de supermarché. 5 dans le nôtre.
+
+Ce qu'on a enlevé : les sels d'aluminium (qui bouchent les pores), l'alcool (qui pique), le parfum de synthèse et tout ce que tu ne sais pas prononcer.
+
+Ce qu'on a gardé : ce qui sert. La nigelle contre les bactéries, la fécule contre l'humidité, le bicarbonate contre les odeurs, la coco et la cire d'abeille pour la texture.
+
+Va lire la compo du tien, on attend ton chiffre en commentaire 👇
+
+#exody #deodorantnaturel #huiledenigelle #nigelle #madeinfrance #compositionpropre #sansaluminium #cleanbeauty #slowcosmetique #inci`},
+ {n:3, date:'Mer 23 sept · 12:15', fmt:'car', title:'La nigelle, une seule plante', cls:'', art:()=>seeds(14,11)+`<div class="big">Graine noire. Habba sawda. Cumin noir.</div><div class="sm">Une seule plante.</div>`,
+  slides:['Graines noires et fleur bleue. « La nigelle. Tu la connais peut-être sous un autre nom. »','Fond vert. « Graine noire · Habba sawda · Cumin noir · Nigella sativa. Une seule plante. »','Illustration or d\'un flacon antique. « Plus de 3 000 ans de soin. »','Fond sable. « L\'une des plantes les plus étudiées au monde. » Thymoquinone.','Schéma goutte + bactérie = odeur. « Ce sont les bactéries qui font l\'odeur. »','Packshot. « On l\'a mise là où elle sert. Dans ton déo. »'],
+  cap:`Graine noire, habba sawda, cumin noir, Nigella sativa : quatre noms, une seule plante. 🌱
+
+Elle est utilisée en soin depuis plus de 3 000 ans, de l'Égypte antique au Moyen-Orient, et elle est aujourd'hui l'une des plantes les plus étudiées au monde. Son actif principal, la thymoquinone, est documenté pour son action contre les bactéries.
+
+Pourquoi ça nous intéresse ? Parce que la sueur ne sent rien. Ce sont les bactéries de la peau qui la transforment en odeur. Agir sur les bactéries, c'est agir sur la cause.
+
+C'est pour ça qu'Exody est un déo à l'huile de nigelle, et pas un déo « parfumé à la nigelle ». Elle est le premier ingrédient de la formule.
+
+Enregistre ce post pour la prochaine fois qu'on te demande « c'est quoi la nigelle ? ».
+
+#exody #nigelle #habbasawda #huiledenigelle #grainedenigelle #nigellasativa #deodorantnaturel #madeinfrance #soinnaturel #beautenaturelle`},
+ {n:4, date:'Jeu 24 sept · 12:15', fmt:'reel', pinned:true, title:'C\'est en ligne', cls:'g', art:()=>`<div class="huge">C'est<br>en ligne.</div><div class="big gold">exody.fr</div><div class="sm">-15 % avec EXODY15 · Livraison offerte dès 35 €</div>`,
+  slides:['0-3 s · Étui kraft qu\'on ouvre, sticker or. « C\'est en ligne. »','3-7 s · Pot qu\'on dévisse, gros plan baume. « exody.fr »','7-12 s · Les 6 pots alignés. « -15 % avec EXODY15 jusqu\'à dimanche. »'],
+  cap:`C'est en ligne 🚀 exody.fr est ouvert.
+
+Pour le lancement :
+🎁 -15 % sur ta première commande avec le code EXODY15 (jusqu'à dimanche soir)
+📦 Livraison offerte dès 35 €
+🛡️ Défi 7 jours : pas convaincu, on te rembourse sans renvoyer le pot
+
+6 parfums, 12,90 € le pot de 3 mois. Et le Pack 1 an (4 + 1 offert) pour ne plus jamais y penser.
+
+Le lien est dans la bio. Merci d'être là dès le premier jour 🌿
+
+#exody #deodorantnaturel #huiledenigelle #nigelle #madeinfrance #lancement #nouveautebeaute #cleanbeauty #marquefrancaise #sansaluminium`},
+ {n:5, date:'Ven 25 sept · 18:30', fmt:'reel', title:'Pourquoi tu sens', cls:'', art:()=>`<div class="drop"></div><div class="bug"></div><div class="big">La sueur ne sent rien.</div><div class="sm">Ce sont les bactéries. Et la nigelle s'en occupe.</div>`,
+  slides:['0-3 s · Goutte animée. « La sueur ne sent rien. Sérieux. »','3-10 s · Bactéries → nuage d\'odeur. Sels d\'aluminium vs nigelle.','10-20 s · Graine, épi de maïs, cristal : nigelle, fécule, bicarbonate.','20-27 s · Application. « Tu transpires, mais tu ne sens pas. »','27-30 s · Packshot. « Transpire tranquille. Exody. »'],
+  cap:`La sueur ne sent rien. Ce sont les bactéries de ta peau qui la transforment en odeur.
+
+Deux façons de régler le problème :
+1. Boucher les pores pour ne plus transpirer (sels d'aluminium). Ça marche, mais ton corps transpire pour une raison.
+2. S'occuper des bactéries. C'est ce que fait la nigelle.
+
+Dans Exody, l'huile de nigelle limite les bactéries, la fécule de maïs absorbe l'humidité et le bicarbonate neutralise ce qui reste. Tu transpires, mais tu ne sens pas.
+
+Une question sur le fonctionnement ? Pose-la en commentaire, on répond à tout.
+
+#exody #deodorantnaturel #huiledenigelle #nigelle #madeinfrance #transpiration #sansaluminium #cleanbeauty #routinebeaute #lesaviezvous`},
+ {n:6, date:'Lun 28 sept · 12:15', fmt:'car', pinned:true, title:'Les 6 parfums', cls:'', art:()=>`<div class="dots"><i style="background:#8B7B6B"></i><i style="background:#E8873A"></i><i style="background:#F0D9A8"></i><i style="background:#FFFFFF"></i><i style="background:#F08A7E"></i><i style="background:#BFD7E3"></i></div><div class="big">6 parfums. Lequel est toi ?</div><div class="sm">Musc · Agrumes · Vanille · Coco · Monoï · Peau sensible</div>`,
+  slides:['Les 6 pots alignés. « 6 parfums. Un seul déo. Lequel est toi ? »','Musc · doux, poudré, propre · le plus mixte','Agrumes · bergamote, mandarine verte · coup de fouet','Vanille · bourbon, sucrée sans être écœurante','Coco · fraîche, solaire','Monoï · les vacances sous le bras','Peau sensible · sans parfum, sans bicarbonate, sans huile essentielle','Deux pots. « Pas sûr ? Le Pack Duo, 24,90 €. »'],
+  cap:`6 parfums, une seule formule à l'huile de nigelle. Fais glisser pour trouver le tien →
+
+🤎 Musc, le plus mixte
+🧡 Agrumes, le plus frais
+💛 Vanille, le plus doux
+🤍 Coco, le plus solaire
+🩷 Monoï, le plus vacances
+💙 Peau sensible, sans parfum ni bicarbonate
+
+Tous les parfums sont d'origine naturelle (huiles essentielles ou accords naturels). La version Peau sensible n'en contient aucun.
+
+Tu hésites entre deux ? Le Pack Duo est fait pour ça : 2 pots au choix, 24,90 €.
+
+Dis-nous ton parfum en commentaire, on est curieux de voir lequel gagne 👇
+
+#exody #deodorantnaturel #huiledenigelle #nigelle #madeinfrance #parfumnaturel #musc #agrumes #vanille #monoi`},
+ {n:7, date:'Mar 29 sept · 18:30', fmt:'reel', title:'J\'ai testé 10 jours', cls:'k', art:()=>`<div class="photo"></div><div class="reelshade"></div><div class="play"></div><div class="big" style="color:#fff">J1 → J10 : la vérité.</div><div class="sm" style="color:#fff">Y compris le jour 3.</div>`,
+  slides:['J1 · « Premier jour avec un déo naturel. J\'ai peur, je vous le dis. »','J3 · « J\'ai l\'impression de transpirer plus. C\'est la transition. »','J5 · « Là ça tient. Journée entière, pas d\'odeur. »','J7 · « Sport ce matin. Je sens… rien. »','J10 · « J\'ai oublié que j\'en avais mis. » Verdict : j\'y reste.'],
+  cap:`On lui a demandé de nous dire la vérité, y compris si c'était non.
+
+Le jour 3, c'est souvent le moment où on abandonne un déo naturel : la peau s'adapte, on a l'impression de transpirer plus. C'est normal, ça dure 7 à 10 jours quand on vient d'un anti-transpirant. Pendant cette période, on applique matin et soir.
+
+Après, une noisette le matin et on n'y pense plus.
+
+C'est pour ça qu'on a créé le Défi 7 jours : tu testes, et si au jour 7 tu n'es pas convaincu, on te rembourse. Sans renvoyer le pot.
+
+Ton expérience avec les déos naturels ? Raconte 👇
+
+#exody #deodorantnaturel #huiledenigelle #nigelle #madeinfrance #avisclient #testproduit #routinebeaute #cleanbeauty #transitionnaturelle`},
+ {n:8, date:'Mer 30 sept · 12:15', fmt:'img', title:'0,14 € par jour', cls:'g', art:()=>`<div class="huge gold">0,14 €</div><div class="big">par jour.</div><div class="sm">12,90 € ÷ 90 jours</div>`,
+  slides:['Fond vert nigelle. En très grand, en or : 0,14 €. Dessous : « par jour ». En bas, un pot et « 12,90 € ÷ 90 jours ».'],
+  cap:`12,90 € le pot. 90 jours d'utilisation. Ça fait 0,14 € par jour.
+
+Un pot de 50 g, une noisette par jour, et c'est tout. Pas de spray qui se vide en 3 semaines, pas de stick qui casse au fond.
+
+Et si tu prends le Pack 1 an (4 + 1 offert, 49,90 €), tu descends à 0,11 € par jour. Livraison offerte.
+
+Le lien est dans la bio 🌿
+
+#exody #deodorantnaturel #huiledenigelle #nigelle #madeinfrance #zerodechet #consommationresponsable #petitprix #cleanbeauty #routinebeaute`},
+ {n:9, date:'Jeu 1 oct · 12:15', fmt:'car', title:'5 idées reçues', cls:'', art:()=>`<div class="strike"><s>« Ça ne marche pas. »</s><s>« Ça tache. »</s><s>« C'est pour les femmes. »</s></div><div class="huge">5</div><div class="big">idées reçues sur les déos naturels.</div>`,
+  slides:['« 5 idées reçues sur les déos naturels. » (et ce qu\'on en pense)','« Ça ne marche pas. » → Ça dépend de l\'actif. La nigelle agit sur les bactéries.','« Ça tache. » → Une noisette, 30 secondes, zéro trace.','« C\'est pour les femmes. » → Un déo n\'a pas de genre.','« Transpirer, c\'est sale. » → Transpirer, c\'est vital. Ce qui sent, ce sont les bactéries.','« Le bicarbonate irrite forcément. » → Très peu dosé grâce à la nigelle, et une version sans.','Packshot. « Tu en avais une autre ? »'],
+  cap:`« Ça marche pas », « ça tache », « c'est pour les femmes »... On a entendu toutes les idées reçues sur les déos naturels. On les a mises dans un carrousel, avec nos réponses.
+
+Celle qui revient le plus : « ça ne marche pas ». Et souvent c'est vrai, parce que beaucoup de déos naturels se contentent de masquer l'odeur avec un parfum. Nous, on est parti de la cause (les bactéries) et de l'actif qui agit dessus (la nigelle).
+
+Enregistre pour la prochaine fois qu'on te sort une de ces phrases.
+
+#exody #deodorantnaturel #huiledenigelle #nigelle #madeinfrance #ideesrecues #cleanbeauty #sansaluminium #beautenaturelle #lesaviezvous`},
+ {n:10, date:'Ven 2 oct · 18:30', fmt:'reel', title:'La bonne dose', cls:'w', art:()=>`<div class="xo"><i></i><i></i></div><div class="big">La bonne dose ? Une noisette.</div><div class="sm">Trop = une trace. Juste = tu oublies.</div>`,
+  slides:['0-3 s · Grosse quantité sur le doigt. « Trop. »','3-6 s · Une noisette de la taille d\'un petit pois. « Juste ce qu\'il faut. »','6-10 s · Elle fond entre deux doigts.','10-13 s · Application sur peau propre et sèche.','13-15 s · 30 secondes, t-shirt enfilé.'],
+  cap:`La règle : une noisette. La taille d'un petit pois, pas plus.
+
+1. Prélève avec le doigt
+2. Chauffe 2 secondes entre les doigts, ça fond
+3. Applique sur peau propre et sèche
+4. Attends 30 secondes avant de t'habiller
+
+Trop de produit = une trace sur le t-shirt et une sensation qui colle. La bonne dose = tu oublies que tu en as mis.
+
+Une application le matin suffit. Après le sport, tu peux en remettre.
+
+#exody #deodorantnaturel #huiledenigelle #nigelle #madeinfrance #tuto #routinebeaute #astucebeaute #cleanbeauty #asmr`},
+ {n:11, date:'Lun 5 oct · 12:15', fmt:'img', title:'Les premiers retours', cls:'', art:()=>`<div class="quote">[citation réelle d'un testeur des 30 jours]<br><small>Prénom I., âge</small></div><div class="big">Les premiers retours.</div><div class="sm">Défi 7 jours · satisfait ou remboursé</div>`,
+  slides:['Trois cartes de citation empilées, guillemets or. Chaque carte : citation réelle, « Prénom I., âge, teste depuis X jours ». En bas : « Défi 7 jours · satisfait ou remboursé ». Jamais d\'avis inventé.'],
+  cap:`50 personnes ont testé Exody pendant 30 jours avant le lancement. Voici ce qu'elles nous ont écrit, sans filtre. [insérer 2 à 3 citations réelles]
+
+Ce qui revient le plus : la surprise que ça tienne toute la journée, et le fait d'oublier qu'on en a mis.
+
+Ce qui revient aussi : les 3 premiers jours de transition. On préfère te le dire.
+
+C'est pour ça qu'on te propose le Défi 7 jours : tu commandes, tu testes 7 jours, et si tu n'es pas convaincu on te rembourse le pot, sans le renvoyer. Un e-mail suffit.
+
+Lien dans la bio 🌿
+
+#exody #deodorantnaturel #huiledenigelle #nigelle #madeinfrance #avisclient #temoignage #cleanbeauty #satisfaitourembourse #defi7jours`},
+ {n:12, date:'Mar 6 oct · 12:15', fmt:'car', title:'Fabriqué en France', cls:'g', art:()=>`<div class="tri"><i></i><i></i><i></i></div><div class="big">Fabriqué en France. Concrètement, ça veut dire quoi ?</div>`,
+  slides:['Photo de l\'atelier. « Fabriqué en France. Concrètement, ça veut dire quoi ? »','Huile de nigelle qui coule. « Une huile bio, pressée à froid. »','Cuve de baume. « Des petites séries. »','Remplissage. « Des pots remplis et contrôlés à la main. »','Numéro de lot. « Un labo qu\'on peut appeler. »','Étui kraft. « Moins de transport, zéro plastique. »'],
+  cap:`« Fabriqué en France » on le voit partout. Voici ce que ça veut dire chez nous.
+
+🌱 Une huile de nigelle bio, pressée à froid
+🫙 Des petites séries, remplies et contrôlées à la main
+📋 Un numéro de lot sur chaque pot, et un labo qu'on peut appeler
+📦 Moins de kilomètres, un étui en carton recyclé, zéro plastique
+
+Ce n'est pas plus simple, ni moins cher. Mais on sait exactement ce qu'il y a dans ton pot, et d'où ça vient.
+
+Une question sur la fabrication ? On y répond en commentaire.
+
+#exody #madeinfrance #fabriqueenfrance #deodorantnaturel #huiledenigelle #nigelle #marquefrancaise #coulisses #cleanbeauty #zerodechet`},
+ {n:13, date:'Mer 7 oct · 18:30', fmt:'reel', title:'Peau sensible ?', cls:'b', art:()=>jar('#BFD7E3')+`<div class="big">Ta peau réagit à tout ?</div><div class="sm">Sans bicarbonate. Sans parfum. Sans huile essentielle.</div>`,
+  slides:['0-3 s · Pot pastille bleu pâle. « Ta peau réagit à tout ? »','3-8 s · « Sans bicarbonate. Sans parfum. Sans huile essentielle. »','8-12 s · Application après rasage. « Même après le rasage. »','12-15 s · « Exody Peau sensible. La même nigelle, en plus doux. »'],
+  cap:`Si un déo naturel t'a déjà irrité, c'est probablement le bicarbonate. Ou une huile essentielle.
+
+Exody Peau sensible enlève les deux. Il reste la nigelle (dosée plus fort), la fécule de maïs, la coco et la cire d'abeille. Quatre ingrédients.
+
+Pour toi si :
+• ta peau rougit avec les déos classiques
+• tu appliques juste après le rasage ou l'épilation
+• tu es enceinte ou tu allaites (pas d'huile essentielle, demande quand même à ton médecin)
+• tu cherches un premier déo pour un ado
+
+12,90 € le pot, ou le Pack Peau sensible (3 pots, 34,90 €).
+
+#exody #peausensible #deodorantnaturel #huiledenigelle #nigelle #madeinfrance #sansparfum #sansbicarbonate #peaureactive #cleanbeauty`},
+ {n:14, date:'Jeu 8 oct · 12:15', fmt:'img', title:'Le Pack 1 an', cls:'', art:()=>`<div class="fan">${jar('#8B7B6B','')}${jar('#E8873A','')}${jar('#F0D9A8','')}${jar('#FFFFFF','')}${jar('#F08A7E','')}</div><div class="sticker">OFFERT</div><div class="big">Pack 1 an. 4 + 1 offert.</div><div class="sm">49,90 € · livraison offerte · 0,11 € par jour</div>`,
+  slides:['Les 5 pots en éventail sur sable, le cinquième avec un sticker or « OFFERT ». « Pack 1 an. 4 + 1 offert. 49,90 €. » Sous-titre : livraison offerte · 0,11 € par jour.'],
+  cap:`Un an sans y penser.
+
+Le Pack 1 an, c'est 4 déos + 1 offert, dans les parfums que tu veux. 49,90 € au lieu de 64,50 €, livraison offerte.
+
+Ça fait 0,11 € par jour. Et un pot de secours pour le sac de sport.
+
+Dernier jour dimanche pour cumuler avec le code EXODY15.
+
+Lien dans la bio 🌿
+
+#exody #deodorantnaturel #huiledenigelle #nigelle #madeinfrance #pack #bonplan #cleanbeauty #zerodechet #routinebeaute`},
+ {n:15, date:'Ven 9 oct · 12:15', fmt:'img', title:'Concours : 1 an de déo', cls:'g', art:()=>confetti()+`<div class="huge gold fit">CONCOURS</div><div class="big">1 an de déo à gagner.</div><div class="sm">3 gagnants · tirage le 16 octobre</div>`,
+  slides:['Fond vert nigelle, les 5 pots du Pack 1 an, en grand en or : CONCOURS. Dessous : « 1 an de déo à gagner. »'],
+  cap:`CONCOURS 🎁 On fait gagner 1 an de déo Exody (le Pack 1 an, 5 pots dans les parfums de ton choix) à 3 personnes.
+
+Pour participer :
+1. Suivre @exody.naturel
+2. Liker ce post
+3. Taguer 2 amis en commentaire (1 commentaire = 1 chance, tu peux en mettre plusieurs)
+Bonus : partage ce post en story et tague-nous pour 5 chances de plus.
+
+Tirage au sort le vendredi 16 octobre, résultat en story. France métropolitaine. Jeu sans obligation d'achat, non affilié à Instagram. Règlement complet dans le lien en bio.
+
+Bonne chance 🌿
+
+#exody #concours #jeuconcours #giveaway #deodorantnaturel #huiledenigelle #nigelle #madeinfrance #cleanbeauty #agagner`}
+];
+
+const HL = [
+ {t:'Nigelle', icon:'<svg viewBox="0 0 24 24"><path d="M12 3c4 4 6 7.5 6 11a6 6 0 0 1-12 0c0-3.5 2-7 6-11z"/></svg>', goal:'Faire connaître l\'ingrédient héros.', stories:[
+  ['s','La nigelle.','Tu la connais peut-être sous un autre nom.'],['g','Graine noire · Habba sawda · Cumin noir · Nigella sativa.','Une seule plante.'],['s','Plus de 3 000 ans de soin.','On en aurait retrouvé jusque dans la tombe de Toutânkhamon.'],['s','L\'une des plantes les plus étudiées au monde.','Son actif principal, la thymoquinone, est documenté contre les bactéries.'],['g','Dans ton déo.','Ce sont les bactéries qui font l\'odeur. On l\'a mise là où elle sert. Sticker lien → exody.fr']]},
+ {t:'Ça marche', icon:'<svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><circle cx="12" cy="10.5" r="2.5"/><path d="M7 15.5l10-10"/></svg>', goal:'Expliquer le mécanisme.', stories:[
+  ['g','La sueur ne sent rien.','Sérieux.'],['s','Ce sont les bactéries.','Elles transforment ta sueur en odeur.'],['s','Nigelle → bactéries. Fécule → humidité. Bicarbonate → le reste.',''],['g','Transpire tranquille.','On ne bouche pas tes pores. Tu transpires, mais tu ne sens pas.']]},
+ {t:'Parfums', icon:'<svg viewBox="0 0 24 24"><path d="M12 3c4 4 6 7.5 6 11a6 6 0 0 1-12 0c0-3.5 2-7 6-11z"/><circle cx="9.5" cy="14" r=".6"/><circle cx="12" cy="14" r=".6"/><circle cx="14.5" cy="14" r=".6"/></svg>', goal:'Aider à choisir, faire voter.', stories:[
+  ['s','6 parfums. Un seul déo.','Fais glisser →'],['s','Musc','Doux, poudré, propre. Le plus mixte.'],['s','Agrumes','Bergamote, mandarine verte.'],['s','Vanille','Bourbon, sucrée sans être écœurante.'],['s','Coco','Fraîche, solaire.'],['s','Monoï','Les vacances sous le bras.'],['s','Peau sensible','Sans parfum, sans bicarbonate, sans huile essentielle.'],['g','Lequel te tente ?','Sondage : Musc / Agrumes / Vanille / Autre']]},
+ {t:'Avis', icon:'<svg viewBox="0 0 24 24"><path d="M12 3l2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3 6.4 20.2l1.1-6.2L3 9.6l6.2-.9z"/></svg>', goal:'Preuve sociale, uniquement des retours réels.', stories:[
+  ['s','Ce qu\'en disent les testeurs.','30 jours, 50 personnes.'],['g','« … »','Citation réelle, Prénom I., âge.'],['s','« … »','Citation réelle.'],['g','Tu l\'as testé ?','Raconte-nous, on reposte. Sticker question.']]},
+ {t:'Commander', icon:'<svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>', goal:'Convertir depuis le profil.', stories:[
+  ['s','exody.fr','Le site est ouvert. Sticker lien.'],['g','EXODY15','-15 % sur ta première commande.'],['s','Livraison offerte dès 35 €.','Expédition sous 48 h depuis la France.'],['s','Pack 1 an','4 déos + 1 offert, 49,90 €. Soit 0,11 € par jour.'],['g','Défi 7 jours','Pas convaincu, on te rembourse. Sans renvoyer le pot.']]},
+ {t:'FAQ', icon:'<svg viewBox="0 0 24 24"><path d="M9 9a3 3 0 1 1 4.5 2.6c-1 .6-1.5 1.2-1.5 2.4"/><circle cx="12" cy="18" r=".6"/></svg>', goal:'Lever les objections.', stories:[
+  ['s','Je vais encore transpirer ?','Oui, c\'est normal. On agit sur l\'odeur, pas sur la transpiration.'],['s','Période d\'adaptation ?','7 à 10 jours si tu viens d\'un anti-transpirant. Matin et soir pendant ce temps.'],['s','Ça tache ?','Non, si tu mets une noisette et attends 30 secondes.'],['s','Ça pique ?','Certaines peaux réagissent au bicarbonate. Passe sur Peau sensible.'],['s','Enceinte ?','Version Peau sensible, sans huile essentielle. Demande à ton médecin.'],['s','Il a fondu !','Au-dessus de 28 °C c\'est normal. 10 min au frigo.'],['s','En avion ?','Oui, en cabine. C\'est un baume, pas un liquide.'],['s','Quel âge ?','Dès 12 ans, version Peau sensible conseillée.']]},
+ {t:'Défi 7 jours', icon:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 8h6l-3.5 8"/></svg>', goal:'Transformer l\'hésitation en essai.', stories:[
+  ['g','7','Le Défi 7 jours.'],['s','Tu commandes.','Une noisette chaque matin pendant 7 jours.'],['s','J1-J3 : ta peau s\'adapte.','J4-J7 : tu oublies que tu en as mis.'],['s','Pas convaincu au jour 7 ?','Un e-mail à hello@exody.fr, on rembourse. Sans retour.'],['g','Relève le défi →','exody.fr']]},
+ {t:'Coulisses', icon:'<svg viewBox="0 0 24 24"><path d="M8 4h8v3H8z"/><path d="M7 7h10v13H7z"/><path d="M17 9h3v3h-3"/></svg>', goal:'Rendre « fabriqué en France » concret.', stories:[
+  ['s','Fabriqué ici.','Nom de la région une fois le façonnier choisi.'],['s','Huile de nigelle pressée à froid, bio.',''],['s','Petites séries.','Remplies et contrôlées à la main.'],['s','Zéro plastique.','Pot recyclable, étui carton recyclé, sticker or.'],['g','Nous.','Photo des fondateurs, prénoms.']]}
+];
+
+const FMT = {car:['Carrousel',I.car], reel:['Reel',I.reel], img:['Image','']};
+const byN = n => POSTS.find(p=>p.n===n);
+const order = [1,4,6, ...POSTS.filter(p=>!p.pinned).map(p=>p.n).sort((a,b)=>b-a)];
+
+const grid = document.getElementById('grid');
+grid.innerHTML = order.map(n=>{ const p=byN(n); return `<button class="tile ${p.cls}" type="button" data-post="${p.n}" aria-pressed="false" aria-label="Post ${p.n} : ${p.title}">${p.pinned?I.pin:''}${FMT[p.fmt][1]?`<span class="badge">${FMT[p.fmt][1]}</span>`:''}<div class="art">${p.art()}</div></button>`; }).join('');
+
+const hl = document.getElementById('hl');
+hl.innerHTML = HL.map((h,i)=>`<button type="button" data-hl="${i}" aria-pressed="false" role="listitem"><div class="c">${h.icon}</div><span class="t">${h.t}</span></button>`).join('');
+
+const panel = document.getElementById('panel'), body = document.getElementById('panelBody');
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const capHtml = s => esc(s).replace(/(#[\wàâçéèêëîïôûùüÿñæœ]+)/g,'<span class="tag">$1</span>');
+function select(kind, key){
+  document.querySelectorAll('[data-post],[data-hl]').forEach(b=>b.setAttribute('aria-pressed', String((kind==='post'&&b.dataset.post==key)||(kind==='hl'&&b.dataset.hl==key))));
+  if(kind==='post'){
+    const p = byN(+key);
+    body.innerHTML = `<div class="eyebrow"><span class="pill g">Post ${p.n} / 15</span><span class="pill">${FMT[p.fmt][0]}${p.fmt==='car'?` · ${p.slides.length} slides`:''}</span><span>${p.date}</span>${p.pinned?'<span class="pill">Épinglé</span>':''}</div>
+      <h2>${esc(p.title)}</h2>
+      <div class="preview ${p.cls}"><div class="art">${p.art()}</div></div>
+      <h3>${p.fmt==='reel'?'Script':'Visuel'}</h3>
+      <ol class="slides">${p.slides.map((s,i)=>`<li><b>${p.fmt==='reel'?'':String(i+1).padStart(2,'0')}</b><span>${esc(s)}</span></li>`).join('')}</ol>
+      <h3>Légende</h3>
+      <pre class="cap">${capHtml(p.cap)}</pre>
+      <button class="copy" type="button" id="copyBtn">Copier la légende</button>`;
+    document.getElementById('copyBtn').onclick = async (e)=>{ try{ await navigator.clipboard.writeText(p.cap); e.target.textContent='Copiée'; setTimeout(()=>e.target.textContent='Copier la légende',1500);}catch(_){ e.target.textContent='Sélectionne le texte ci-dessus'; } };
+  } else {
+    const h = HL[+key];
+    body.innerHTML = `<div class="eyebrow"><span class="pill g">Highlight ${+key+1} / 8</span><span class="pill">${h.stories.length} stories</span></div>
+      <h2>${esc(h.t)}</h2>
+      <p style="margin:0 0 6px;color:var(--muted)">${esc(h.goal)} Couverture : icône en trait vert sur fond sable, sans texte.</p>
+      <h3>Stories</h3>
+      <div class="stories">${h.stories.map((s,i)=>`<div class="story ${s[0]}"><b>${esc(s[1])}</b><span>${esc(s[2])}</span><span class="n">${i+1} / ${h.stories.length}</span></div>`).join('')}</div>`;
+  }
+  panel.classList.add('open'); panel.scrollTop = 0;
+}
+grid.addEventListener('click', e=>{ const b=e.target.closest('[data-post]'); if(b) select('post', b.dataset.post); });
+hl.addEventListener('click', e=>{ const b=e.target.closest('[data-hl]'); if(b) select('hl', b.dataset.hl); });
+document.getElementById('close').onclick = ()=> panel.classList.remove('open');
+select('post', '1'); panel.classList.remove('open');
+</script>
+</body>
+
+</html>
