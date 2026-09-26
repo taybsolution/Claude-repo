@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Stratégie Marketing & Sales — Shiraz Beauty Studio</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --ink: #241F1F;
+    --ink-2: #4E4545;
+    --muted: #8A7F7F;
+    --line: #E9DFD9;
+    --paper: #FFFFFF;
+    --cream: #FBF7F4;
+    --rose: #F6E7E3;
+    --rose-2: #E6C3BC;
+    --rose-3: #C98E86;
+    --gold: #B08A50;
+    --gold-2: #D9C29A;
+    --gold-3: #F3EBDD;
+    --charcoal: #241C1C;
+    --serif: 'Bitstream Charter', 'FreeSerif', Georgia, serif;
+    --sans: 'Liberation Sans', 'FreeSans', Arial, sans-serif;
+    /* single-hue sequential ramp for charts (gold) */
+    --s1: #EAD9BB; --s2: #D9BE8A; --s3: #C5A469; --s4: #B08A50; --s5: #8C6A36;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #fff; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 10.2pt; line-height: 1.42; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { position: relative; width: 210mm; height: 297mm; overflow: hidden; padding: 15mm 16mm 18mm 16mm; background: var(--paper); page-break-after: always; break-after: page; counter-increment: page; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+  .footer { position: absolute; left: 16mm; right: 16mm; bottom: 8mm; display: flex; justify-content: space-between; font-size: 7.6pt; color: var(--muted); border-top: 1px solid var(--line); padding-top: 2.5mm; letter-spacing: .3px; }
+  .footer .num::after { content: counter(page); }
+  h1 { font-family: var(--serif); font-weight: 700; font-size: 25pt; line-height: 1.12; margin: 0 0 3.5mm; color: var(--ink); letter-spacing: -.2px; }
+  h2 { font-family: var(--serif); font-weight: 700; font-size: 14.5pt; line-height: 1.2; margin: 6mm 0 2.5mm; color: var(--ink); }
+  h2:first-of-type { margin-top: 4mm; }
+  h3 { font-size: 10.2pt; font-weight: 700; margin: 3.5mm 0 1.5mm; color: var(--ink); }
+  p { margin: 0 0 2.6mm; }
+  .kicker { font-size: 8pt; letter-spacing: 2.2px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 2mm; }
+  .lead { font-size: 11pt; color: var(--ink-2); line-height: 1.5; }
+  .small { font-size: 8.6pt; color: var(--ink-2); }
+  .muted { color: var(--muted); }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; }
+  .card { border: 1px solid var(--line); border-radius: 2.5mm; padding: 4mm 4.5mm; background: var(--cream); }
+  .card.rose { background: var(--rose); border-color: #EFD3CC; }
+  .card.gold { background: var(--gold-3); border-color: #E4D4B6; }
+  .card.dark { background: var(--charcoal); color: #F6EEE9; border-color: var(--charcoal); }
+  .card h3 { margin-top: 0; }
+  .card p:last-child, .card ul:last-child { margin-bottom: 0; }
+  .stat { text-align: left; }
+  .stat .n { font-family: var(--serif); font-size: 22pt; font-weight: 700; color: var(--gold); line-height: 1.05; }
+  .stat .l { font-size: 7.8pt; color: var(--ink-2); text-transform: uppercase; letter-spacing: 1px; margin-top: 1.2mm; font-weight: 700; }
+  .stat .d { font-size: 8.6pt; color: var(--ink-2); margin-top: 1mm; }
+  ul, ol { margin: 0 0 2.5mm; padding-left: 0; list-style: none; }
+  ul li { position: relative; padding-left: 4.5mm; margin-bottom: 1.3mm; }
+  ul li::before { content: ''; position: absolute; left: 0.4mm; top: .52em; width: 1.9mm; height: 1.9mm; background: var(--gold); border-radius: 50%; }
+  ul.check li::before { background: none; content: '✓'; top: 0; left: 0; font-weight: 700; color: var(--gold); font-size: 9.5pt; width: auto; height: auto; }
+  ul.x li::before { background: none; content: '✕'; top: 0; left: 0; font-weight: 700; color: var(--rose-3); font-size: 9pt; width: auto; height: auto; }
+  ol { counter-reset: item; }
+  ol li { position: relative; padding-left: 7mm; margin-bottom: 1.6mm; counter-increment: item; }
+  ol li::before { content: counter(item); position: absolute; left: 0; top: .1em; width: 5mm; height: 5mm; border-radius: 50%; background: var(--charcoal); color: #fff; font-size: 7.5pt; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  table.tbl { width: 100%; border-collapse: collapse; font-size: 8.8pt; margin: 1.5mm 0 3mm; }
+  table.tbl th { text-align: left; background: var(--charcoal); color: #fff; padding: 2mm 2.4mm; font-size: 7.6pt; letter-spacing: .6px; text-transform: uppercase; font-weight: 700; }
+  table.tbl td { padding: 1.9mm 2.4mm; border-bottom: 1px solid #EEE5DF; vertical-align: top; }
+  table.tbl tr:nth-child(even) td { background: #FBF7F4; }
+  table.tbl td.b, table.tbl tr.total td { font-weight: 700; }
+  table.tbl tr.total td { background: var(--gold-3); border-top: 2px solid var(--gold-2); }
+  table.tbl.compact td { padding: 1.4mm 2mm; }
+  .callout { border-left: 2.5px solid var(--gold); background: var(--gold-3); padding: 3mm 4.2mm; border-radius: 0 2mm 2mm 0; font-size: 9.4pt; margin: 2.5mm 0 3mm; }
+  .callout.rose { border-color: var(--rose-3); background: var(--rose); }
+  .callout strong { color: var(--ink); }
+  .tag { display: inline-block; padding: .4mm 2.4mm; border-radius: 10mm; background: #F1E4DF; color: #7A4A45; font-size: 7.6pt; font-weight: 700; letter-spacing: .3px; vertical-align: middle; }
+  .tag.gold { background: var(--gold-3); color: #7C5E2E; }
+  .tag.dark { background: var(--charcoal); color: #fff; }
+  .divider { height: 1px; background: var(--line); margin: 4mm 0; }
+  .num-h { display: flex; align-items: baseline; gap: 3mm; }
+  .num-h .n { font-family: var(--serif); font-size: 30pt; color: var(--gold-2); font-weight: 700; line-height: 1; }
+  /* charts */
+  .bars .row { display: grid; grid-template-columns: 40mm 1fr 24mm; align-items: center; gap: 2.5mm; margin: 1.4mm 0; font-size: 8.8pt; }
+  .bars .bar { height: 5.2mm; border-radius: 0 1.2mm 1.2mm 0; background: var(--s4); }
+  .bars .v { font-weight: 700; color: var(--ink); }
+  .bars .lbl { color: var(--ink-2); }
+  .funnel .row { display: grid; grid-template-columns: 52mm 1fr 26mm; align-items: center; gap: 2.5mm; margin: 1.6mm 0; font-size: 8.8pt; }
+  .funnel .bar { height: 6.4mm; border-radius: 0 1.2mm 1.2mm 0; }
+  .funnel .v { font-weight: 700; color: var(--ink); }
+  .funnel .lbl { color: var(--ink-2); }
+  .funnel .sub { display: block; font-size: 7.6pt; color: var(--muted); font-weight: 400; }
+  /* timeline */
+  .steps { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1.6mm; margin: 2mm 0 3mm; }
+  .steps .s { background: var(--cream); border: 1px solid var(--line); border-radius: 2mm; padding: 2.4mm; font-size: 7.9pt; line-height: 1.3; }
+  .steps .s .t { font-weight: 700; color: var(--gold); font-size: 7.6pt; letter-spacing: .5px; text-transform: uppercase; display: block; margin-bottom: 1mm; }
+  /* persona */
+  .persona { border: 1px solid var(--line); border-radius: 2.5mm; overflow: hidden; background: #fff; }
+  .persona .hd { background: var(--charcoal); color: #fff; padding: 3mm 4mm; }
+  .persona .hd .name { font-family: var(--serif); font-size: 13pt; font-weight: 700; }
+  .persona .hd .who { font-size: 8.3pt; color: #E6C3BC; margin-top: .6mm; }
+  .persona .bd { padding: 3mm 4mm; font-size: 8.7pt; }
+  .persona .bd b { color: var(--gold); text-transform: uppercase; font-size: 7.4pt; letter-spacing: .8px; display: block; margin-top: 2mm; }
+  .persona .bd b:first-child { margin-top: 0; }
+  /* chat bubbles */
+  .chat { font-size: 8.6pt; }
+  .chat .b { background: #EAF7E7; border: 1px solid #D5EBD0; border-radius: 2.5mm 2.5mm 2.5mm 0.6mm; padding: 2.4mm 3.2mm; margin: 1.5mm 0; max-width: 92%; }
+  .chat .b.in { background: #F4F1EE; border-color: #E7E0DA; border-radius: 2.5mm 2.5mm 0.6mm 2.5mm; margin-left: auto; }
+  .chat .lab { font-size: 7.4pt; color: var(--muted); text-transform: uppercase; letter-spacing: .8px; font-weight: 700; margin-top: 2.5mm; }
+  /* cover */
+  .cover { background: var(--charcoal); color: #F6EEE9; padding: 0; }
+  .cover .band { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: hidden; }
+  .grid-3 .card ul { font-size: 9.1pt; }
+  .cover .circle { position: absolute; right: -40mm; top: -40mm; width: 150mm; height: 150mm; border-radius: 50%; background: radial-gradient(circle at 40% 40%, #3A2B2B 0%, #241C1C 70%); }
+  .cover .circle2 { position: absolute; left: -30mm; bottom: -60mm; width: 130mm; height: 130mm; border-radius: 50%; border: 1px solid #4A3A3A; }
+  .cover .inner { position: absolute; left: 18mm; right: 18mm; top: 26mm; bottom: 20mm; }
+  .cover .kicker { color: var(--gold-2); }
+  .cover h1 { color: #fff; font-size: 40pt; line-height: 1.05; margin: 4mm 0 5mm; }
+  .cover .sub { font-family: var(--serif); font-size: 19pt; color: var(--rose-2); margin-bottom: 8mm; }
+  .cover .tagline { font-size: 12pt; color: #E9DDD6; max-width: 130mm; line-height: 1.5; }
+  .cover .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; margin-top: 16mm; }
+  .cover .facts .f { border-top: 1px solid #5A4747; padding-top: 3mm; }
+  .cover .facts .f .n { font-family: var(--serif); font-size: 19pt; color: var(--gold-2); font-weight: 700; }
+  .cover .facts .f .l { font-size: 8.4pt; color: #C9B9B2; text-transform: uppercase; letter-spacing: 1.2px; margin-top: 1mm; }
+  .cover .bottom { position: absolute; left: 0; right: 0; bottom: 0; font-size: 9pt; color: #C9B9B2; display: flex; justify-content: space-between; border-top: 1px solid #5A4747; padding-top: 4mm; }
+  .cover .logo { font-family: var(--serif); font-size: 13pt; color: #fff; letter-spacing: 2px; text-transform: uppercase; }
+  /* toc */
+  .toc { margin-top: 3mm; }
+  .toc li { display: grid; grid-template-columns: 9mm 1fr 12mm; align-items: baseline; padding: 2.2mm 0; border-bottom: 1px dotted var(--line); margin: 0; }
+  .toc li::before { display: none; }
+  .toc .no { font-family: var(--serif); color: var(--gold); font-weight: 700; font-size: 11pt; }
+  .toc .ti { font-size: 10.4pt; }
+  .toc .ti small { display: block; color: var(--muted); font-size: 8.3pt; margin-top: .4mm; }
+  .toc .pg { text-align: right; font-weight: 700; color: var(--ink-2); }
+  .toc li.sub .ti { font-size: 9.4pt; padding-left: 0; }
+  /* figure */
+  .fig { border: 1px solid var(--line); border-radius: 3mm; padding: 2mm; background: #fff; }
+  .fig img { display: block; width: 100%; border-radius: 2mm; }
+  .fig .cap { font-size: 7.8pt; color: var(--muted); text-align: center; margin-top: 1.5mm; }
+  .phone { width: 100%; height: 100mm; overflow: hidden; border-radius: 2mm; }
+  .phone img { width: 100%; display: block; }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 1.6mm; margin: 1.5mm 0 2.5mm; }
+  .pill-row .tag { font-weight: 600; }
+  .kpi { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3.5mm; margin: 2mm 0 3.5mm; }
+  .kpi .k { border: 1px solid var(--line); border-radius: 2.5mm; padding: 3mm 3.5mm; background: #fff; }
+  .kpi .k .n { font-family: var(--serif); font-size: 19pt; color: var(--gold); font-weight: 700; line-height: 1.05; }
+  .kpi .k .l { font-size: 7.6pt; text-transform: uppercase; letter-spacing: .9px; color: var(--ink-2); font-weight: 700; margin-top: 1.2mm; }
+  .kpi .k .d { font-size: 8.2pt; color: var(--muted); margin-top: .8mm; }
+  .two-col { column-count: 2; column-gap: 6mm; }
+  .legend { font-size: 7.8pt; color: var(--muted); margin-top: 1.5mm; }
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 : COUVERTURE ============ -->
+<section class="page cover">
+  <div class="band">
+    <div class="circle"></div>
+    <div class="circle2"></div>
+  </div>
+  <div class="inner">
+    <div class="kicker">Proposition stratégique · Septembre 2026</div>
+    <h1>Stratégie<br>Marketing &amp; Sales</h1>
+    <div class="sub">Shiraz Beauty Studio — Rabat</div>
+    <div class="tagline">Un système d'acquisition prévisible pour générer <strong style="color:#fff">au minimum 20 nouvelles clientes par mois</strong>, en capitalisant sur le studio de maquillage permanent le mieux noté de Rabat.</div>
+    <div class="facts">
+      <div class="f"><div class="n">5,0 ★</div><div class="l">155 avis Google</div></div>
+      <div class="f"><div class="n">20+</div><div class="l">Clientes / mois visées</div></div>
+      <div class="f"><div class="n">90 jours</div><div class="l">Plan de déploiement</div></div>
+    </div>
+    <div class="bottom">
+      <div>
+        <div class="logo">Shiraz Beauty Studio</div>
+        <div style="margin-top:1.5mm">Préparé pour Shiraz Fassi Fihri, fondatrice · Microblading, Lip Blush, Eyeliner · Diour Jamaa, Rabat</div>
+      </div>
+      <div style="text-align:right">Document confidentiel<br>Version 1.0</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PAGE 2 : SOMMAIRE ============ -->
+<section class="page">
+  <div class="kicker">Sommaire</div>
+  <h1>Ce que contient cette proposition</h1>
+  <p class="lead">Une stratégie complète, du diagnostic au plan d'exécution semaine par semaine, construite autour d'un objectif unique et mesurable : <strong>20 nouvelles clientes par mois, minimum, de façon répétable.</strong></p>
+  <ul class="toc">
+    <li data-target="s-resume"><span class="no">—</span><span class="ti">Résumé exécutif<small>L'essentiel en une page : objectif, approche, chiffres-clés</small></span><span class="pg"></span></li>
+    <li data-target="s-diag"><span class="no">01</span><span class="ti">Diagnostic<small>Forces, freins, marché et concurrence à Rabat</small></span><span class="pg"></span></li>
+    <li data-target="s-funnel"><span class="no">02</span><span class="ti">Objectif &amp; mécanique du tunnel de vente<small>Combien de leads pour 20 clientes, et d'où ils viennent</small></span><span class="pg"></span></li>
+    <li data-target="s-cibles"><span class="no">03</span><span class="ti">Cibles &amp; personas<small>Les 3 profils de clientes prioritaires</small></span><span class="pg"></span></li>
+    <li data-target="s-posit"><span class="no">04</span><span class="ti">Positionnement &amp; offre<small>Promesse, preuves, menu de prestations, packs, offre d'appel, tarifs</small></span><span class="pg"></span></li>
+    <li data-target="s-acq"><span class="no">05</span><span class="ti">Acquisition : les canaux<small>Google, Meta, contenu organique, parrainage, partenariats, influence</small></span><span class="pg"></span></li>
+    <li data-target="s-conv"><span class="no">06</span><span class="ti">Conversion : le système de vente WhatsApp<small>Scripts, qualification, objections, relances, acomptes</small></span><span class="pg"></span></li>
+    <li data-target="s-fid"><span class="no">07</span><span class="ti">Fidélisation &amp; valeur cliente<small>Retouches, cross-sell, avis, programme VIP</small></span><span class="pg"></span></li>
+    <li data-target="s-budget"><span class="no">08</span><span class="ti">Budget &amp; projections<small>3 scénarios, hypothèses, outils</small></span><span class="pg"></span></li>
+    <li data-target="s-plan"><span class="no">09</span><span class="ti">Plan d'action 90 jours<small>Fondations, accélération, montée en puissance</small></span><span class="pg"></span></li>
+    <li data-target="s-kpi"><span class="no">10</span><span class="ti">Pilotage &amp; indicateurs<small>Tableau de bord, règles de décision, reporting</small></span><span class="pg"></span></li>
+    <li data-target="s-annexes"><span class="no">A</span><span class="ti">Annexes<small>Calendrier de contenu, exemples d'annonces, scripts WhatsApp, checklist Google, prochaines étapes</small></span><span class="pg"></span></li>
+  </ul>
+  <div class="callout" style="margin-top:6mm"><strong>Comment lire ce document.</strong> Les chiffres de tunnel, de coûts publicitaires et de tarifs sont des <strong>estimations expertes basées sur le marché marocain</strong> (beauté / esthétique, Rabat-Casablanca). Ils sont volontairement prudents et seront recalés après les 4 premières semaines de données réelles. Tout ce qui est marqué <span class="tag gold">à valider</span> sera confirmé avec vous lors de l'atelier de cadrage.</div>
+  <div class="footer"><span>Shiraz Beauty Studio · Stratégie Marketing &amp; Sales · Proposition confidentielle</span><span class="num"></span></div>
+</section>
+
+<!-- ============ PAGE 3 : RÉSUMÉ EXÉCUTIF ============ -->
+<section class="page" id="s-resume">
+  <div class="kicker">Résumé exécutif</div>
+  <h1>De la réputation à la prévisibilité</h1>
+  <p class="lead">Shiraz Beauty Studio a déjà ce que 95&nbsp;% des studios n'obtiendront jamais : <strong>une note parfaite de 5,0 sur 155 avis Google</strong>, une spécialisation claire (microblading, microshading, lip blush / glaçage des lèvres, neutralisation, eyeliner, brow lift), des pigments vegan importés des États-Unis et une fondatrice identifiée. Ce capital de confiance est aujourd'hui sous-exploité : l'acquisition repose sur le bouche-à-oreille et l'organique, donc sur un volume irrégulier et non pilotable.</p>
+  <p>Notre proposition transforme cette réputation en <strong>machine d'acquisition mesurable</strong> : capter l'intention existante (Google), créer la demande (Instagram / Facebook / TikTok), convertir chaque conversation WhatsApp avec un processus de vente structuré, et faire revenir chaque cliente (retouches, seconde zone, parrainage).</p>
+
+  <div class="kpi">
+    <div class="k"><div class="n">24</div><div class="l">Clientes / mois</div><div class="d">cible du scénario recommandé (minimum garanti visé : 20)</div></div>
+    <div class="k"><div class="n">70</div><div class="l">Leads qualifiés / mois</div><div class="d">conversations WhatsApp avec intention réelle</div></div>
+    <div class="k"><div class="n">8 000</div><div class="l">MAD média / mois</div><div class="d">Google 3 000 · Meta 4 500 · influence 500</div></div>
+    <div class="k"><div class="n">≈ 58 k</div><div class="l">MAD de CA / mois</div><div class="d">à 2 400 MAD de ticket moyen (hypothèse à valider)</div></div>
+  </div>
+
+  <div class="grid-3">
+    <div class="card gold">
+      <h3>1 · Attirer</h3>
+      <ul>
+        <li>Google Ads sur les recherches à forte intention</li>
+        <li>Meta Ads «&nbsp;clic vers WhatsApp&nbsp;» + retargeting</li>
+        <li>Reels et TikTok : résultats, éducation, coulisses</li>
+        <li>Fiche Google, SEO local, partenaires mariage</li>
+      </ul>
+    </div>
+    <div class="card rose">
+      <h3>2 · Convertir</h3>
+      <ul>
+        <li>Réponse WhatsApp &lt; 5 min, script en 5 étapes</li>
+        <li>Qualification par photo, devis clair, 2 créneaux</li>
+        <li>Acompte + rappels J-2 / J-1 : zéro no-show</li>
+        <li>Relances J+1, J+3, J+7, objections traitées</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>3 · Fidéliser</h3>
+      <ul>
+        <li>Suivi post-prestation automatisé (cicatrisation, avis)</li>
+        <li>Rappel de retouche annuelle, seconde zone</li>
+        <li>Parrainage «&nbsp;200 MAD offerts&nbsp;»</li>
+        <li>200 avis Google d'ici mars 2027</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Pourquoi ce plan fonctionnera</h2>
+  <div class="grid-2">
+    <ul>
+      <li><strong>La demande existe déjà</strong> : chaque mois, des femmes de Rabat-Salé-Témara cherchent «&nbsp;microblading Rabat&nbsp;» sur Google et Instagram. Aujourd'hui, une partie de ces recherches va à la concurrence.</li>
+      <li><strong>La preuve sociale est le meilleur argument publicitaire</strong> : «&nbsp;5,0 ★ · 155 avis&nbsp;» dans chaque annonce divise le coût par lead et lève l'objection n°1 (la peur du résultat raté).</li>
+    </ul>
+    <ul>
+      <li><strong>Le ticket moyen élevé</strong> (2 000 à 3 500 MAD) rend la publicité très rentable : un coût d'acquisition de ~350 MAD pour une prestation à 2 400 MAD, puis des retouches annuelles.</li>
+      <li><strong>Le goulot n'est pas le trafic, c'est la conversion</strong> : structurer WhatsApp (réponse rapide, acompte, relances) fait souvent +30 à +50&nbsp;% de clientes à trafic égal.</li>
+    </ul>
+  </div>
+  <div class="callout rose" style="margin-top:1mm"><strong>Ce que nous attendons de vous</strong> : 2 h par semaine de captation de contenu au studio (nous montons tout), la validation des tarifs et des packs, les accès (Google, Meta, site), et un engagement sur le temps de réponse WhatsApp (ou sa délégation à l'agence, option «&nbsp;setter&nbsp;» décrite en section 06).</div>
+  <div class="footer"><span>Shiraz Beauty Studio · Stratégie Marketing &amp; Sales · Proposition confidentielle</span><span class="num"></span></div>
+</section>
+
+<!-- ============ PAGE 4 : DIAGNOSTIC 1 ============ -->
+<section class="page" id="s-diag">
+  <div class="kicker">01 · Diagnostic</div>
+  <h1>Un actif rare, une mécanique incomplète</h1>
+  <div class="grid-2" style="grid-template-columns: 1fr 58mm; gap:7mm">
+    <div>
+      <h2 style="margin-top:0">Ce qui fonctionne déjà</h2>
+      <ul class="check">
+        <li><strong>Preuve sociale exceptionnelle : 5,0 ★ sur 155 avis.</strong> C'est l'argument commercial le plus puissant de la zone, et il n'est utilisé dans aucune publicité aujourd'hui.</li>
+        <li><strong>Fiche Google complète et actionnable</strong> : appel, itinéraire, WhatsApp, site web, photos et vidéos. Le titre contient déjà les mots-clés («&nbsp;Microblading &amp; Glaçage des lèvres Rabat&nbsp;») et la catégorie exacte «&nbsp;Clinique de maquillage permanent&nbsp;».</li>
+        <li><strong>Spécialisation crédible</strong> : microblading, microshading, lip blush / glaçage, neutralisation des lèvres, eyeliner semi-permanent, brow lift. Pas un salon généraliste : une experte.</li>
+        <li><strong>Marque personnelle</strong> : Shiraz Fassi Fihri (Maroc / Liban) est visible sur Instagram et TikTok avec des résultats avant / après. La confiance passe par un visage.</li>
+        <li><strong>Arguments produit différenciants</strong> : pigments 100&nbsp;% vegan importés des États-Unis, sur rendez-vous uniquement, technique poil à poil au rendu naturel.</li>
+        <li><strong>Emplacement central</strong> : Diour Jamaa, à quelques minutes de Hassan, Agdal, Océan et de Salé.</li>
+      </ul>
+      <h2>Ce que révèle la fiche Google</h2>
+      <p>En esthétique, 20 à 30&nbsp;% des clientes satisfaites laissent un avis. <strong>155 avis suggèrent une base de 500 à 700 clientes servies</strong> : un fichier à réactiver pour les retouches annuelles, la seconde zone et le parrainage. C'est la source de revenus la plus rapide et la moins chère du plan.</p>
+      <p>La fiche est votre premier vendeur : elle apparaît pour «&nbsp;microblading Rabat&nbsp;» et sur Google Maps. Chaque amélioration (avis récents, photos, services avec prix, posts) augmente directement les appels et messages WhatsApp, sans budget publicitaire.</p>
+    </div>
+    <div>
+      <div class="fig">
+        <div class="phone"><img src="fiche-google-shiraz.jpg" alt="Fiche Google de Shiraz Beauty Studio"></div>
+        <div class="cap">Fiche Google Business, septembre 2026</div>
+      </div>
+      <div class="card dark" style="margin-top:4mm">
+        <div style="font-size:8pt;letter-spacing:1.5px;text-transform:uppercase;color:#D9C29A;font-weight:700">Lecture experte</div>
+        <p style="font-size:8.8pt;margin-top:1.5mm">Une note de 5,0 avec plus de 150 avis est rare : la plupart des studios plafonnent à 4,6–4,8. Cette perfection doit être <strong>protégée</strong> (parcours post-prestation) et <strong>exploitée</strong> (annonces, site, stories, cartes de visite).</p>
+      </div>
+    </div>
+  </div>
+  <h2 style="margin-top:3mm">Présence digitale actuelle</h2>
+  <table class="tbl compact">
+    <tr><th style="width:16%">Canal</th><th style="width:44%">État observé</th><th>Priorité du plan</th></tr>
+    <tr><td class="b">Fiche Google</td><td>5,0 ★ · 155 avis, fiche complète, catégorie exacte</td><td>Exploiter : avis, posts, services avec prix</td></tr>
+    <tr><td class="b">Instagram</td><td>@shiraz.beautystudio, résultats publiés, bio spécialisée</td><td>Structurer : highlights, cadence, CTA WhatsApp</td></tr>
+    <tr><td class="b">TikTok</td><td>@shiraz.beauty.stu, vidéos de résultats</td><td>Régularité 3 / semaine, formats éducatifs</td></tr>
+    <tr><td class="b">Facebook</td><td>Page existante</td><td>Audience 35+, publicités, groupes locaux</td></tr>
+    <tr><td class="b">Site web</td><td>Lien présent sur la fiche</td><td>Pages de conversion, pixel, prix, FAQ</td></tr>
+    <tr><td class="b">WhatsApp</td><td>Bouton sur la fiche Google</td><td>Devenir le canal unique de vente (section 06)</td></tr>
+  </table>
+  <div class="footer"><span>Shiraz Beauty Studio · Stratégie Marketing &amp; Sales · Proposition confidentielle</span><span class="num"></span></div>
+</section>
+
+<!-- ============ PAGE 5 : DIAGNOSTIC 2 ============ -->
+<section class="page">
+  <div class="kicker">01 · Diagnostic</div>
+  <h1>Freins, marché et concurrence</h1>
+  <h2 style="margin-top:2mm">Les 7 freins à lever <span class="tag gold">hypothèses à valider en semaine 1</span></h2>
+  <div class="grid-2">
+    <ol>
+      <li><strong>Acquisition non pilotable</strong> : dépendance au bouche-à-oreille et à l'organique, donc des mois à 25 clientes et des mois à 8.</li>
+      <li><strong>Pas de tunnel de vente formalisé</strong> : délai de réponse variable, pas de qualification, pas de relance, pas d'acompte : des leads perdus chaque semaine.</li>
+      <li><strong>Publicité absente ou non structurée</strong> : pas de campagne à intention (Google), pas de retargeting, pas de suivi des conversions.</li>
+      <li><strong>Site vitrine, pas de pages de conversion</strong> : pas de page par prestation, pas de pixel Meta, prix et FAQ peu visibles.</li>
+    </ol>
+    <ol start="5" style="counter-reset: item 4">
+      <li><strong>Base clientes inexploitée</strong> : pas de rappel de retouche annuelle, pas de parrainage, collecte d'avis non systématique.</li>
+      <li><strong>Offre peu lisible en ligne</strong> : les prospects demandent «&nbsp;le prix&nbsp;» en privé, ne reçoivent pas de cadre (valeur, inclus, acompte) et disparaissent.</li>
+      <li><strong>Capacité limitée à une artiste</strong> : l'agenda est le vrai plafond. Prioriser les prestations à forte valeur, remplir les creux, anticiper une seconde artiste.</li>
+    </ol>
+  </div>
+
+  <h2>Le marché de Rabat-Salé-Témara</h2>
+  <div class="grid-2">
+    <div>
+      <ul>
+        <li><strong>Zone de chalandise</strong> : Rabat, Salé, Témara, Skhirat et Kénitra, plus de 2 millions d'habitants à moins de 45 minutes, forte concentration de cadres, fonctionnaires, diplomates et étudiantes.</li>
+        <li><strong>Demande en croissance</strong> : le microblading est installé ; le lip blush, la neutralisation des lèvres foncées et le brow lift sont les tendances 2025–2026 au Maghreb, portées par TikTok.</li>
+        <li><strong>Saisonnalité</strong> : pics avant les fêtes de fin d'année, avant l'Aïd et pendant la saison des mariages (juin–septembre), plus les Marocaines de l'étranger en été. Ramadan (février–mars 2027) est un creux à anticiper.</li>
+      </ul>
+    </div>
+    <div>
+      <table class="tbl compact">
+        <tr><th>Type de concurrent</th><th>Leur force</th><th>Notre réponse</th></tr>
+        <tr><td>Cliniques laser / esthétique multi-services</td><td>Promotions agressives (-30&nbsp;%), gros budgets pub</td><td>Spécialisation, 155 avis, résultat naturel, artiste identifiée</td></tr>
+        <tr><td>Indépendantes et salons généralistes</td><td>Prix bas (800–1 500 MAD)</td><td>Sécurité, hygiène, pigments vegan, résultats à 1 an, garantie de dessin</td></tr>
+        <tr><td>Studios PMU premium de Casablanca</td><td>Notoriété Instagram</td><td>Proximité, preuve locale, mêmes standards sans le déplacement</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <h2 style="margin-top:3mm">Synthèse SWOT</h2>
+  <div class="grid-4">
+    <div class="card gold"><h3>Forces</h3><ul class="small" style="margin:0"><li>5,0 ★ / 155 avis</li><li>Spécialisation PMU</li><li>Fondatrice visible</li><li>Pigments vegan US</li></ul></div>
+    <div class="card"><h3>Faiblesses</h3><ul class="small" style="margin:0"><li>Pas de tunnel de vente</li><li>Publicité non structurée</li><li>Base clientes dormante</li><li>Capacité mono-artiste</li></ul></div>
+    <div class="card rose"><h3>Opportunités</h3><ul class="small" style="margin:0"><li>Recherches Google</li><li>Neutralisation, lip blush</li><li>Mariées, partenaires</li><li>Retouches annuelles</li></ul></div>
+    <div class="card"><h3>Menaces</h3><ul class="small" style="margin:0"><li>Promos des cliniques laser</li><li>Guerre des prix</li><li>Avis négatif non géré</li><li>Règles Meta avant / après</li></ul></div>
+  </div>
+  <div class="footer"><span>Shiraz Beauty Studio · Stratégie Marketing &amp; Sales · Proposition confidentielle</span><span class="num"></span></div>
+</section>
+
+<!-- ============ PAGE 6 : OBJECTIF & FUNNEL ============ -->
+<section class="page" id="s-funnel">
+  <div class="kicker">02 · Objectif &amp; mécanique du tunnel</div>
+  <h1>Combien de leads pour 20 clientes ?</h1>
+  <p class="lead">On ne pilote pas «&nbsp;20 clientes&nbsp;», on pilote les étapes qui y mènent. Le scénario recommandé vise 24 clientes pour garantir le minimum de 20 même dans un mois faible.</p>
+
+  <h2 style="margin-top:0">Le tunnel mensuel (scénario recommandé)</h2>
+  <div class="funnel">
+    <div class="row"><span class="lbl">Impressions publicitaires<span class="sub">Google + Meta, zone Rabat</span></span><div class="bar" style="width:100%;background:var(--s1)"></div><span class="v">≈ 450 000</span></div>
+    <div class="row"><span class="lbl">Clics / visites qualifiées<span class="sub">taux de clic 1,5–2,5&nbsp;%</span></span><div class="bar" style="width:78%;background:var(--s2)"></div><span class="v">≈ 1 400</span></div>
+    <div class="row"><span class="lbl">Conversations WhatsApp<span class="sub">tous canaux confondus</span></span><div class="bar" style="width:58%;background:var(--s3)"></div><span class="v">≈ 130</span></div>
+    <div class="row"><span class="lbl">Leads qualifiés<span class="sub">intention réelle, zone, budget</span></span><div class="bar" style="width:42%;background:var(--s4)"></div><span class="v">70</span></div>
+    <div class="row"><span class="lbl">Rendez-vous réservés<span class="sub">avec acompte · 40&nbsp;% des leads</span></span><div class="bar" style="width:24%;background:var(--s5)"></div><span class="v">28</span></div>
+    <div class="row"><span class="lbl"><strong>Clientes réalisées</strong><span class="sub">taux de présence 85&nbsp;%</span></span><div class="bar" style="width:19%;background:var(--charcoal)"></div><span class="v">24</span></div>
+  </div>
+  <div class="legend">Les impressions et clics sont indicatifs ; les trois derniers étages sont les indicateurs pilotés chaque semaine.</div>
+
+  <div class="grid-2" style="margin-top:3mm">
+    <div>
+      <h2 style="margin-top:0">D'où viennent les 70 leads</h2>
+      <div class="bars">
+        <div class="row"><span class="lbl">Meta Ads (Instagram / Facebook)</span><div class="bar" style="width:100%"></div><span class="v">30</span></div>
+        <div class="row"><span class="lbl">Google Ads (recherche)</span><div class="bar" style="width:60%"></div><span class="v">18</span></div>
+        <div class="row"><span class="lbl">Organique Instagram / TikTok</span><div class="bar" style="width:33%"></div><span class="v">10</span></div>
+        <div class="row"><span class="lbl">Fiche Google &amp; SEO local</span><div class="bar" style="width:20%"></div><span class="v">6</span></div>
+        <div class="row"><span class="lbl">Parrainage &amp; partenariats</span><div class="bar" style="width:20%"></div><span class="v">6</span></div>
+      </div>
+    </div>
+    <div>
+      <h2 style="margin-top:0">Pourquoi le plan est robuste</h2>
+      <div class="callout" style="margin-top:0"><strong>Sécurité du plan.</strong> Même si Meta ne livre que 20 leads au lieu de 30, le tunnel produit encore 20–21 clientes. Aucun canal ne pèse plus de 45&nbsp;% du volume, et la base de clientes existantes (retouches) n'est pas comptée dans l'objectif.</div>
+    </div>
+  </div>
+
+  <h2>Les 4 taux qui décident du résultat</h2>
+  <table class="tbl">
+    <tr><th style="width:30%">Indicateur</th><th style="width:14%">Cible</th><th style="width:18%">Marché (moyenne)</th><th>Comment on l'atteint</th></tr>
+    <tr><td class="b">Temps de réponse WhatsApp</td><td>&lt; 5 min</td><td>2 h à 24 h</td><td>Messages automatiques, réponses rapides, notifications, option setter agence</td></tr>
+    <tr><td class="b">Lead qualifié → RDV réservé</td><td>40&nbsp;%</td><td>15–25&nbsp;%</td><td>Script en 5 étapes, preuves envoyées (avis, résultats similaires), 2 créneaux proposés, relances J+1 / J+3 / J+7</td></tr>
+    <tr><td class="b">Taux de présence au RDV</td><td>85&nbsp;%</td><td>60–70&nbsp;%</td><td>Acompte de 300 MAD, rappels J-2 et J-1, consignes pré-séance, liste d'attente</td></tr>
+    <tr><td class="b">Ticket moyen</td><td>2 400 MAD</td><td>—</td><td>Packs (sourcils + lèvres), kit de soin, retouche annuelle, seconde zone</td></tr>
+  </table>
+  <p class="small">Capacité : 24 nouvelles clientes + leurs retouches à 6–8 semaines représentent environ 48 créneaux par mois, soit 11–12 par semaine. C'est compatible avec une artiste à temps plein ; au-delà de 30 nouvelles clientes par mois, prévoir une assistante ou une seconde artiste (voir section 08).</p>
+  <div class="footer"><span>Shiraz Beauty Studio · Stratégie Marketing &amp; Sales · Proposition confidentielle</span><span class="num"></span></div>
+</section>
+
+<!-- ============ PAGE 7 : PERSONAS ============ -->
+<section class="page" id="s-cibles">
+  <div class="kicker">03 · Cibles &amp; personas</div>
+  <h1>À qui l'on parle, et comment</h1>
+  <p class="lead">Trois profils concentrent l'essentiel de la demande solvable à Rabat. Chaque persona a son message, son canal et son objection principale ; les annonces, les Reels et les scripts WhatsApp en découlent.</p>
+  <div class="grid-3">
+    <div class="persona">
+      <div class="hd"><div class="name">Salma, 32 ans</div><div class="who">Cadre à Hay Riad / Agdal · célibataire ou jeune mariée</div></div>
+      <div class="bd">
+        <b>Situation</b>Se maquille chaque matin, sourcils clairsemés ou asymétriques, agenda chargé, très active sur Instagram.
+        <b>Ce qu'elle veut</b>Gagner 15 minutes par jour, un résultat naturel «&nbsp;qu'on ne devine pas&nbsp;», une adresse sûre.
+        <b>Objection n°1</b>«&nbsp;J'ai peur d'un résultat trop foncé, effet tatoué.&nbsp;»
+        <b>Canaux</b>Instagram Reels, recherche Google, avis, amies.
+        <b>Prestations</b>Microblading poil à poil, microshading, puis lip blush.
+        <b>Message</b>«&nbsp;Des sourcils parfaits au réveil, naturellement. 155 femmes de Rabat ont mis 5 étoiles.&nbsp;»
+      </div>
+    </div>
+    <div class="persona">
+      <div class="hd"><div class="name">Ghita, 26 ans</div><div class="who">Future mariée · Rabat / Salé · mariage dans 3 à 6 mois</div></div>
+      <div class="bd">
+        <b>Situation</b>Prépare son mariage, veut être parfaite sur les photos et pendant la semaine de fêtes, budget beauté dédié.
+        <b>Ce qu'elle veut</b>Sourcils et lèvres impeccables, un planning sûr (cicatrisation terminée avant le jour J).
+        <b>Objection n°1</b>«&nbsp;Et si ce n'est pas cicatrisé à temps ?&nbsp;»
+        <b>Canaux</b>TikTok, Instagram, négafa, wedding planner, photographe.
+        <b>Prestations</b>Pack Mariée : sourcils + lip blush + brow lift, planifié 3–4 mois avant.
+        <b>Message</b>«&nbsp;Le pack Mariée : planifié avec vous, cicatrisé avant le jour J, retouche incluse.&nbsp;»
+      </div>
+    </div>
+    <div class="persona">
+      <div class="hd"><div class="name">Nadia, 45 ans</div><div class="who">Maman active · Souissi / Témara · professionnelle ou entrepreneure</div></div>
+      <div class="bd">
+        <b>Situation</b>Sourcils qui s'affinent avec l'âge, lèvres pâles ou foncées, envie de rajeunir sans chirurgie ni maquillage lourd.
+        <b>Ce qu'elle veut</b>Un rendu élégant et discret, de l'hygiène, une praticienne expérimentée.
+        <b>Objection n°1</b>«&nbsp;Est-ce que ça fait mal ? Est-ce que c'est sûr ?&nbsp;»
+        <b>Canaux</b>Facebook, recherche Google, bouche-à-oreille, WhatsApp.
+        <b>Prestations</b>Microshading, neutralisation des lèvres, eyeliner.
+        <b>Message</b>«&nbsp;Un regard reposé et des lèvres rosées, en toute sécurité : pigments vegan, matériel à usage unique.&nbsp;»
+      </div>
+    </div>
+  </div>
+
+  <h2>Segments complémentaires</h2>
+  <div class="grid-2">
+    <ul>
+      <li><strong>Clientes existantes (500–700)</strong> : retouche annuelle, seconde zone, parrainage. Le segment le plus rentable : coût d'acquisition proche de zéro.</li>
+      <li><strong>Lèvres foncées / neutralisation</strong> : forte demande au Maghreb, peu de spécialistes à Rabat ; un axe de contenu et de recherche Google à part entière.</li>
+    </ul>
+    <ul>
+      <li><strong>Marocaines résidant à l'étranger</strong> : elles réservent avant leurs séjours d'été et de fin d'année. Campagne Meta ciblée France / Belgique / Espagne en mai–juin et novembre.</li>
+      <li><strong>Reconstruction (alopécie, après traitement)</strong> : approche sensible, via dermatologues et oncologues partenaires ; contenu dédié, jamais promotionnel.</li>
+    </ul>
+  </div>
+  <div class="callout"><strong>Règle de ciblage.</strong> Femmes de 24 à 55 ans, Rabat-Salé-Témara-Skhirat + Kénitra (rayon 40 km). En publicité, on n'achète pas «&nbsp;tout le Maroc&nbsp;» : chaque dirham dépensé hors zone est un lead qui ne viendra jamais au studio.</div>
+  <div class="footer"><span>Shiraz Beauty Studio · Stratégie Marketing &amp; Sales · Proposition confidentielle</span><span class="num"></span></div>
+</section>
+
+<!-- ============ PAGE 8 : POSITIONNEMENT ============ -->
+<section class="page" id="s-posit">
+  <div class="kicker">04 · Positionnement &amp; offre</div>
+  <h1>La promesse et ses preuves</h1>
+  <div class="card dark" style="padding:6mm 7mm;margin-bottom:5mm">
+    <div style="font-size:8pt;letter-spacing:2px;text-transform:uppercase;color:#D9C29A;font-weight:700">Promesse de marque</div>
+    <div style="font-family:var(--serif);font-size:17pt;line-height:1.3;margin-top:2mm">«&nbsp;Le maquillage permanent le plus naturel de Rabat, réalisé par l'artiste la mieux notée de la ville.&nbsp;»</div>
+    <div style="margin-top:2.5mm;color:#E6C3BC;font-size:9.5pt">Signature : <em>Belle au réveil, naturellement.</em></div>
+  </div>
+  <div class="grid-4">
+    <div class="card gold"><h3>Naturel</h3><p class="small">Technique poil à poil, teintes sur-mesure, dessin validé avant de commencer. On ne devine pas que c'est fait.</p></div>
+    <div class="card gold"><h3>Sécurité</h3><p class="small">Pigments 100&nbsp;% vegan importés des États-Unis, aiguilles à usage unique, protocole d'hygiène affiché.</p></div>
+    <div class="card gold"><h3>Confiance</h3><p class="small">5,0 ★ sur 155 avis Google, résultats à 1 an montrés, retouche incluse.</p></div>
+    <div class="card gold"><h3>Expertise</h3><p class="small">Fondatrice spécialisée PMU, formations continues, sur rendez-vous uniquement.</p></div>
+  </div>
+
+  <h2>Messages clés par cible</h2>
+  <table class="tbl">
+    <tr><th style="width:18%">Cible</th><th style="width:30%">Bénéfice principal</th><th>Preuve à montrer</th><th style="width:22%">Appel à l'action</th></tr>
+    <tr><td class="b">Salma (active)</td><td>Temps gagné chaque matin, rendu invisible</td><td>Résultat cicatrisé à 30 jours, avis «&nbsp;personne ne voit que c'est fait&nbsp;»</td><td>Consultation &amp; dessin offerts</td></tr>
+    <tr><td class="b">Ghita (mariée)</td><td>Parfaite sur les photos, sans stress de timing</td><td>Rétro-planning mariage, photos de mariées clientes</td><td>Réserver le Pack Mariée</td></tr>
+    <tr><td class="b">Nadia (45+)</td><td>Regard reposé, lèvres rosées, sécurité</td><td>Protocole d'hygiène, pigments, témoignages 40+</td><td>Poser une question sur WhatsApp</td></tr>
+    <tr><td class="b">Clientes existantes</td><td>Garder le résultat parfait</td><td>Rappel personnalisé de la date de la prestation</td><td>Réserver sa retouche fidélité</td></tr>
+  </table>
+
+  <div class="grid-2">
+    <div>
+      <h2>Ton et style</h2>
+      <ul>
+        <li>Chaleureux, expert, rassurant. Français avec touches de darija dans les Reels et les stories.</li>
+        <li>Vocabulaire : «&nbsp;artiste&nbsp;», «&nbsp;studio&nbsp;», «&nbsp;sur-mesure&nbsp;», «&nbsp;cicatrisé&nbsp;», jamais «&nbsp;tatouage pas cher&nbsp;».</li>
+        <li>Le visage de Shiraz apparaît dans 1 contenu sur 3 : l'expertise s'incarne.</li>
+        <li>Preuve avant promesse : un avis ou un résultat dans les 5 premières secondes.</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Ce que l'on ne fait pas</h2>
+      <ul class="x">
+        <li>Remises massives sur les prestations de base (elles détruisent le positionnement premium ; on ajoute de la valeur, on ne baisse pas le prix).</li>
+        <li>Visuels avant / après trompeurs ou résultats «&nbsp;garantis&nbsp;».</li>
+        <li>«&nbsp;Prix en message privé&nbsp;» sans cadre : les fourchettes sont publiques, la valeur est expliquée.</li>
+        <li>Publier une cliente sans consentement écrit (droit à l'image).</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer"><span>Shiraz Beauty Studio · Stratégie Marketing &amp; Sales · Proposition confidentielle</span><span class="num"></span></div>
+</section>
+
+<!-- ============ PAGE 9 : OFFRE ============ -->
+<section class="page">
+  <div class="kicker">04 · Positionnement &amp; offre</div>
+  <h1>Un menu clair, des packs, une offre d'appel</h1>
+  <table class="tbl">
+    <tr><th style="width:24%">Prestation</th><th style="width:26%">Pour qui</th><th style="width:13%">Tenue</th><th style="width:13%">Retouche</th><th>Marché Rabat (fourchette estimée)</th></tr>
+    <tr><td class="b">Microblading poil à poil</td><td>Sourcils clairsemés, rendu naturel</td><td>12–18 mois</td><td>Incluse à 6–8 sem.</td><td>1 500 – 3 500 MAD · Shiraz : tiers supérieur</td></tr>
+    <tr><td class="b">Microshading / Combo</td><td>Peaux grasses, effet poudré, plus de densité</td><td>18–24 mois</td><td>Incluse</td><td>1 800 – 4 000 MAD</td></tr>
+    <tr><td class="b">Lip blush / Glaçage des lèvres</td><td>Lèvres pâles, contour flou, effet «&nbsp;bonne mine&nbsp;»</td><td>18–36 mois</td><td>Incluse</td><td>2 000 – 4 000 MAD</td></tr>
+    <tr><td class="b">Neutralisation des lèvres foncées</td><td>Pigmentation foncée, 2–3 séances</td><td>2–3 ans</td><td>Séances incluses</td><td>2 500 – 5 000 MAD</td></tr>
+    <tr><td class="b">Eyeliner semi-permanent</td><td>Regard défini sans maquillage</td><td>2–3 ans</td><td>Incluse</td><td>1 200 – 2 500 MAD</td></tr>
+    <tr><td class="b">Brow lift + teinture</td><td>Porte d'entrée vers le PMU, mariées</td><td>6–8 sem.</td><td>—</td><td>300 – 600 MAD</td></tr>
+    <tr><td class="b">Rafraîchissement annuel</td><td>Clientes existantes</td><td>12–18 mois</td><td>—</td><td>40–60&nbsp;% du prix initial</td></tr>
+  </table>
+  <p class="small"><span class="tag gold">à valider</span> Fourchettes estimées du marché Rabat / Casablanca pour situer le positionnement ; la grille réelle du studio sera intégrée lors de l'atelier de cadrage. Ticket moyen retenu dans les projections : 2 400 MAD.</p>
+
+  <div class="grid-2">
+    <div>
+      <h2>Les packs (montent le ticket moyen)</h2>
+      <table class="tbl compact">
+        <tr><th style="width:20%">Pack</th><th style="width:42%">Contenu</th><th>Mécanique</th></tr>
+        <tr><td class="b">Regard</td><td>Sourcils + eyeliner</td><td>-10&nbsp;% sur la 2ᵉ zone</td></tr>
+        <tr><td class="b">Signature</td><td>Sourcils + lip blush</td><td>-15&nbsp;% sur la 2ᵉ zone, paiement en 2 fois</td></tr>
+        <tr><td class="b">Mariée</td><td>Sourcils + lèvres + brow lift, planifié 3–4 mois avant</td><td>-15&nbsp;% + retouche express avant le jour J</td></tr>
+        <tr><td class="b">Fidélité</td><td>Rafraîchissement annuel</td><td>-20&nbsp;% si réservé dans le mois du rappel</td></tr>
+      </table>
+    </div>
+    <div>
+      <h2>L'offre d'appel (le «&nbsp;oui&nbsp;» facile)</h2>
+      <ul class="check">
+        <li><strong>Consultation + dessin des sourcils offerts</strong> (valeur affichée 300 MAD) : on réserve un moment, pas encore une prestation.</li>
+        <li><strong>Retouche à 6–8 semaines incluse</strong> et <strong>kit de cicatrisation offert</strong>.</li>
+        <li><strong>Garantie de dessin</strong> : rien ne commence tant que la forme n'est pas validée devant le miroir.</li>
+        <li><strong>Rareté réelle</strong> : «&nbsp;25 nouvelles clientes par mois maximum&nbsp;», liée à la capacité.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Politique de réservation et de paiement</h2>
+  <div class="grid-3">
+    <div class="card"><h3>Acompte 300 MAD</h3><p class="small">Bloque le créneau, déduit du total, reportable une fois avec 48 h de préavis. Virement, CMI ou espèces. Divise les no-shows par deux.</p></div>
+    <div class="card"><h3>Paiement en 2 fois</h3><p class="small">Packs au-delà de 4 000 MAD : 50&nbsp;% à la séance, 50&nbsp;% à la retouche. Lève l'objection budget sans remise.</p></div>
+    <div class="card"><h3>Prix «&nbsp;à partir de&nbsp;»</h3><p class="small">Affichés sur le site, la fiche Google et le catalogue WhatsApp. Filtre les curieuses, rassure les sérieuses.</p></div>
+  </div>
+  <div class="footer"><span>Shiraz Beauty Studio · Stratégie Marketing &amp; Sales · Proposition confidentielle</span><span class="num"></span></div>
+</section>
+
+<!-- ============ PAGE 10 : ACQUISITION OVERVIEW ============ -->
+<section class="page" id="s-acq">
+  <div class="kicker">05 · Acquisition</div>
+  <h1>Le mix de canaux</h1>
+  <p class="lead">Trois logiques complémentaires : <strong>capter l'intention</strong> (Google), <strong>créer la demande</strong> (Meta, TikTok, contenu) et <strong>activer la prescription</strong> (parrainage, partenaires, influence). Le budget va d'abord là où la conversion est la plus rapide.</p>
+  <table class="tbl">
+    <tr><th style="width:24%">Canal</th><th style="width:26%">Rôle dans le tunnel</th><th style="width:13%">Budget / mois</th><th style="width:13%">Leads qualifiés</th><th>Indicateur de pilotage</th></tr>
+    <tr><td class="b">Google Ads (recherche)</td><td>Capter les femmes qui cherchent déjà «&nbsp;microblading Rabat&nbsp;»</td><td>3 000 MAD</td><td>18</td><td>Coût par lead ≤ 170 MAD, taux de conversion page ≥ 4&nbsp;%</td></tr>
+    <tr><td class="b">Meta Ads (Instagram / Facebook)</td><td>Créer la demande, retargeter, alimenter WhatsApp</td><td>4 500 MAD</td><td>30</td><td>Coût par conversation ≤ 60 MAD, taux de qualification ≥ 35&nbsp;%</td></tr>
+    <tr><td class="b">Organique Instagram / TikTok</td><td>Preuve, notoriété, demandes entrantes</td><td>0 (contenu)</td><td>10</td><td>Vues Reels, messages entrants, abonnés locaux</td></tr>
+    <tr><td class="b">Fiche Google &amp; SEO local</td><td>Confiance et conversion gratuite</td><td>0 (temps)</td><td>6</td><td>Appels, itinéraires, clics WhatsApp, nouveaux avis</td></tr>
+    <tr><td class="b">Parrainage &amp; base clientes</td><td>Leads chauds, retouches, seconde zone</td><td>300 MAD (cartes)</td><td>6</td><td>Taux de parrainage, taux de retour annuel</td></tr>
+    <tr><td class="b">Partenariats &amp; micro-influence</td><td>Prescription mariage, beauté, médical</td><td>500 MAD</td><td>inclus</td><td>Leads attribués par code partenaire</td></tr>
+    <tr class="total"><td>Total</td><td></td><td>8 300 MAD</td><td>70</td><td>Coût média par cliente ≈ 350 MAD</td></tr>
+  </table>
+
+  <div class="grid-2">
+    <div>
+      <h2>Ordre de lancement</h2>
+      <ol>
+        <li><strong>Semaine 1–2</strong> : fiche Google, WhatsApp Business, base clientes (gratuit, rapide, rentable).</li>
+        <li><strong>Semaine 3</strong> : Google Ads recherche (intention forte, résultats en jours).</li>
+        <li><strong>Semaine 3</strong> : Meta prospection «&nbsp;clic vers WhatsApp&nbsp;» (volume).</li>
+        <li><strong>Semaine 5+</strong> : retargeting, partenariats, micro-influence, SEO (effet cumulatif).</li>
+      </ol>
+    </div>
+    <div>
+      <h2>Trois principes non négociables</h2>
+      <ul>
+        <li><strong>Tout mène à WhatsApp.</strong> Une seule porte d'entrée, un seul pipeline, une seule personne responsable de la réponse.</li>
+        <li><strong>Tout est mesuré.</strong> Pixel Meta + API de conversions, Google Tag Manager, UTM sur chaque lien, source notée pour chaque lead dans le CRM.</li>
+        <li><strong>La preuve d'abord.</strong> «&nbsp;5,0 ★ · 155 avis&nbsp;» apparaît dans chaque annonce, chaque page, chaque bio.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout"><strong>Budget de départ recommandé : 8 000 à 8 500 MAD / mois de média</strong> (hors honoraires d'agence et production). Le scénario «&nbsp;démarrage&nbsp;» à 5 000 MAD et le scénario «&nbsp;accéléré&nbsp;» à 12 000 MAD sont détaillés en section 08.</div>
+  <div class="footer"><span>Shiraz Beauty Studio · Stratégie Marketing &amp; Sales · Proposition confidentielle</span><span class="num"></span></div>
+</section>
+
+<!-- ============ PAGE 11 : GOOGLE ============ -->
+<section class="page">
+  <div class="kicker">05 · Acquisition · Google</div>
+  <h1>Capter l'intention : fiche Google, Google Ads, SEO local</h1>
+  <div class="grid-2">
+    <div>
+      <h2 style="margin-top:0">Fiche Google Business (semaine 1–2)</h2>
+      <ul class="check">
+        <li>Services renseignés avec prix «&nbsp;à partir de&nbsp;» et descriptions à mots-clés (microblading, lip blush, neutralisation, eyeliner).</li>
+        <li>Description de 750 caractères : spécialité, pigments vegan, 155 avis, quartiers desservis.</li>
+        <li>10 nouvelles photos par mois + 2 vidéos courtes ; 1 post Google par semaine (offre, résultat, FAQ).</li>
+        <li>Questions / réponses pré-remplies (douleur, durée, prix, cicatrisation, contre-indications).</li>
+        <li>Lien de réservation = WhatsApp avec message pré-rempli et UTM ; horaires exacts et horaires spéciaux (fêtes).</li>
+        <li>Réponse à 100&nbsp;% des avis sous 48 h, en citant la prestation (Google lit le texte des avis).</li>
+        <li>Objectif avis : +8 à 10 par mois, <strong>200 avis en mars 2027</strong>, 250 en juin 2027.</li>
+      </ul>
+      <h2>SEO local (mois 2–3)</h2>
+      <ul>
+        <li>Une page par prestation : <em>microblading-rabat</em>, <em>lip-blush-rabat</em>, <em>neutralisation-levres-rabat</em>, <em>eyeliner-permanent-rabat</em> + page Tarifs + FAQ.</li>
+        <li>2 articles par mois répondant aux vraies questions («&nbsp;Combien de temps dure un microblading ?&nbsp;», «&nbsp;Lip blush ou neutralisation ?&nbsp;», «&nbsp;Quand faire ses sourcils avant un mariage ?&nbsp;»).</li>
+        <li>Données structurées LocalBusiness, cohérence nom-adresse-téléphone partout, vitesse mobile, widget d'avis Google sur le site.</li>
+      </ul>
+    </div>
+    <div>
+      <h2 style="margin-top:0">Google Ads recherche (dès la semaine 3)</h2>
+      <table class="tbl compact">
+        <tr><th>Campagne</th><th>Mots-clés (exemples)</th><th>Budget / jour</th></tr>
+        <tr><td class="b">Marque</td><td>shiraz beauty studio, shiraz microblading rabat</td><td>10 MAD</td></tr>
+        <tr><td class="b">Sourcils</td><td>microblading rabat, microblading prix rabat, sourcils poil à poil rabat, microshading rabat, tatouage sourcils rabat, maquillage permanent sourcils</td><td>45 MAD</td></tr>
+        <tr><td class="b">Lèvres</td><td>lip blush rabat, glaçage des lèvres rabat, candy lips rabat, neutralisation lèvres foncées, maquillage permanent lèvres</td><td>30 MAD</td></tr>
+        <tr><td class="b">Générique &amp; yeux</td><td>maquillage permanent rabat, eyeliner permanent rabat, meilleur microblading rabat</td><td>15 MAD</td></tr>
+        <tr class="total"><td>Total</td><td></td><td>100 MAD ≈ 3 000 / mois</td></tr>
+      </table>
+      <ul class="small">
+        <li><strong>Réglages</strong> : recherche uniquement, rayon 35 km autour de Rabat + Kénitra, français et arabe, diffusion 9 h – 21 h, CPC max 8 MAD au départ puis «&nbsp;maximiser les conversions&nbsp;» après 30 conversions.</li>
+        <li><strong>Mots-clés négatifs</strong> : formation, kit, aiguille, pas cher, emploi, casablanca, tanger, marrakech.</li>
+        <li><strong>Extensions</strong> : appel, lieu, liens annexes (Tarifs, Avis, Avant / après), accroches «&nbsp;5,0 ★ · 155 avis&nbsp;», «&nbsp;Retouche incluse&nbsp;», «&nbsp;Pigments vegan&nbsp;».</li>
+        <li><strong>Pages de destination</strong> : une page «&nbsp;Sourcils&nbsp;» et une page «&nbsp;Lèvres&nbsp;», bouton WhatsApp fixe, avis, résultats, FAQ, formulaire de rappel.</li>
+        <li><strong>Conversions suivies</strong> : clic WhatsApp, appel, formulaire (Tag Manager) ; attendu : 450–600 clics, 18–22 conversations par mois.</li>
+      </ul>
+      <div class="callout" style="margin-top:2mm"><strong>Pourquoi Google d'abord ?</strong> Une femme qui tape «&nbsp;microblading Rabat prix&nbsp;» a déjà décidé ; il ne reste qu'à choisir le studio. Avec 155 avis en accroche, le taux de clic sera supérieur à celui des concurrents.</div>
+    </div>
+  </div>
+  <div class="footer"><span>Shiraz Beauty Studio · Stratégie Marketing &amp; Sales · Proposition confidentielle</span><span class="num"></span></div>
+</section>
+
+<!-- ============ PAGE 12 : META ADS ============ -->
+<section class="page">
+  <div class="kicker">05 · Acquisition · Meta</div>
+  <h1>Créer la demande : Instagram &amp; Facebook Ads</h1>
+  <p class="lead">Au Maroc, la décision beauté se prend sur Instagram et se conclut sur WhatsApp. Les campagnes «&nbsp;clic vers WhatsApp&nbsp;» sont donc le cœur du dispositif : chaque clic ouvre une conversation dans le pipeline de vente.</p>
+  <table class="tbl">
+    <tr><th style="width:19%">Campagne</th><th style="width:13%">Objectif</th><th style="width:30%">Audience</th><th>Créations</th><th style="width:13%">Budget / jour</th></tr>
+    <tr><td class="b">A · Prospection</td><td>Messages → WhatsApp</td><td>Femmes 24–50 ans, Rabat, Salé, Témara, Skhirat, Kénitra (+40 km). Advantage+ et intérêts : sourcils, maquillage, mariage, soins esthétiques</td><td>4 vidéos verticales (process, résultat cicatrisé, témoignage, FAQ) + 2 carrousels «&nbsp;5 raisons&nbsp;» et «&nbsp;ce qui est inclus&nbsp;»</td><td>100 MAD</td></tr>
+    <tr><td class="b">B · Retargeting</td><td>Messages → WhatsApp</td><td>Engagement Instagram / Facebook 90 j, vues vidéo ≥ 50&nbsp;%, visiteurs du site 30 j, conversations WhatsApp non converties</td><td>Avis 5 ★ en vidéo, FAQ douleur / prix / durée, offre consultation offerte, «&nbsp;il reste X places ce mois-ci&nbsp;»</td><td>35 MAD</td></tr>
+    <tr><td class="b">C · Amplification</td><td>Engagement / Notoriété</td><td>Femmes 22–50 ans, Rabat + audience similaire des clientes existantes (liste importée)</td><td>Les 2 meilleurs Reels organiques du mois</td><td>15 MAD</td></tr>
+    <tr class="total"><td>Total</td><td></td><td></td><td></td><td>150 MAD ≈ 4 500 / mois</td></tr>
+  </table>
+  <div class="grid-2">
+    <div>
+      <h2>Règles créatives qui font la différence</h2>
+      <ul>
+        <li><strong>Les 3 premières secondes</strong> : une question ou un résultat en gros plan («&nbsp;Tu redessines tes sourcils chaque matin ?&nbsp;»).</li>
+        <li><strong>Format 9:16, sous-titres</strong> français, voix ou texte en darija sur une variante.</li>
+        <li><strong>Le visage de Shiraz</strong> dans au moins une création sur deux : on achète une artiste, pas un studio anonyme.</li>
+        <li><strong>La preuve avant l'offre</strong> : «&nbsp;5,0 ★ · 155 avis&nbsp;» à l'écran dès la 4ᵉ seconde.</li>
+        <li><strong>Un seul appel à l'action</strong> : «&nbsp;Écris-nous sur WhatsApp&nbsp;» ; le premier message est pré-rempli («&nbsp;Bonjour, je souhaite des informations sur le microblading&nbsp;»).</li>
+        <li><strong>Conformité Meta</strong> : pas de visuels avant / après côte à côte en publicité (risque de refus au titre des politiques sur l'image corporelle), ciblage 18+ ; les avant / après restent en organique.</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Protocole de test et d'optimisation</h2>
+      <ul>
+        <li><strong>Lancement</strong> : 6 créations, 2 angles (temps gagné / naturel) sur 14 jours.</li>
+        <li><strong>Règle d'arrêt</strong> : une création dont le coût par conversation dépasse 90 MAD après 600 MAD dépensés est coupée.</li>
+        <li><strong>Renouvellement</strong> : 2 nouvelles créations toutes les 2 semaines pour éviter la fatigue publicitaire.</li>
+        <li><strong>Mesure</strong> : pixel + API de conversions sur le site, événement «&nbsp;Contact&nbsp;», UTM par création, source notée dans le CRM pour calculer le vrai coût par cliente (pas seulement par clic).</li>
+        <li><strong>Attendu</strong> : 80–120 conversations démarrées par mois, 30–40 leads qualifiés, coût par conversation 40–60 MAD.</li>
+      </ul>
+      <div class="callout rose" style="margin-top:2mm"><strong>Bonus saisonnier.</strong> En mai–juin et en novembre : campagne dédiée aux Marocaines de France, Belgique et Espagne qui planifient un séjour à Rabat («&nbsp;Réservez votre créneau avant votre arrivée&nbsp;»).</div>
+    </div>
+  </div>
+  <div class="footer"><span>Shiraz Beauty Studio · Stratégie Marketing &amp; Sales · Proposition confidentielle</span><span class="num"></span></div>
+</section>
+
+<!-- ============ PAGE 13 : ORGANIQUE ============ -->
+<section class="page">
+  <div class="kicker">05 · Acquisition · Contenu organique</div>
+  <h1>Instagram &amp; TikTok : la preuve en continu</h1>
+  <p class="lead">Le contenu organique ne sert pas «&nbsp;à être présent&nbsp;» : il alimente le retargeting, rassure les leads avant le rendez-vous et génère 10 demandes qualifiées par mois. Une demi-journée de captation par mois suffit, l'agence monte et programme.</p>
+  <div class="grid-2">
+    <div>
+      <h2 style="margin-top:0">Les 6 piliers de contenu</h2>
+      <table class="tbl compact">
+        <tr><th>Pilier</th><th>Part</th><th>Exemples</th></tr>
+        <tr><td class="b">Résultats</td><td>30&nbsp;%</td><td>Avant / après, cicatrisation J0 → J30, résultat à 1 an</td></tr>
+        <tr><td class="b">Éducation</td><td>25&nbsp;%</td><td>Douleur, durée, prix, contre-indications, microblading vs microshading</td></tr>
+        <tr><td class="b">Coulisses</td><td>15&nbsp;%</td><td>Dessin et mesure, choix de la teinte, hygiène, pigments</td></tr>
+        <tr><td class="b">Preuve sociale</td><td>15&nbsp;%</td><td>Lecture d'avis Google, témoignage vidéo, réaction cliente au miroir</td></tr>
+        <tr><td class="b">Fondatrice</td><td>10&nbsp;%</td><td>Parcours, formations, «&nbsp;pourquoi je refuse certaines clientes&nbsp;»</td></tr>
+        <tr><td class="b">Offres &amp; saison</td><td>5&nbsp;%</td><td>Places du mois, pack Mariée, fêtes, Aïd</td></tr>
+      </table>
+      <h2>Cadence</h2>
+      <ul>
+        <li><strong>Instagram</strong> : 3 Reels + 1 à 2 carrousels par semaine ; stories chaque jour (résultat du jour, sondage, coulisses, avis).</li>
+        <li><strong>TikTok</strong> : 3 vidéos par semaine (les Reels adaptés + formats «&nbsp;satisfying&nbsp;» en gros plan).</li>
+        <li><strong>Facebook</strong> : republication des Reels + 2 posts par semaine dans les groupes féminins de Rabat-Salé.</li>
+        <li><strong>Programmation</strong> : Metricool ; montage CapCut ; visuels Canva ; 1 shooting par mois au studio.</li>
+      </ul>
+    </div>
+    <div>
+      <h2 style="margin-top:0">10 idées de Reels à fort potentiel</h2>
+      <ol>
+        <li>«&nbsp;POV : tu viens de faire ton microblading&nbsp;» (réaction au miroir).</li>
+        <li>Cicatrisation jour par jour : J0, J3, J7, J14, J30 sur la même cliente.</li>
+        <li>«&nbsp;3 erreurs à éviter avant un lip blush&nbsp;».</li>
+        <li>Lecture à voix haute d'un avis Google + la cliente en question.</li>
+        <li>«&nbsp;Combien ça coûte vraiment ?&nbsp;» (transparence, ce qui est inclus).</li>
+        <li>Gros plan «&nbsp;satisfying&nbsp;» du tracé poil à poil, son ASMR.</li>
+        <li>«&nbsp;Pourquoi j'utilise des pigments vegan américains&nbsp;».</li>
+        <li>Résultat à 1 an : la cliente revient pour sa retouche.</li>
+        <li>Neutralisation des lèvres foncées : séance 1 vs séance 2.</li>
+        <li>«&nbsp;Je refuse cette cliente, voici pourquoi&nbsp;» (éthique, contre-indications).</li>
+      </ol>
+      <h2>Profil optimisé</h2>
+      <ul class="small">
+        <li><strong>Nom</strong> : «&nbsp;Shiraz | Microblading &amp; Lip Blush Rabat&nbsp;» (recherche Instagram).</li>
+        <li><strong>Bio</strong> : 5,0 ★ · 155 avis Google · Pigments vegan · Sur RDV · Diour Jamaa, Rabat · bouton WhatsApp.</li>
+        <li><strong>Highlights</strong> : Avant / Après · Avis · Tarifs · FAQ · Cicatrisation · Mariées · RDV.</li>
+        <li><strong>Épinglés</strong> : meilleur résultat, «&nbsp;ce qui est inclus&nbsp;», témoignage vidéo.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout"><strong>Consentement.</strong> Chaque cliente filmée signe une autorisation de droit à l'image (modèle fourni). Les données clientes (fichier, WhatsApp) sont traitées conformément à la loi 09-08 : opt-in explicite pour les envois groupés, désinscription possible à tout moment.</div>
+  <div class="footer"><span>Shiraz Beauty Studio · Stratégie Marketing &amp; Sales · Proposition confidentielle</span><span class="num"></span></div>
+</section>
+
+<!-- ============ PAGE 14 : PARRAINAGE / PARTENARIATS ============ -->
+<section class="page">
+  <div class="kicker">05 · Acquisition · Prescription</div>
+  <h1>Parrainage, base clientes, partenaires et influence</h1>
+  <div class="grid-2">
+    <div>
+      <h2 style="margin-top:0">Programme de parrainage «&nbsp;Cercle Shiraz&nbsp;»</h2>
+      <ul>
+        <li><strong>Mécanique</strong> : la marraine reçoit 200 MAD sur sa prochaine prestation ou retouche, la filleule 200 MAD sur sa première prestation. Code personnel envoyé sur WhatsApp + carte physique remise à chaque cliente.</li>
+        <li><strong>Moment</strong> : proposé à la retouche (la cliente voit son résultat final, c'est le pic de satisfaction).</li>
+        <li><strong>Objectif</strong> : 1 cliente sur 6 parraine dans l'année → 4 à 6 clientes par mois à coût quasi nul.</li>
+      </ul>
+      <h2>Réactivation de la base (semaine 3)</h2>
+      <ul>
+        <li>Import du fichier clientes (nom, prestation, date) dans le CRM ; segmentation par ancienneté.</li>
+        <li><strong>Séquence WhatsApp en 3 messages</strong> (opt-in) : rappel personnalisé de la date, bénéfice du rafraîchissement, 2 créneaux proposés avec tarif fidélité -20&nbsp;%.</li>
+        <li>Attendu : 5–8&nbsp;% de réponses positives sur 500 contacts = 25–40 retouches sur le trimestre, en plus des nouvelles clientes.</li>
+      </ul>
+      <h2>Moteur d'avis</h2>
+      <ul>
+        <li>Message J+2 avec lien court et QR code au studio ; réponse à chaque avis avec le nom de la prestation.</li>
+        <li>Objectif 8–10 avis par mois ; un avis négatif = appel sous 24 h, réponse publique calme, solution proposée.</li>
+      </ul>
+    </div>
+    <div>
+      <h2 style="margin-top:0">Partenariats locaux (5 signés au mois 2)</h2>
+      <table class="tbl compact">
+        <tr><th>Partenaire</th><th>Pourquoi</th><th>Mécanique</th></tr>
+        <tr><td class="b">Négafas, wedding planners, photographes</td><td>Accès direct aux mariées 3–6 mois avant</td><td>Carte «&nbsp;consultation offerte&nbsp;» + 10&nbsp;% de commission ou échange de services</td></tr>
+        <tr><td class="b">Salons de coiffure et instituts (Agdal, Hay Riad, Souissi)</td><td>Même cliente, autre besoin</td><td>Recommandation croisée, présentoir de cartes, story commune</td></tr>
+        <tr><td class="b">Dermatologues, oncologues</td><td>Reconstruction sourcils / aréoles</td><td>Brochure médicale, prise en charge prioritaire</td></tr>
+        <tr><td class="b">Studios de fitness, yoga, boutiques de robes</td><td>Cibles Salma et Ghita</td><td>Événement «&nbsp;Brow Day&nbsp;» trimestriel, offre membres</td></tr>
+      </table>
+      <h2>Micro-influence Rabat (2 par mois)</h2>
+      <ul>
+        <li><strong>Profil</strong> : créatrices de 10 000 à 80 000 abonnés, audience à Rabat, engagement réel (commentaires, pas seulement des likes).</li>
+        <li><strong>Deal</strong> : prestation offerte contre 1 Reel + 3 stories + droit d'utilisation du contenu en publicité pendant 6 mois.</li>
+        <li><strong>Suivi</strong> : code promo nominatif («&nbsp;consultation offerte&nbsp;»), leads attribués dans le CRM ; on renouvelle uniquement les profils qui convertissent.</li>
+        <li><strong>UGC</strong> : les vidéos de créatrices et de clientes deviennent les meilleures publicités (elles coûtent 30 à 50&nbsp;% moins cher par lead qu'une production studio).</li>
+      </ul>
+      <div class="callout" style="margin-top:2mm"><strong>Événement trimestriel.</strong> «&nbsp;Journée Mariées&nbsp;» ou «&nbsp;Brow Day&nbsp;» : 10 consultations offertes sur inscription WhatsApp, partenaires présents, contenu capté pour le mois suivant.</div>
+    </div>
+  </div>
+  <div class="footer"><span>Shiraz Beauty Studio · Stratégie Marketing &amp; Sales · Proposition confidentielle</span><span class="num"></span></div>
+</section>
+
+<!-- ============ PAGE 15 : CONVERSION 1 ============ -->
+<section class="page" id="s-conv">
+  <div class="kicker">06 · Conversion</div>
+  <h1>Le système de vente WhatsApp</h1>
+  <p class="lead">C'est ici que se gagne ou se perd l'objectif. Un lead qui attend 3 heures a déjà écrit à deux autres studios. Le système repose sur trois choses : la vitesse, un script, et une raison de réserver maintenant.</p>
+  <div class="grid-3">
+    <div class="card gold"><h3>Règle des 5 minutes</h3><p class="small">Réponse en moins de 5 minutes de 9 h à 21 h, 7 jours sur 7. Message automatique hors horaires avec les 3 questions de qualification. Notifications activées sur un téléphone dédié au studio.</p></div>
+    <div class="card gold"><h3>WhatsApp Business configuré</h3><p class="small">Catalogue avec prix «&nbsp;à partir de&nbsp;», message d'accueil, message d'absence, 12 réponses rapides, étiquettes de pipeline : Nouveau · Qualifié · Devis · RDV · Cliente · Retouche · Perdu.</p></div>
+    <div class="card gold"><h3>Option «&nbsp;setter&nbsp;» agence</h3><p class="small">L'agence assure la première ligne (qualification, devis, prise de RDV) et transmet les rendez-vous confirmés. Garantit le temps de réponse sans mobiliser l'artiste en séance.</p></div>
+  </div>
+
+  <h2>Le script en 5 étapes</h2>
+  <table class="tbl">
+    <tr><th style="width:15%">Étape</th><th style="width:36%">Objectif</th><th>Ce que l'on dit / fait</th></tr>
+    <tr><td class="b">1 · Accueil</td><td>Créer le lien en 1 message, obtenir le prénom</td><td>Remerciement, prénom, ton chaleureux, une seule question à la fois.</td></tr>
+    <tr><td class="b">2 · Qualification</td><td>Comprendre le besoin et filtrer</td><td>Prestation souhaitée ? Déjà fait du maquillage permanent ? Photo sans maquillage de la zone ? Date ou événement en vue ? Ville ?</td></tr>
+    <tr><td class="b">3 · Valeur &amp; preuve</td><td>Rassurer avant de parler prix</td><td>Recommandation personnalisée d'après la photo, 2 résultats sur un cas similaire, 1 capture d'avis, ce qui est inclus (retouche, kit, garantie de dessin).</td></tr>
+    <tr><td class="b">4 · Prix &amp; offre</td><td>Cadrer le prix dans la valeur</td><td>Tarif exact, tenue 12–18 mois, «&nbsp;moins de 7 MAD par jour&nbsp;», consultation et dessin offerts, paiement en 2 fois si pack.</td></tr>
+    <tr><td class="b">5 · Clôture</td><td>Obtenir une décision, pas une intention</td><td>2 créneaux proposés («&nbsp;mardi 14 h ou jeudi 11 h ?&nbsp;»), acompte de 300 MAD pour bloquer, confirmation écrite + consignes pré-séance.</td></tr>
+  </table>
+
+  <div class="grid-2">
+    <div>
+      <h2>Le pipeline (CRM Google Sheets ou Notion)</h2>
+      <ul class="small">
+        <li><strong>Colonnes</strong> : date, prénom, téléphone, source (UTM / canal), prestation, étape, montant, date de RDV, acompte, prochaine relance, notes.</li>
+        <li><strong>Revue quotidienne</strong> de 10 minutes : relances du jour, RDV à confirmer, acomptes en attente.</li>
+        <li><strong>Revue hebdomadaire</strong> : taux de passage par étape, par canal ; on corrige le script ou la source qui sous-performe.</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Consultation en studio (l'arme secrète)</h2>
+      <ul class="small">
+        <li>Un lead hésitant est invité à une <strong>consultation gratuite de 15 minutes</strong> : dessin des sourcils, choix de teinte, questions.</li>
+        <li>Taux de transformation en prestation : <strong>70 à 80&nbsp;%</strong> (contre 40&nbsp;% à distance), car la peur du résultat disparaît devant le miroir.</li>
+        <li>Créneaux groupés (par exemple mardi et jeudi 16 h – 18 h) pour ne pas fragmenter l'agenda.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer"><span>Shiraz Beauty Studio · Stratégie Marketing &amp; Sales · Proposition confidentielle</span><span class="num"></span></div>
+</section>
+
+<!-- ============ PAGE 16 : CONVERSION 2 ============ -->
+<section class="page">
+  <div class="kicker">06 · Conversion</div>
+  <h1>Objections, relances et zéro no-show</h1>
+  <h2 style="margin-top:2mm">Les 6 objections et leurs réponses</h2>
+  <table class="tbl">
+    <tr><th style="width:24%">Objection</th><th>Réponse (esprit, pas mot à mot)</th></tr>
+    <tr><td class="b">«&nbsp;C'est cher.&nbsp;»</td><td>Ramener au quotidien : 12 à 18 mois de sourcils parfaits = moins de 7 MAD par jour, sans crayon ni temps perdu. Retouche et kit inclus. Paiement en 2 fois sur les packs. Ne jamais baisser le prix : ajouter de la valeur.</td></tr>
+    <tr><td class="b">«&nbsp;Ça fait mal ?&nbsp;»</td><td>Crème anesthésiante, sensation décrite entre 2 et 3 sur 10 par les clientes, séance de 1 h 30 à 2 h avec pauses. Envoyer une vidéo de cliente détendue pendant la séance.</td></tr>
+    <tr><td class="b">«&nbsp;J'ai peur du résultat trop foncé / tatoué.&nbsp;»</td><td>Technique poil à poil, pigments qui s'éclaircissent de 30 à 40&nbsp;% à la cicatrisation, dessin validé avant de commencer. Montrer un résultat à 1 an et lire un avis «&nbsp;personne ne voit que c'est fait&nbsp;».</td></tr>
+    <tr><td class="b">«&nbsp;Je vais réfléchir.&nbsp;»</td><td>Valider («&nbsp;c'est normal&nbsp;»), proposer la consultation gratuite sans engagement, rappeler la limite de places du mois, planifier la relance J+2.</td></tr>
+    <tr><td class="b">«&nbsp;Et si je n'aime pas ?&nbsp;»</td><td>Rien ne commence sans validation de la forme au miroir ; la retouche à 6–8 semaines ajuste teinte et densité ; 155 avis à 5 étoiles.</td></tr>
+    <tr><td class="b">«&nbsp;C'est sûr ? Hygiène ?&nbsp;»</td><td>Aiguilles à usage unique ouvertes devant la cliente, pigments vegan certifiés, protocole affiché, contre-indications vérifiées (grossesse, diabète, traitements).</td></tr>
+  </table>
+
+  <div class="grid-2">
+    <div>
+      <h2>Séquence de relance (leads non réservés)</h2>
+      <table class="tbl compact">
+        <tr><th>Quand</th><th>Message</th></tr>
+        <tr><td class="b">J+1</td><td>Réponse à une question fréquente (douleur ou durée) + vidéo courte.</td></tr>
+        <tr><td class="b">J+3</td><td>Avis récent d'une cliente au profil proche + rappel du créneau tenu.</td></tr>
+        <tr><td class="b">J+7</td><td>Dernière place du mois ou fin de l'offre consultation offerte.</td></tr>
+        <tr><td class="b">J+30</td><td>Contenu utile (cicatrisation, résultat à 1 an), sans pression.</td></tr>
+        <tr><td class="b">J+90</td><td>Nouvelle saison / nouvelle offre ; le lead reste dans l'audience de retargeting.</td></tr>
+      </table>
+      <p class="small">Un lead est marqué «&nbsp;perdu&nbsp;» seulement après J+90 ; 15 à 20&nbsp;% des réservations viennent des relances.</p>
+    </div>
+    <div>
+      <h2>Zéro no-show</h2>
+      <ul>
+        <li><strong>Acompte de 300 MAD</strong> à la réservation, reportable une fois avec 48 h de préavis.</li>
+        <li><strong>Rappel J-2</strong> (confirmation par «&nbsp;oui&nbsp;») et <strong>rappel J-1</strong> avec adresse, étage, consignes (pas de café ni d'aspirine 24 h avant, venir sans maquillage).</li>
+        <li><strong>Liste d'attente</strong> : chaque désistement est proposé sous 1 heure aux leads chauds.</li>
+        <li><strong>Suivi</strong> : taux de présence par source ; un canal qui produit des no-shows est corrigé (message de qualification renforcé).</li>
+      </ul>
+      <div class="callout" style="margin-top:2mm"><strong>Effet attendu.</strong> Passer de 65&nbsp;% à 85&nbsp;% de présence, c'est +6 clientes par mois à trafic constant. Le tunnel entier repose sur cette discipline.</div>
+    </div>
+  </div>
+  <div class="footer"><span>Shiraz Beauty Studio · Stratégie Marketing &amp; Sales · Proposition confidentielle</span><span class="num"></span></div>
+</section>
+
+<!-- ============ PAGE 17 : FIDÉLISATION ============ -->
+<section class="page" id="s-fid">
+  <div class="kicker">07 · Fidélisation &amp; valeur cliente</div>
+  <h1>Faire revenir chaque cliente</h1>
+  <p class="lead">Acquérir une cliente coûte environ 350 MAD de média ; la faire revenir coûte un message. Le parcours post-prestation est automatisé (rappels programmés dans le CRM) et personnalisé (prénom, prestation, date).</p>
+  <h2>Le parcours cliente sur 12 mois</h2>
+  <div class="steps">
+    <div class="s"><span class="t">J0</span>Prestation, photo avec consentement, carte de parrainage, kit de soin, explication de la cicatrisation.</div>
+    <div class="s"><span class="t">J+2</span>Message de suivi cicatrisation + demande d'avis Google (lien court).</div>
+    <div class="s"><span class="t">J+7</span>Vérification, réponse aux inquiétudes (croûtes, éclaircissement normal).</div>
+    <div class="s"><span class="t">J+45</span>Retouche incluse : résultat final, contenu «&nbsp;résultat cicatrisé&nbsp;», proposition de la seconde zone.</div>
+    <div class="s"><span class="t">M+4</span>Contenu utile (soins, soleil, exfoliation), offre seconde zone -15&nbsp;%.</div>
+    <div class="s"><span class="t">M+11</span>Rappel de rafraîchissement annuel, tarif fidélité -20&nbsp;% si réservé dans le mois.</div>
+    <div class="s"><span class="t">M+12</span>Retouche annuelle, nouveau cycle, nouvelle demande de parrainage.</div>
+  </div>
+
+  <div class="grid-2">
+    <div>
+      <h2>Valeur d'une cliente sur 3 ans</h2>
+      <table class="tbl compact">
+        <tr><th>Étape</th><th style="text-align:right">Montant estimé</th></tr>
+        <tr><td>Microblading (année 1)</td><td style="text-align:right">2 800 MAD</td></tr>
+        <tr><td>Rafraîchissement annuel × 2</td><td style="text-align:right">2 800 MAD</td></tr>
+        <tr><td>Seconde zone (lip blush, 40&nbsp;% des clientes)</td><td style="text-align:right">1 200 MAD</td></tr>
+        <tr><td>Parrainage (1 filleule sur 6, valeur attribuée)</td><td style="text-align:right">400 MAD</td></tr>
+        <tr class="total"><td>Valeur moyenne sur 3 ans</td><td style="text-align:right">≈ 7 200 MAD</td></tr>
+      </table>
+      <p class="small">Face à un coût d'acquisition média de ~350 MAD, chaque cliente rapporte plus de 20 fois son coût. C'est ce ratio qui autorise à investir en publicité sans crainte.</p>
+    </div>
+    <div>
+      <h2>Programme «&nbsp;Cercle Shiraz&nbsp;»</h2>
+      <ul>
+        <li><strong>Accès prioritaire</strong> aux créneaux et aux nouvelles prestations.</li>
+        <li><strong>-15&nbsp;% sur la seconde zone</strong>, <strong>-20&nbsp;% sur le rafraîchissement</strong> réservé dans le mois du rappel.</li>
+        <li><strong>Attention personnalisée</strong> : message d'anniversaire, soin offert à la 3ᵉ visite.</li>
+        <li><strong>Ambassadrices</strong> : les 20 clientes les plus fidèles sont invitées aux événements et filmées (avec accord) pour les témoignages.</li>
+      </ul>
+      <h2>Protéger la note de 5,0</h2>
+      <ul class="small">
+        <li>Contre-indications vérifiées avant toute réservation (questionnaire WhatsApp).</li>
+        <li>Attentes cadrées : le résultat immédiat est plus foncé, l'éclaircissement est normal.</li>
+        <li>Toute insatisfaction est traitée en privé sous 24 h, avant qu'elle ne devienne un avis.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer"><span>Shiraz Beauty Studio · Stratégie Marketing &amp; Sales · Proposition confidentielle</span><span class="num"></span></div>
+</section>
+
+<!-- ============ PAGE 18 : BUDGET ============ -->
+<section class="page" id="s-budget">
+  <div class="kicker">08 · Budget &amp; projections</div>
+  <h1>Trois scénarios, un même système</h1>
+  <table class="tbl">
+    <tr><th style="width:40%">Par mois</th><th style="width:20%">Démarrage</th><th style="width:20%">Recommandé</th><th style="width:20%">Accéléré</th></tr>
+    <tr><td class="b">Budget média (Google + Meta + influence)</td><td>5 000 MAD</td><td class="b">8 000 MAD</td><td>12 000 MAD</td></tr>
+    <tr><td class="b">Leads qualifiés</td><td>45</td><td class="b">70</td><td>100</td></tr>
+    <tr><td class="b">Rendez-vous réservés (40&nbsp;%)</td><td>18</td><td class="b">28</td><td>40</td></tr>
+    <tr><td class="b">Nouvelles clientes (présence 85&nbsp;%)</td><td>15</td><td class="b">24</td><td>34</td></tr>
+    <tr><td class="b">CA nouvelles clientes (ticket 2 400 MAD)</td><td>36 000 MAD</td><td class="b">57 600 MAD</td><td>81 600 MAD</td></tr>
+    <tr><td class="b">Coût média par cliente</td><td>≈ 330 MAD</td><td class="b">≈ 335 MAD</td><td>≈ 350 MAD</td></tr>
+    <tr><td class="b">Retour sur dépense média</td><td>≈ 7×</td><td class="b">≈ 7×</td><td>≈ 7×</td></tr>
+    <tr><td class="b">Capacité requise (nouvelles + retouches)</td><td>30 créneaux</td><td class="b">48 créneaux</td><td>68 → 2ᵉ artiste</td></tr>
+  </table>
+  <h2 style="margin-top:2mm">Répartition du budget recommandé</h2>
+  <div class="bars">
+    <div class="row"><span class="lbl">Meta Ads (Instagram / Facebook)</span><div class="bar" style="width:100%"></div><span class="v">4 500 MAD</span></div>
+    <div class="row"><span class="lbl">Google Ads (recherche)</span><div class="bar" style="width:67%"></div><span class="v">3 000 MAD</span></div>
+    <div class="row"><span class="lbl">Micro-influence &amp; UGC</span><div class="bar" style="width:11%"></div><span class="v">500 MAD</span></div>
+  </div>
+  <div class="grid-2" style="margin-top:2mm">
+    <div>
+      <h2 style="margin-top:0">Hypothèses (recalées après 4 semaines)</h2>
+      <ul class="small">
+        <li>Coût par conversation Meta 40–60 MAD ; coût par clic Google 4–7 MAD ; taux de qualification 35&nbsp;% (Meta) et 90&nbsp;% (Google).</li>
+        <li>Lead qualifié → RDV 40&nbsp;% ; présence 85&nbsp;% ; ticket moyen 2 400 MAD.</li>
+        <li>Hors CA des retouches de la base existante (25–40 sur le trimestre) et hors parrainage, comptés en bonus.</li>
+        <li>Hors honoraires d'agence et production (devis séparé selon le périmètre retenu).</li>
+      </ul>
+      <div class="callout" style="margin-top:2mm"><strong>Recommandation : démarrer au scénario recommandé.</strong> Le scénario démarrage n'atteint pas 20 clientes ; l'accéléré exige une seconde artiste dès le mois 2. Passage à l'accéléré au mois 3 si le coût par cliente reste sous 400 MAD et si l'agenda suit.</div>
+    </div>
+    <div>
+      <h2 style="margin-top:0">Outils (coûts mensuels)</h2>
+      <table class="tbl compact">
+        <tr><th style="width:42%">Outil</th><th>Usage</th><th style="width:24%">Coût</th></tr>
+        <tr><td>WhatsApp Business</td><td>Vente, catalogue, étiquettes</td><td>0</td></tr>
+        <tr><td>Google Sheets / Notion</td><td>CRM et pipeline</td><td>0</td></tr>
+        <tr><td>Meta Business Suite, Google Ads, GTM, GA4</td><td>Publicité et mesure</td><td>0 (hors média)</td></tr>
+        <tr><td>Metricool</td><td>Programmation, statistiques</td><td>≈ 200 MAD</td></tr>
+        <tr><td>Canva Pro, CapCut</td><td>Visuels, montage</td><td>≈ 130 MAD</td></tr>
+        <tr><td>Fresha ou Calendly</td><td>Agenda, rappels</td><td>0–150 MAD</td></tr>
+        <tr><td>Looker Studio</td><td>Tableau de bord</td><td>0</td></tr>
+        <tr class="total"><td>Total outils</td><td></td><td>≈ 350–500 MAD</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="footer"><span>Shiraz Beauty Studio · Stratégie Marketing &amp; Sales · Proposition confidentielle</span><span class="num"></span></div>
+</section>
+
+<!-- ============ PAGE 19 : PLAN 90 JOURS 1 ============ -->
+<section class="page" id="s-plan">
+  <div class="kicker">09 · Plan d'action 90 jours</div>
+  <h1>Phase 1 · Fondations (semaines 1 à 4)</h1>
+  <p class="lead">Octobre 2026. Objectif du mois : 40 leads, 10 à 15 clientes, et un système prêt à absorber la montée en puissance.</p>
+  <table class="tbl">
+    <tr><th style="width:12%">Semaine</th><th>Actions</th><th style="width:16%">Responsable</th><th style="width:22%">Livrable</th></tr>
+    <tr><td class="b">S1</td><td>Atelier de cadrage (objectifs, tarifs, capacité, agenda) · accès Meta, Google Ads, fiche Google, site, Instagram, TikTok · installation pixel, API de conversions, GA4, Tag Manager · WhatsApp Business configuré (catalogue, messages, réponses rapides, étiquettes) · CRM créé · grille tarifaire, packs et offre d'appel validés · modèle de consentement image</td><td>Agence + Studio</td><td>Système de mesure opérationnel, offre validée</td></tr>
+    <tr><td class="b">S2</td><td>Optimisation complète de la fiche Google · 2 pages de destination (Sourcils, Lèvres) avec WhatsApp · demi-journée de shooting (25 clips, 15 photos) · rédaction des scripts WhatsApp · cartes de parrainage · préparation des campagnes Google et Meta (6 créations)</td><td>Agence (captation avec Studio)</td><td>Pages en ligne, banque de contenu, campagnes prêtes</td></tr>
+    <tr><td class="b">S3</td><td>Lancement Google Ads (4 campagnes) · lancement Meta prospection (2 campagnes, 6 créations) · 12 publications programmées · séquence de réactivation des anciennes clientes · moteur d'avis activé (QR + message J+2)</td><td>Agence</td><td>Premiers leads, premières retouches réservées</td></tr>
+    <tr><td class="b">S4</td><td>Optimisation quotidienne (enchères, créations, mots-clés négatifs) · premier rapport hebdomadaire · ajustement des scripts selon les vraies conversations · 3 partenaires approchés · revue de capacité</td><td>Agence + Studio</td><td>Rapport S4, plan d'ajustement</td></tr>
+  </table>
+
+  <h2>Qui fait quoi</h2>
+  <div class="grid-2">
+    <div class="card">
+      <h3>L'agence</h3>
+      <ul class="small">
+        <li>Stratégie, campagnes Google et Meta, optimisation quotidienne</li>
+        <li>Montage vidéo, visuels, rédaction, programmation</li>
+        <li>Fiche Google, pages de destination, SEO, mesure</li>
+        <li>Scripts, CRM, séquences de relance ; option setter en première ligne</li>
+        <li>Reporting hebdomadaire et revue mensuelle</li>
+      </ul>
+    </div>
+    <div class="card rose">
+      <h3>Le studio</h3>
+      <ul class="small">
+        <li>2 h par semaine de captation brute (téléphone sur trépied, avec consentement)</li>
+        <li>Réponse WhatsApp selon le script et le délai (ou délégation)</li>
+        <li>Prestations, retouches, demande d'avis et de parrainage à chaque visite</li>
+        <li>Validation des offres, des visuels et des textes sous 48 h</li>
+        <li>Partage de l'agenda et du fichier clientes</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer"><span>Shiraz Beauty Studio · Stratégie Marketing &amp; Sales · Proposition confidentielle</span><span class="num"></span></div>
+</section>
+
+<!-- ============ PAGE 20 : PLAN 90 JOURS 2 ============ -->
+<section class="page">
+  <div class="kicker">09 · Plan d'action 90 jours</div>
+  <h1>Phases 2 et 3 · Accélération puis montée en puissance</h1>
+  <div class="grid-2">
+    <div>
+      <h2 style="margin-top:0">Phase 2 · Accélération (semaines 5 à 8)</h2>
+      <p class="small">Novembre 2026. Objectif : 60 leads, 18 à 22 clientes.</p>
+      <ul>
+        <li>Retargeting Meta activé (avis, FAQ, offre) ; 2 nouvelles créations toutes les 2 semaines, dont les premiers contenus de clientes.</li>
+        <li>2 micro-influenceuses de Rabat ; 5 partenariats signés (2 négafas / wedding planners, 2 salons, 1 dermatologue).</li>
+        <li>Pages SEO publiées, 2 articles, widget d'avis sur le site.</li>
+        <li>TikTok à 3 vidéos par semaine ; premier Reel «&nbsp;résultat à 1 an&nbsp;».</li>
+        <li>Séquences de relance automatisées dans le CRM ; rappels J-2 / J-1 systématiques.</li>
+        <li>Offre saisonnière «&nbsp;Prête pour les fêtes&nbsp;» et ouverture des réservations Pack Mariée pour 2027.</li>
+        <li>Revue mensuelle : coût par cliente par canal, réallocation du budget.</li>
+      </ul>
+      <h2>Phase 3 · Montée en puissance (semaines 9 à 13)</h2>
+      <p class="small">Décembre 2026. Objectif : 70+ leads, 24+ clientes, coût par lead ≤ 110 MAD.</p>
+      <ul>
+        <li>Budget +30&nbsp;% sur les campagnes et créations gagnantes ; test du scénario accéléré si l'agenda le permet.</li>
+        <li>Campagne fêtes de fin d'année + Marocaines de l'étranger (séjours de décembre).</li>
+        <li>Programme «&nbsp;Cercle Shiraz&nbsp;» lancé ; premier événement «&nbsp;Journée Mariées&nbsp;».</li>
+        <li>Tableau de bord Looker Studio partagé ; audit de capacité et décision sur une assistante / seconde artiste.</li>
+        <li>Plan du trimestre suivant : pré-Ramadan et pré-Aïd (février–mars 2027), saison des mariages.</li>
+      </ul>
+    </div>
+    <div>
+      <h2 style="margin-top:0">Jalons et objectifs mensuels</h2>
+      <table class="tbl compact">
+        <tr><th>Mois</th><th>Leads</th><th>Clientes</th><th>Jalon</th></tr>
+        <tr><td class="b">Octobre</td><td>40</td><td>10–15</td><td>Système en place, campagnes lancées, base réactivée</td></tr>
+        <tr><td class="b">Novembre</td><td>60</td><td>18–22</td><td>Retargeting, partenaires, influence, SEO</td></tr>
+        <tr><td class="b">Décembre</td><td>70+</td><td>24+</td><td>Scale, fêtes, tableau de bord, plan T1 2027</td></tr>
+        <tr class="total"><td>Trimestre</td><td>170+</td><td>52–61</td><td>Objectif «&nbsp;20 minimum&nbsp;» tenu dès le mois 2</td></tr>
+      </table>
+      <h2>Calendrier saisonnier 2026–2027</h2>
+      <table class="tbl compact">
+        <tr><th>Période</th><th>Levier</th></tr>
+        <tr><td class="b">Oct.–déc.</td><td>Rentrée, fêtes de fin d'année, séjours MRE de décembre</td></tr>
+        <tr><td class="b">Janv.</td><td>«&nbsp;Nouvelle année, nouveau regard&nbsp;», réservations avant Ramadan</td></tr>
+        <tr><td class="b">Fév.–mars</td><td>Ramadan : creux à compenser par les réservations d'avant / après ; pré-Aïd al-Fitr</td></tr>
+        <tr><td class="b">Avr.–mai</td><td>Mariées (3–4 mois avant l'été), pré-Aïd al-Adha</td></tr>
+        <tr><td class="b">Juin–sept.</td><td>Saison des mariages, MRE d'été : campagne diaspora dès mai</td></tr>
+      </table>
+      <div class="callout rose" style="margin-top:2mm"><strong>Risques anticipés.</strong> Refus de créations par Meta (variantes prêtes sans avant / après) · temps de réponse WhatsApp (option setter) · saturation de l'agenda (liste d'attente, priorisation des packs) · avis négatif (protocole 24 h).</div>
+    </div>
+  </div>
+  <div class="footer"><span>Shiraz Beauty Studio · Stratégie Marketing &amp; Sales · Proposition confidentielle</span><span class="num"></span></div>
+</section>
+
+<!-- ============ PAGE 21 : KPI ============ -->
+<section class="page" id="s-kpi">
+  <div class="kicker">10 · Pilotage &amp; indicateurs</div>
+  <h1>Ce que l'on mesure chaque semaine</h1>
+  <p class="lead">Un tableau de bord unique (Looker Studio + CRM), lu en 15 minutes chaque lundi. Chaque indicateur a une cible et une règle de décision : pas de débat, une action.</p>
+  <table class="tbl">
+    <tr><th style="width:30%">Indicateur</th><th style="width:16%">Cible mensuelle</th><th style="width:18%">Source</th><th>Règle de décision si la cible n'est pas atteinte</th></tr>
+    <tr><td class="b">Leads qualifiés</td><td>70</td><td>CRM</td><td>&lt; 55 deux semaines de suite → nouvelles créations, élargissement des mots-clés, +20&nbsp;% de budget sur le canal le moins cher</td></tr>
+    <tr><td class="b">Coût par lead média</td><td>≤ 110 MAD</td><td>Meta, Google, CRM</td><td>&gt; 160 MAD → couper les créations et mots-clés au-dessus du seuil, revoir les audiences</td></tr>
+    <tr><td class="b">Temps de réponse médian</td><td>&lt; 5 min</td><td>WhatsApp</td><td>&gt; 15 min → activer l'option setter agence ou un téléphone dédié</td></tr>
+    <tr><td class="b">Lead qualifié → RDV</td><td>≥ 40&nbsp;%</td><td>CRM</td><td>&lt; 30&nbsp;% → réécouter 20 conversations, corriger le script, renforcer les preuves envoyées, proposer la consultation studio</td></tr>
+    <tr><td class="b">Taux de présence</td><td>≥ 85&nbsp;%</td><td>Agenda</td><td>&lt; 80&nbsp;% → acompte obligatoire sans exception, rappel J-2 avec confirmation, liste d'attente</td></tr>
+    <tr><td class="b">Nouvelles clientes</td><td>≥ 20 (cible 24)</td><td>Agenda, caisse</td><td>&lt; 20 → revue du tunnel étape par étape, réallocation du budget dans la semaine</td></tr>
+    <tr><td class="b">Ticket moyen</td><td>2 400 MAD</td><td>Caisse</td><td>&lt; 2 100 → pousser les packs et la seconde zone dans le script</td></tr>
+    <tr><td class="b">Nouveaux avis Google</td><td>≥ 8</td><td>Fiche Google</td><td>&lt; 5 → vérifier le message J+2, QR code visible, demande orale à la retouche</td></tr>
+    <tr><td class="b">Retouches de la base</td><td>10 / mois</td><td>CRM</td><td>&lt; 6 → nouvelle vague de réactivation, offre fidélité renforcée</td></tr>
+    <tr><td class="b">Vues Reels / abonnés locaux</td><td>50 000 / +300</td><td>Instagram, TikTok, Metricool</td><td>Sous la cible → doubler les formats gagnants, amplifier le meilleur Reel</td></tr>
+  </table>
+  <div class="grid-3">
+    <div class="card"><h3>Chaque jour · 10 min</h3><p class="small">Nouveaux leads traités, relances du jour envoyées, acomptes encaissés, RDV de demain confirmés.</p></div>
+    <div class="card"><h3>Chaque semaine · 30 min</h3><p class="small">Rapport agence : leads par canal, coût par lead, taux du tunnel, clientes, CA, décisions prises pour la semaine suivante.</p></div>
+    <div class="card"><h3>Chaque mois · 60 min</h3><p class="small">Revue stratégique : coût par cliente par canal, contenu qui convertit, offre, capacité, budget du mois suivant, préparation saisonnière.</p></div>
+  </div>
+  <div class="callout" style="margin-top:3mm"><strong>Transparence totale.</strong> Vous avez accès en permanence au tableau de bord et au CRM : chaque dirham dépensé est relié à un lead, un rendez-vous, une cliente.</div>
+  <div class="footer"><span>Shiraz Beauty Studio · Stratégie Marketing &amp; Sales · Proposition confidentielle</span><span class="num"></span></div>
+</section>
+
+<!-- ============ PAGE 22 : ANNEXE A ============ -->
+<section class="page" id="s-annexes">
+  <div class="kicker">Annexe A</div>
+  <h1>Calendrier de contenu : une semaine type</h1>
+  <table class="tbl">
+    <tr><th style="width:13%">Jour</th><th style="width:14%">Format</th><th style="width:16%">Pilier</th><th>Contenu</th><th style="width:20%">Appel à l'action</th></tr>
+    <tr><td class="b">Lundi</td><td>Reel</td><td>Résultats</td><td>Résultat cicatrisé à 30 jours, gros plan puis visage entier, texte «&nbsp;personne ne devine&nbsp;»</td><td>«&nbsp;Écris-moi “SOURCILS” sur WhatsApp&nbsp;»</td></tr>
+    <tr><td class="b">Mardi</td><td>Stories × 3</td><td>Coulisses</td><td>Dessin et mesure du matin, sondage «&nbsp;poil à poil ou poudré ?&nbsp;», réponse à une question</td><td>Sticker lien WhatsApp</td></tr>
+    <tr><td class="b">Mercredi</td><td>Carrousel</td><td>Éducation</td><td>«&nbsp;Microblading : 7 questions que vous me posez toutes&nbsp;» (douleur, durée, prix, cicatrisation…)</td><td>«&nbsp;Enregistre pour plus tard&nbsp;»</td></tr>
+    <tr><td class="b">Jeudi</td><td>Reel</td><td>Preuve sociale</td><td>Lecture d'un avis Google + réaction de la cliente au miroir</td><td>«&nbsp;Réserve ta consultation offerte&nbsp;»</td></tr>
+    <tr><td class="b">Vendredi</td><td>Stories × 3</td><td>Fondatrice</td><td>Shiraz face caméra : un conseil, une erreur fréquente, un pigment expliqué</td><td>Boîte à questions</td></tr>
+    <tr><td class="b">Samedi</td><td>Reel</td><td>Résultats / Lèvres</td><td>Lip blush ou neutralisation : séance 1 → séance 2, avec sous-titres darija</td><td>«&nbsp;Écris-moi “LÈVRES”&nbsp;»</td></tr>
+    <tr><td class="b">Dimanche</td><td>Story + post</td><td>Offres &amp; saison</td><td>Places restantes de la semaine, rappel du pack Mariée ou de l'offre du mois</td><td>«&nbsp;Il reste 3 créneaux&nbsp;»</td></tr>
+  </table>
+  <div class="grid-2">
+    <div>
+      <h2>Règles de production</h2>
+      <ul class="small">
+        <li>Tout est filmé en vertical, lumière naturelle ou ring light, téléphone sur trépied face à la cliente (avec consentement signé).</li>
+        <li>Chaque séance produit 3 séquences : dessin, tracé en gros plan, réaction finale. 6 séances par semaine = 18 séquences, largement assez.</li>
+        <li>Les Reels sont montés en lots le lundi par l'agence, validés par Shiraz le mardi, programmés dans Metricool.</li>
+        <li>Les 2 meilleurs Reels du mois sont amplifiés en publicité (campagne C) et réutilisés en retargeting.</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Mots-clés et hashtags</h2>
+      <ul class="small">
+        <li><strong>Légendes</strong> : toujours «&nbsp;Rabat&nbsp;», la prestation et le bénéfice dans la première ligne.</li>
+        <li><strong>Hashtags locaux</strong> (10 à 15) : #microbladingrabat #maquillagepermanentrabat #lipblushrabat #sourcilsrabat #rabat #sale #temara #kenitra #microbladingmaroc #lipblushmaroc #pmumaroc #beautyrabat.</li>
+        <li><strong>Géolocalisation</strong> : «&nbsp;Shiraz Beauty Studio&nbsp;» sur chaque Reel et story.</li>
+        <li><strong>Sous-titres</strong> : français par défaut, darija sur les formats lèvres et FAQ (audience TikTok).</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer"><span>Shiraz Beauty Studio · Stratégie Marketing &amp; Sales · Proposition confidentielle</span><span class="num"></span></div>
+</section>
+
+<!-- ============ PAGE 23 : ANNEXE B ============ -->
+<section class="page">
+  <div class="kicker">Annexe B</div>
+  <h1>Exemples d'annonces prêtes à tester</h1>
+  <h2 style="margin-top:2mm">Meta (Instagram / Facebook) · clic vers WhatsApp</h2>
+  <div class="grid-3">
+    <div class="card">
+      <span class="tag">Prospection · Sourcils</span>
+      <h3 style="margin-top:2mm">«&nbsp;Tu redessines tes sourcils chaque matin ?&nbsp;»</h3>
+      <p class="small">Vidéo 20 s : tracé poil à poil en gros plan, puis résultat cicatrisé. Texte : «&nbsp;Microblading au rendu naturel, 12 à 18 mois sans crayon. Studio noté 5,0 ★ par 155 femmes à Rabat. Pigments vegan, retouche incluse. Consultation et dessin offerts ce mois-ci, places limitées.&nbsp;»</p>
+      <p class="small"><strong>Bouton</strong> : Envoyer un message WhatsApp.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Prospection · Lèvres</span>
+      <h3 style="margin-top:2mm">«&nbsp;Des lèvres rosées au réveil, sans rouge à lèvres.&nbsp;»</h3>
+      <p class="small">Vidéo 15 s : lèvres avant la séance (sans contraste artificiel), pigmentation, résultat après 3 semaines. Texte : «&nbsp;Lip blush et neutralisation des lèvres foncées à Rabat. Résultat naturel, 2 à 3 ans. 5,0 ★ · 155 avis. Écris-nous pour savoir si tes lèvres sont éligibles.&nbsp;»</p>
+      <p class="small"><strong>Bouton</strong> : Envoyer un message WhatsApp.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Retargeting · Preuve</span>
+      <h3 style="margin-top:2mm">«&nbsp;155 femmes à Rabat ont mis 5 étoiles. Voici pourquoi.&nbsp;»</h3>
+      <p class="small">Carrousel : 4 avis Google en captures, 1 slide «&nbsp;ce qui est inclus&nbsp;», 1 slide FAQ douleur. Texte : «&nbsp;Vous avez regardé nos résultats. Il reste 6 places en octobre. Consultation gratuite de 15 minutes au studio, sans engagement.&nbsp;»</p>
+      <p class="small"><strong>Bouton</strong> : Réserver ma consultation.</p>
+    </div>
+  </div>
+  <h2>Google Ads · recherche</h2>
+  <div class="grid-2">
+    <div class="card">
+      <span class="tag gold">Campagne Sourcils</span>
+      <p class="small" style="margin-top:2mm"><strong>Titres</strong> : Microblading à Rabat · Studio noté 5,0 ★ (155 avis) · Retouche incluse · Pigments vegan · Consultation offerte · Sur rendez-vous, Diour Jamaa</p>
+      <p class="small"><strong>Descriptions</strong> : Sourcils poil à poil au rendu naturel, 12 à 18 mois. Dessin validé avant de commencer. Réservez sur WhatsApp en 2 minutes. · Artiste spécialisée en maquillage permanent à Rabat. Résultats à voir, avis à lire, places limitées chaque mois.</p>
+    </div>
+    <div class="card">
+      <span class="tag gold">Campagne Lèvres</span>
+      <p class="small" style="margin-top:2mm"><strong>Titres</strong> : Lip Blush à Rabat · Glaçage des lèvres · Neutralisation lèvres foncées · 5,0 ★ · 155 avis Google · Spécialiste maquillage permanent</p>
+      <p class="small"><strong>Descriptions</strong> : Des lèvres rosées et définies, naturellement, pendant 2 à 3 ans. Pigments vegan, hygiène irréprochable. · Envoyez une photo sur WhatsApp : nous vous disons en 5 minutes si vous êtes éligible et quel résultat attendre.</p>
+    </div>
+  </div>
+  <div class="callout"><strong>Règle d'or des annonces.</strong> Une promesse, une preuve, une action. Le chiffre «&nbsp;5,0 ★ · 155 avis&nbsp;» est présent dans chaque annonce ; il sera mis à jour chaque mois (160, 170…) car la croissance elle-même est un argument.</div>
+  <div class="footer"><span>Shiraz Beauty Studio · Stratégie Marketing &amp; Sales · Proposition confidentielle</span><span class="num"></span></div>
+</section>
+
+<!-- ============ PAGE 24 : ANNEXE C ============ -->
+<section class="page">
+  <div class="kicker">Annexe C</div>
+  <h1>Scripts WhatsApp</h1>
+  <div class="grid-2 chat">
+    <div>
+      <div class="lab">Message d'accueil (automatique)</div>
+      <div class="b">Bonjour et bienvenue chez Shiraz Beauty Studio 🌸 Merci pour votre message ! Pour vous conseiller au mieux, dites-moi : 1) la prestation qui vous intéresse (sourcils, lèvres, eyeliner), 2) si vous avez déjà fait du maquillage permanent, 3) et envoyez-moi une photo de la zone sans maquillage 📸. Je vous réponds en quelques minutes.</div>
+      <div class="lab">Recommandation + preuve + prix</div>
+      <div class="b">Merci Salma ! D'après votre photo, le microblading poil à poil est idéal pour vous : on redessine la forme, on comble les zones clairsemées, et le résultat reste naturel pendant 12 à 18 mois. Tarif : [X] MAD, retouche à 6 semaines incluse et kit de cicatrisation offert. Voici deux résultats sur des sourcils proches des vôtres 👇 et l'avis d'une cliente qui avait la même crainte que vous.</div>
+      <div class="lab">Clôture</div>
+      <div class="b">J'ai de la place mardi à 14 h ou jeudi à 11 h : lequel vous convient ? Pour bloquer le créneau, un acompte de 300 MAD est demandé (déduit du total, reportable une fois avec 48 h de préavis). La consultation et le dessin sont offerts.</div>
+      <div class="lab">Relance J+2</div>
+      <div class="b">Bonjour Salma, je voulais savoir si vous aviez des questions 😊 Beaucoup de clientes hésitent à cause de la douleur : avec la crème anesthésiante, la plupart décrivent une sensation de 2 sur 10. Je garde votre créneau de jeudi jusqu'à demain soir.</div>
+    </div>
+    <div>
+      <div class="lab">Rappel J-1</div>
+      <div class="b">Rappel de votre rendez-vous demain à 11 h chez Shiraz Beauty Studio, 1er étage, 1 rue Khorassane, Appt 6, Diour Jamaa, Rabat. Consignes : pas de café ni d'aspirine 24 h avant, venez sans maquillage sur la zone. À demain 🌸</div>
+      <div class="lab">Suivi J+2 + avis</div>
+      <div class="b">Bonjour Salma, comment se passe la cicatrisation ? La couleur paraît plus foncée les premiers jours, c'est normal : elle s'éclaircit de 30 à 40 % d'ici 3 semaines. Si vous êtes contente de votre expérience, votre avis Google nous aide énormément : [lien]. Merci infiniment 🌸</div>
+      <div class="lab">Réactivation M+11 (base clientes)</div>
+      <div class="b">Bonjour Salma, cela fait presque un an que vous avez fait vos sourcils chez nous 🌸 C'est le moment idéal pour un rafraîchissement : tarif fidélité -20 % si vous réservez avant le [date]. Je vous propose mardi 10 h ou vendredi 15 h. Et si une amie souhaite venir, vous recevez toutes les deux 200 MAD offerts.</div>
+      <div class="lab">Réponse à «&nbsp;c'est cher&nbsp;»</div>
+      <div class="b">Je comprends tout à fait. Pour situer : 12 à 18 mois de sourcils parfaits, c'est moins de 7 MAD par jour, sans crayon ni temps perdu chaque matin. La retouche et le kit sont inclus, et le pack sourcils + lèvres peut se régler en deux fois. Voulez-vous d'abord venir pour la consultation offerte ? Vous verrez le dessin sur vous, sans engagement.</div>
+    </div>
+  </div>
+  <p class="small" style="margin-top:3mm">Les scripts sont des trames : chaque message est adapté à la cliente (prénom, prestation, photo). Une version en darija est prévue pour les réponses rapides les plus utilisées.</p>
+  <div class="footer"><span>Shiraz Beauty Studio · Stratégie Marketing &amp; Sales · Proposition confidentielle</span><span class="num"></span></div>
+</section>
+
+<!-- ============ PAGE 25 : ANNEXE D + BESOINS ============ -->
+<section class="page">
+  <div class="kicker">Annexe D</div>
+  <h1>Checklist fiche Google et besoins pour démarrer</h1>
+  <div class="grid-2">
+    <div>
+      <h2 style="margin-top:0">Fiche Google : 15 points</h2>
+      <ul class="check small">
+        <li>Catégorie principale «&nbsp;Clinique de maquillage permanent&nbsp;» + secondaires (salon de beauté, bar à sourcils).</li>
+        <li>Nom sans bourrage de mots-clés (conforme aux règles Google).</li>
+        <li>Horaires exacts, horaires spéciaux (fêtes, Ramadan), attribut «&nbsp;sur rendez-vous&nbsp;».</li>
+        <li>Description 750 caractères avec prestations, quartiers, pigments, avis.</li>
+        <li>Services créés un par un avec prix «&nbsp;à partir de&nbsp;» et description.</li>
+        <li>Lien de réservation = WhatsApp pré-rempli avec UTM.</li>
+        <li>Numéro WhatsApp et téléphone identiques au site et à Instagram.</li>
+        <li>10 photos par mois (résultats cicatrisés, studio, artiste), 2 vidéos.</li>
+        <li>1 post par semaine (offre, résultat, question fréquente).</li>
+        <li>10 questions / réponses pré-remplies.</li>
+        <li>Réponse à tous les avis sous 48 h avec le nom de la prestation.</li>
+        <li>Lien court + QR code pour laisser un avis, affiché au studio.</li>
+        <li>Suivi mensuel des appels, itinéraires et clics dans les statistiques de la fiche.</li>
+        <li>Attributs : propriétaire femme, paiement par carte, accessibilité.</li>
+        <li>Veille : signaler toute fiche concurrente trompeuse ou faux avis.</li>
+      </ul>
+    </div>
+    <div>
+      <h2 style="margin-top:0">Ce dont nous avons besoin de vous</h2>
+      <ol>
+        <li><strong>Accès</strong> : fiche Google, Meta Business (Instagram + Facebook), Google Ads (ou création), site web, TikTok.</li>
+        <li><strong>Grille tarifaire réelle</strong> et validation des packs, de l'acompte et de l'offre d'appel.</li>
+        <li><strong>Fichier clientes</strong> (prénom, téléphone, prestation, date) pour la réactivation, avec opt-in.</li>
+        <li><strong>Banque de résultats</strong> existants avec consentements ; signature du modèle de droit à l'image pour les prochaines clientes.</li>
+        <li><strong>Agenda</strong> : capacité hebdomadaire, jours travaillés, créneaux de consultation.</li>
+        <li><strong>Une demi-journée</strong> de shooting en semaine 2, puis 2 h de captation par semaine.</li>
+        <li><strong>Un téléphone dédié</strong> au studio pour WhatsApp Business (ou décision sur l'option setter).</li>
+        <li><strong>Budget média</strong> : validation du scénario (recommandé : 8 000 MAD / mois) et mode de paiement des plateformes (carte internationale).</li>
+      </ol>
+      <div class="callout" style="margin-top:3mm"><strong>Délai de lancement : 14 jours</strong> après l'atelier de cadrage et la réception des accès. Les premières clientes issues du dispositif arrivent en semaine 3–4.</div>
+    </div>
+  </div>
+  <div class="footer"><span>Shiraz Beauty Studio · Stratégie Marketing &amp; Sales · Proposition confidentielle</span><span class="num"></span></div>
+</section>
+
+<!-- ============ PAGE 26 : PROCHAINES ÉTAPES ============ -->
+<section class="page cover">
+  <div class="band">
+    <div class="circle"></div>
+    <div class="circle2"></div>
+  </div>
+  <div class="inner">
+    <div class="kicker">Prochaines étapes</div>
+    <h1 style="font-size:32pt">Passons à l'exécution</h1>
+    <div class="tagline" style="margin-top:4mm">Trois étapes séparent Shiraz Beauty Studio d'un flux régulier de 20 à 25 nouvelles clientes par mois.</div>
+    <div style="margin-top:12mm;display:grid;grid-template-columns:1fr;gap:5mm;max-width:150mm">
+      <div style="display:grid;grid-template-columns:16mm 1fr;gap:4mm;align-items:start">
+        <div style="font-family:var(--serif);font-size:26pt;color:var(--gold-2);font-weight:700;line-height:1">01</div>
+        <div><div style="font-family:var(--serif);font-size:14pt;color:#fff">Atelier de cadrage · 60 minutes</div><div style="color:#C9B9B2;font-size:10pt;margin-top:1mm">Validation des tarifs, des packs, de l'offre d'appel, de la capacité et du scénario budgétaire.</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:16mm 1fr;gap:4mm;align-items:start">
+        <div style="font-family:var(--serif);font-size:26pt;color:var(--gold-2);font-weight:700;line-height:1">02</div>
+        <div><div style="font-family:var(--serif);font-size:14pt;color:#fff">Accès et fondations · semaines 1–2</div><div style="color:#C9B9B2;font-size:10pt;margin-top:1mm">Mesure, WhatsApp Business, fiche Google, pages de destination, shooting, scripts, CRM.</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:16mm 1fr;gap:4mm;align-items:start">
+        <div style="font-family:var(--serif);font-size:26pt;color:var(--gold-2);font-weight:700;line-height:1">03</div>
+        <div><div style="font-family:var(--serif);font-size:14pt;color:#fff">Lancement · semaine 3</div><div style="color:#C9B9B2;font-size:10pt;margin-top:1mm">Google Ads, Meta, réactivation de la base, contenu programmé. Premier rapport en semaine 4.</div></div>
+      </div>
+    </div>
+    <div class="facts" style="margin-top:16mm">
+      <div class="f"><div class="n">20+</div><div class="l">Clientes / mois minimum</div></div>
+      <div class="f"><div class="n">≈ 350 MAD</div><div class="l">Coût média par cliente</div></div>
+      <div class="f"><div class="n">≈ 7×</div><div class="l">Retour sur dépense média</div></div>
+    </div>
+    <div class="bottom">
+      <div>
+        <div class="logo">Shiraz Beauty Studio</div>
+        <div style="margin-top:1.5mm">Proposition de stratégie marketing &amp; sales · Septembre 2026 · Document confidentiel</div>
+      </div>
+      <div style="text-align:right">Validation :<br>_______________________</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Fill table-of-contents page numbers from the actual page positions.
+  (function () {
+    var pages = Array.prototype.slice.call(document.querySelectorAll('.page'));
+    document.querySelectorAll('.toc [data-target]').forEach(function (li) {
+      var t = document.getElementById(li.getAttribute('data-target'));
+      if (!t) return;
+      var p = t.closest('.page');
+      li.querySelector('.pg').textContent = pages.indexOf(p) + 1;
+    });
+  })();
+</script>
+</body>
+</html>
