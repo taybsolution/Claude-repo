@@ -25,6 +25,7 @@ Ce qui change :
 | `instagram-maroc.md` | Bio Maroc, hashtags, adaptations des 15 posts, accroches en darija |
 | `shopify-maroc.md` | Configuration de la boutique pour le Maroc |
 | `products-maroc.csv` | Produits et packs en dirhams, prêts à importer dans Shopify |
+| `concurrent-atlahom.md` | Veille concurrent : ATLAHOM (répulsifs naturels, pub TikTok, COD), ce qu'Exody reprend et évite |
 
 ## À me donner demain
 
