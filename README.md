@@ -31,3 +31,7 @@ Référence de départ : le positionnement d'Exode Naturel (baume déodorant à 
 ## Version Maroc
 
 La vente se fait au Maroc, en petits pots de 20 g (format K-beauty, référence Nuri Seoul à confirmer avec une photo). Tout ce qui concerne le format, les prix, la fabrication, la livraison, le paiement et la réglementation est dans le dossier `maroc/`, qui prévaut sur `product/` et `shopify/`. Commencer par `maroc/README.md`.
+
+## Autre client : Shiraz Beauty Studio (Rabat)
+
+Le dossier `shiraz-beauty/` contient le plan Google Business sans publicité (`strategie-google-business.md`) et les textes prêts à l'emploi (`modeles-textes.md`).
