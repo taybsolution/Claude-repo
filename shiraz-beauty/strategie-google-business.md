@@ -22,15 +22,32 @@ Dans Google Business Profile → **Performances**, comparez les 6 derniers mois 
 
 - **Les termes de recherche** (même onglet) : les gens trouvent-ils la fiche en tapant « Shiraz » (clientes qui vous connaissent déjà) ou « microblading Rabat » (nouvelles clientes) ? Si c'est surtout le nom, la fiche ne ressort presque pas sur les recherches génériques, et c'est là qu'il faut travailler.
 - **La saison** : les MRE sont surtout là en été. Une baisse en septembre-octobre est en partie normale : il faut préparer les réservations d'été à l'avance (partie 7).
-- **Une modification récente** du nom, de l'adresse ou de la catégorie peut faire perdre du classement pendant quelques semaines, ou déclencher une nouvelle validation.
+- **Une modification récente** du nom (voir le problème du nom actuel, partie 2), de l'adresse ou de la catégorie peut faire perdre du classement pendant quelques semaines, ou déclencher une nouvelle validation.
 - **Les concurrents** : tapez « microblading Rabat », « maquillage permanent Rabat » et « lip blush Rabat » sur Google Maps depuis votre téléphone, puis depuis Agdal, Hay Riad et Souissi (ou avec l'extension gratuite *GMB Everywhere*). Pour les 3 premiers, notez le nombre d'avis, le rythme des nouveaux avis, les catégories et le nombre de photos. C'est la barre à dépasser.
 
 ---
 
 ## 2. Les réglages de la fiche
 
-### Nom
-Le vrai nom seulement : **Shiraz Beauty Studio**. Ne rajoutez pas « Microblading Rabat » dans le nom : c'est interdit par Google, un concurrent peut le signaler, et la fiche peut être suspendue.
+### Nom : problème constaté sur la fiche actuelle
+La fiche s'appelle aujourd'hui **« Shiraz Beauty Studio | Microblading & Glaçage des lèvres Rabat »**. Les règles de Google interdisent d'ajouter des mots-clés, des services ou une ville au nom s'ils ne font pas partie du vrai nom de l'entreprise (enseigne, documents officiels).
+
+Les risques :
+- **Une suspension de la fiche.** Elle disparaît de Maps, avec ses avis, pendant des semaines. Pour une activité qui dépend à 100 % de Google, c'est le pire scénario.
+- **Un signalement par un concurrent** avec « Suggérer une modification ». Les concurrents d'un marché compétitif comme le microblading le font souvent.
+- **Des nouvelles validations et des baisses de classement** chaque fois que Google corrige ou remet en cause le nom. Si le nom a été modifié ces derniers mois, ça peut expliquer une partie de la baisse de leads.
+
+À vérifier : la date à laquelle le nom a été changé, et si c'est proche du début de la baisse.
+
+**Recommandation** : remettre le vrai nom, **« Shiraz Beauty Studio »**. Des mots-clés dans le nom aident un peu à court terme, mais le risque de suspension est plus grave que le gain. Les mots-clés doivent aller là où Google les accepte : catégories, services, produits, description, posts, réponses aux avis et site web.
+
+**Comment faire le changement :**
+1. D'abord, mettre en place les services avec prix, les photos et la routine avis (parties 2 à 4), pour que la fiche soit plus forte avant le changement.
+2. Changer uniquement le nom, sans toucher à l'adresse ni à la catégorie la même semaine, pour éviter de déclencher une nouvelle validation complète.
+3. Le faire en basse saison, pas juste avant l'été des MRE.
+4. Suivre les recherches génériques dans *Performances* pendant 4 semaines. Une petite baisse passagère est possible, puis les avis et les services réguliers la compensent.
+
+Alternative : si « Microblading & Glaçage des lèvres » fait vraiment partie de la marque (enseigne au studio, documents officiels, Instagram, site), le nom peut se défendre auprès de Google. Même dans ce cas, il vaut mieux enlever « Rabat ».
 
 ### Catégories (c'est le réglage qui compte le plus pour le classement)
 - **Principale** : *Clinique de maquillage permanent* (Permanent make-up clinic). C'est celle qui correspond exactement au métier.
@@ -189,7 +206,8 @@ Relevez ces chiffres chaque lundi. S'ils ne bougent pas, revenez au tableau de l
 
 **Semaine 1 : diagnostic et réglages**
 - Partie 1 : relever les chiffres et analyser les concurrents.
-- Vérifier catégories, nom, horaires, attributs, description, et le lien WhatsApp avec message pré-rempli.
+- Noter la date du dernier changement de nom ; préparer le retour à « Shiraz Beauty Studio » (à faire une fois les services, photos et avis en place).
+- Vérifier catégories, horaires, attributs, description, et le lien WhatsApp avec message pré-rempli.
 - Services et produits avec prix « à partir de », descriptions FR avec l'anglais entre parenthèses.
 - Configurer WhatsApp Business : message d'accueil, catalogue, étiquettes, réponses rapides.
 
