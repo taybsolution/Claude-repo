@@ -19,6 +19,7 @@ Référence de départ : le positionnement d'Exode Naturel (baume déodorant à 
 | `instagram/prompts-visuels.md` | Prompts prêts à coller pour générer chaque visuel (IA ou brief photographe) |
 | `instagram/mockup.html` | Aperçu interactif de la page Instagram (profil, highlights, grille des 15 posts) |
 | **`maroc/`** | **Version Maroc, prioritaire** : petits pots style K-beauty, prix en dirhams, paiement à la livraison, transporteurs, réglementation AMMPS, adaptations Instagram, CSV Shopify en DH |
+| **`anti-fourmis/`** | **Projet séparé** : lancer un kit anti-fourmis naturel au Maroc, concurrent d'ATLAHOM (réglementation PSHP, produit, prix, pubs TikTok, CSV Shopify) |
 
 ## Par où commencer
 

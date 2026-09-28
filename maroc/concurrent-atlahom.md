@@ -12,6 +12,8 @@ La page elle-même n'a pas pu être ouverte depuis l'environnement de travail (l
 
 Pour compléter : m'envoyer des captures d'écran de la page (du haut jusqu'au formulaire de commande), le prix affiché et 2 ou 3 vidéos de leurs pubs. Je mets alors à jour les sections 3 et 4 avec les vrais éléments.
 
+> Projet concurrent lancé : voir le dossier `anti-fourmis/`.
+
 ## 1. Qui est ATLAHOM
 
 | | Ce qui est vérifié |
