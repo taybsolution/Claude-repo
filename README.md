@@ -34,4 +34,4 @@ La vente se fait au Maroc, en petits pots de 20 g (format K-beauty, référence 
 
 ## Autre client : Shiraz Beauty Studio (Rabat)
 
-Le dossier `shiraz-beauty/` contient le plan Google Business sans publicité (`strategie-google-business.md`) et les textes prêts à l'emploi (`modeles-textes.md`).
+Le dossier `shiraz-beauty/` contient le plan Google Business sans publicité (`strategie-google-business.md`) et les textes prêts à l'emploi (`modeles-textes.md`). Les deux sont réunis dans `shiraz-plan-google-business.pdf`.
