@@ -24,6 +24,25 @@ const P = {
 const TAN = Math.tan(P.draftDeg * Math.PI / 180);
 const snap = v => Math.round(v * 1e9) / 1e9;
 
+function subdivide(pts, maxLen) {
+  const out = [];
+  for (let i = 0; i < pts.length; i++) {
+    const a = pts[i], b = pts[(i + 1) % pts.length];
+    const L = Math.hypot(b[0] - a[0], b[1] - a[1]), m = Math.max(1, Math.ceil(L / maxLen - 1e-9));
+    for (let k = 0; k < m; k++) out.push([snap(a[0] + (b[0] - a[0]) * k / m), snap(a[1] + (b[1] - a[1]) * k / m)]);
+  }
+  return out;
+}
+// hauteur d'une chaine de points 3D (alignee en y) a l'abscisse x, par interpolation
+function zAlong(chain, x) {
+  for (let k = 0; k < chain.length - 1; k++) {
+    const a = chain[k], b = chain[k + 1];
+    const lo = Math.min(a[0], b[0]), hi = Math.max(a[0], b[0]);
+    if (x >= lo - 1e-9 && x <= hi + 1e-9) return hi - lo < 1e-9 ? Math.max(a[2], b[2]) : a[2] + (b[2] - a[2]) * (x - a[0]) / (b[0] - a[0]);
+  }
+  return Math.max(...chain.map(p => p[2]));
+}
+
 function insideLetter(loops, x, y, margin, Hh) {
   let inside = false, dmin = Infinity;
   for (const L of loops) {
@@ -69,8 +88,10 @@ const LETTERS = {
   },
   E: {
     Hh: 146,
-    // 11 cm de large, angles bien arrondis, deux fentes fines de 12 mm
-    corners: [[0, 0, 10], [110, 0, 16], [110, 37.5, 5], [80, 37.5, 5.8], [80, 49.5, 5.8], [110, 49.5, 5], [110, 89.8, 5], [80, 89.8, 5.8], [80, 101.8, 5.8], [110, 101.8, 5], [110, 146, 20], [0, 146, 12]],
+    // 11 cm de large : de face un bloc presque rectangulaire, mais le devant est bombe comme un cylindre
+    // (les cotes se resserrent sur les bords) ; deux fentes fines de 12 mm, profondes de 28,5 mm
+    corners: [[0, 0, 6], [110, 0, 8], [110, 37.5, 5], [81.5, 37.5, 5.8], [81.5, 49.5, 5.8], [110, 49.5, 5], [110, 89.8, 5], [81.5, 89.8, 5.8], [81.5, 101.8, 5.8], [110, 101.8, 5], [110, 146, 8], [0, 146, 6]],
+    barrel: { Hb: 32, Wh: 57 },   // le devant recule d'environ 24 mm sur les bords gauche et droit
     Rf: 2, Kf: 4, rib: { type: 'vertical', pitch: 4, depth: 1.2, samples: 12 },
     pins: [{ x: 40, kind: 'E' }],
     color: [0.36, 0.45, 0.27],
@@ -207,11 +228,16 @@ function buildLetter(name) {
     loops = [makeLoop(o.outer, false), makeLoop(o.inner, true)];
     oMap = o.map;
   } else {
-    loops = [makeLoop(filletPolyline(def.corners), false)];
+    let pts = filletPolyline(def.corners);
+    if (def.barrel) pts = subdivide(pts, 3);
+    loops = [makeLoop(pts, false)];
   }
   let minX = Infinity, maxX = -Infinity;
   for (const L of loops) for (const p of L.pts) { minX = Math.min(minX, p[0]); maxX = Math.max(maxX, p[0]); }
   def.ribCenter = (minX + maxX) / 2;
+  // bombe du devant (E) : decalage vers l'arriere qui augmente vers les bords gauche et droit
+  const bz = def.barrel ? (x => { const u = (x - def.ribCenter) / def.barrel.Wh; return def.barrel.Hb * (1 - Math.sqrt(Math.max(0, 1 - u * u))); }) : (() => 0);
+  def.bz = bz;
   const A = def.rib.depth, arch = def.mode === 'arch';
   const z0 = arch ? P.floor + A : P.floor + A + P.eps, ztop = z0 + P.D;
   const levels = [];
@@ -229,7 +255,7 @@ function buildLetter(name) {
   const L3 = loops.map((L, li) => levels.map((lv, k) => {
     const off = offsetLoop(L, lv.U, lv.Dr);
     validateOffset(L, off, `${name} boucle ${li} niveau ${k}`);
-    return off.map(p => [p[0], p[1], lv.z]);
+    return off.map(p => [p[0], p[1], lv.z + (k <= iK && !arch ? bz(p[0]) : 0)]);
   }));
   const Cr = arch ? null : loops.map((L, li) => {
     const off = offsetLoop(L, -(def.Rf + P.border), 0).map(p => [snap(p[0]), snap(p[1])]);
@@ -243,24 +269,37 @@ function buildLetter(name) {
     pin.r = pk.r; pin.L = pk.L; pin.rTip = pk.rTip;
     const rh = pk.r + P.pinClear;
     const L = loops[0];
+    const onTop = i => { const a = L.pts[i], b = L.pts[(i + 1) % L.n]; return Math.abs(a[1] - def.Hh) < 1e-9 && Math.abs(b[1] - def.Hh) < 1e-9; };
     let found = -1;
     for (let i = 0; i < L.n; i++) {
       const a = L.pts[i], b = L.pts[(i + 1) % L.n];
-      if (Math.abs(a[1] - def.Hh) < 1e-9 && Math.abs(b[1] - def.Hh) < 1e-9 && Math.min(a[0], b[0]) < pin.x && Math.max(a[0], b[0]) > pin.x) found = i;
+      if (onTop(i) && Math.min(a[0], b[0]) < pin.x && Math.max(a[0], b[0]) > pin.x) found = i;
     }
     if (found < 0) throw new Error(`pas d'arete pour la tige ${name} x=${pin.x}`);
+    let i0 = found, i1 = found;
+    while (onTop((i0 - 1 + L.n) % L.n) && (i0 - 1 + L.n) % L.n !== found) i0 = (i0 - 1 + L.n) % L.n;
+    while (onTop((i1 + 1) % L.n) && (i1 + 1) % L.n !== found) i1 = (i1 + 1) % L.n;
+    const run = [];
+    for (let i = i0; ; i = (i + 1) % L.n) { run.push(i); if (i === i1) break; }
     for (const k of [iK, iTop]) {
-      const a = L3[0][k][found], b = L3[0][k][(found + 1) % L.n];
+      const a = L3[0][k][i0], b = L3[0][k][(i1 + 1) % L.n];
       const lo = Math.min(a[0], b[0]), hi = Math.max(a[0], b[0]);
       if (pin.x - rh < lo + 0.5 || pin.x + rh > hi - 0.5) throw new Error(`trou trop large pour l'arete ${name} x=${pin.x}`);
     }
-    if (zc - rh < levels[iK].z + 0.5 || zc + rh > ztop - 3) throw new Error(`trou mal place en profondeur ${name}`);
+    // le trou doit rester au-dessus du bas de la paroi (qui suit le bombe)
+    const chain = run.map(i => L3[0][iK][i]).concat([L3[0][iK][(i1 + 1) % L.n]]);
+    for (let j = 0; j < 72; j++) {
+      const th = 2 * Math.PI * j / 72, x = pin.x + rh * Math.cos(th), z = zc + rh * Math.sin(th);
+      if (z < zAlong(chain, x) + 0.5) throw new Error(`trou trop pres du devant ${name} x=${pin.x}`);
+    }
+    pin.run = run;
+    if (zc + rh > ztop - 3) throw new Error(`trou mal place en profondeur ${name}`);
     // il doit rester au moins 6 mm de matiere autour du trou, dans le plan de la lettre
     const minClear = 6;
     for (let y = def.Hh - pk.L; y <= def.Hh - 1; y += 2) for (let x = pin.x - pk.r; x <= pin.x + pk.r + 1e-9; x += 2) {
       if (!insideLetter(loops, x, y, minClear, def.Hh)) throw new Error(`le trou de ${name} x=${pin.x} sort de la lettre vers (${x.toFixed(1)}, ${y.toFixed(1)})`);
     }
-    pin.edge = found; pin.zc = zc;
+    pin.zc = zc;
   });
   return { def, name, loops, levels, L3, Cr, z0, ztop, iK, iTop, oMap };
 }
@@ -415,11 +454,12 @@ function cavity(mesh, B, sgn, clear) {
   if (def.rib.type === 'vertical') {
     let minX = Infinity, maxX = -Infinity;
     for (const L of Cr) for (const p of L) { minX = Math.min(minX, p[0]); maxX = Math.max(maxX, p[0]); }
-    const RP = ribPanel(Cr, ribSamplesX(def, minX, maxX), ribProfileX(def));
+    const rp = ribProfileX(def);
+    const RP = ribPanel(Cr, ribSamplesX(def, minX, maxX), x => rp(x) + def.bz(x));
     for (const [a, b, c] of RP.tris) mesh.tri(a, b, c, up);
     loops.forEach((L, li) => {
       const aug = RP.aug[li], m = aug.length;
-      const at0 = aug.map(o => [o.P[0], o.P[1], z0]);
+      const at0 = aug.map(o => [o.P[0], o.P[1], z0 + def.bz(o.P[0])]);
       for (let k = 0; k < m; k++) {
         const k1 = (k + 1) % m;
         mesh.quad(aug[k].P, aug[k1].P, at0[k1], at0[k], leftOf(aug[k].P, aug[k1].P));
@@ -471,22 +511,28 @@ function cavity(mesh, B, sgn, clear) {
       const i1 = (i + 1) % L.n;
       const inw = [-L.nrm[i][0] * sgn, -L.nrm[i][1] * sgn];
       for (let k = 0; k < iK; k++) mesh.quad(L3[li][k][i], L3[li][k][i1], L3[li][k + 1][i1], L3[li][k + 1][i], [inw[0], inw[1], sgn]);
-      const pins = li === 0 ? def.pins.filter(p => p.edge === i) : [];
+      const inRun = li === 0 ? def.pins.filter(p => p.run.includes(i)) : [];
       const a = L3[li][iK][i], b = L3[li][iK][i1], c = L3[li][iTop][i1], d = L3[li][iTop][i];
-      if (!pins.length) { mesh.quad(a, b, c, d, [inw[0], inw[1], 0.05 * sgn]); continue; }
-      const yAt = z => a[1] + (z - a[2]) * (d[1] - a[1]) / (d[2] - a[2]);
+      if (!inRun.length) { mesh.quad(a, b, c, d, [inw[0], inw[1], 0.05 * sgn]); continue; }
+      if (inRun[0].run[0] !== i) continue;            // la paroi entiere est faite au debut de la suite
+      const run = inRun[0].run, pins = def.pins.filter(p => p.run[0] === i);
+      const last = (run[run.length - 1] + 1) % L.n;
+      const bot = run.map(e => L3[li][iK][e]).concat([L3[li][iK][last]]);
+      const top = [L3[li][iTop][last]].concat(run.slice().reverse().map(e => L3[li][iTop][e]));
+      const yb = bot[0][1], yt = top[0][1], zt = top[0][2];
+      const yAt = (x, z) => { const zb = zAlong(bot, x); return yb + (yt - yb) * (z - zb) / (zt - zb); };
       const hl = pins.map(pin => {
         const loop = [];
         for (let j = 0; j < P.pinSeg; j++) {
           const th = 2 * Math.PI * j / P.pinSeg;
           const hr = pin.r + clear;
           const x = pin.x + hr * Math.cos(th), z = pin.zc + hr * Math.sin(th);
-          loop.push([x, yAt(z), z]);
+          loop.push([x, yAt(x, z), z]);
         }
         holes.push({ pin, loop });
         return loop;
       });
-      triPlanar(mesh, [a, b, c, d], hl, [0, 2], [inw[0], inw[1], 0]);
+      triPlanar(mesh, bot.concat(top), hl, [0, 2], [inw[0], inw[1], 0]);
     }
   });
   return holes;

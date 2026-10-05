@@ -1,6 +1,6 @@
 # Moules HOME : lettres-vases à côtes (impression 3D)
 
-Moules rigides pour couler soi-même, en plâtre, les 4 lettres-vases H, O, M, E de l'annonce, aux tailles de la photo avec les mesures. H de 12 × 14,7 cm, O en beignet de 15 × 14,6 cm, M de 15 cm en bas et 12,5 cm en haut, avec la pointe du milieu posée au sol, E arrondi de 11 × 14,6 cm. Pas besoin de silicone. Chaque moule est un bac imprimé en PLA, et la lettre est coulée face contre le fond.
+Moules rigides pour couler soi-même, en plâtre, les 4 lettres-vases H, O, M, E de l'annonce, aux tailles de la photo avec les mesures. H de 12 × 14,7 cm, O en beignet de 15 × 14,6 cm, M de 15 cm en bas et 12,5 cm en haut, avec la pointe du milieu posée au sol, E de 11 × 14,6 cm au devant bombé comme un cylindre. Pas besoin de silicone. Chaque moule est un bac imprimé en PLA, et la lettre est coulée face contre le fond.
 
 ![Résultat attendu](apercu/resultat-HOME.png)
 
@@ -78,8 +78,8 @@ Pour éviter le problème : poncer l'intérieur des parois au papier fin (grain 
 | H | 0,54 L | 0,54 kg | 0,38 L | 0,6 kg |
 | O | 0,70 L | 0,71 kg | 0,49 L | 0,8 kg |
 | M | 0,67 L | 0,68 kg | 0,48 L | 0,75 kg |
-| E | 0,63 L | 0,64 kg | 0,45 L | 0,7 kg |
-| **Total** | **2,5 L** | **2,6 kg** | **1,8 L** | |
+| E | 0,54 L | 0,55 kg | 0,38 L | 0,6 kg |
+| **Total** | **2,4 L** | **2,5 kg** | **1,7 L** | |
 
 Prévoir un sac de 3 kg minimum, ou 5 kg pour avoir de quoi faire un essai.
 
@@ -105,7 +105,7 @@ Prévoir un sac de 3 kg minimum, ou 5 kg pour avoir de quoi faire un essai.
 - **Lettres, face avant :** H 12 × 14,7 cm ; O 15 × 14,6 cm ; M 15 cm en bas, 12,5 cm en haut, 14,6 cm de haut ; E 11 × 14,6 cm. Le dos est 2 mm plus grand de chaque côté, à cause de la pente des parois.
 - **Épaisseur :** 4,2 cm plus les côtes. La photo ne la donne pas, c'est un choix.
 - **M :** jambes inclinées et pointe du milieu posée au sol, comme le M de McDo. Il tient sur trois appuis.
-- **E :** angles bien arrondis, surtout à droite, avec deux fentes fines de 12 mm.
+- **E :** de face, un bloc presque rectangulaire. Le devant est bombé comme un cylindre : il recule d'environ 2,4 cm sur les bords gauche et droit, et les côtes s'y resserrent. Deux fentes fines de 12 mm, profondes de 2,9 cm.
 - **Décor :** côtes verticales de 4 mm sur H, M et E. Le O a une face avant bombée en beignet, couverte de 13 anneaux.
 - **Trous à fleurs :** H Ø 24 mm sur 9 cm, M Ø 30 mm sur 4,5 cm, E Ø 30 mm sur 8 cm, O Ø 20 mm sur 3 cm. Sur la photo, les ouvertures font 2,6 cm pour le H, 3,7 cm pour le M, et le O a une fente de 6 cm : ici les trous sont ronds, un peu plus petits, pour garder du plâtre solide autour.
 - **Démoulage :** pente de 3° sur les parois tournées vers le haut et les côtés. Les faces tournées vers le bas, dont les bases, restent droites pour que les lettres tiennent bien debout.

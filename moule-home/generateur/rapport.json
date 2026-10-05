@@ -119,12 +119,12 @@
     },
     "E": {
       "moule": {
-        "tris": 8960,
+        "tris": 10560,
         "ouvertes": 0,
         "doublons": 0,
         "degeneres": 0,
         "ambigus": 0,
-        "volume_cm3": 304.5,
+        "volume_cm3": 395,
         "taille_mm": [
           128.4,
           167.2,
@@ -132,12 +132,12 @@
         ]
       },
       "lettre": {
-        "tris": 9710,
+        "tris": 11310,
         "ouvertes": 0,
         "doublons": 0,
         "degeneres": 0,
         "ambigus": 0,
-        "volume_cm3": 630.9,
+        "volume_cm3": 540.5,
         "taille_mm": [
           114.4,
           148.2,
@@ -147,8 +147,8 @@
       "tiges": [
         "E"
       ],
-      "platre_g": 640,
-      "eau_ml": 448
+      "platre_g": 548,
+      "eau_ml": 383
     }
   },
   "tiges": {
@@ -186,11 +186,11 @@
       "tris": 1440,
       "ouvertes": 0,
       "doublons": 0,
-      "volume_cm3": 57.95,
+      "volume_cm3": 57.96,
       "longueur_mm": 99.2,
       "diametre_mm": 30,
       "collerette_mm": 46,
-      "queue_mm": 14.9
+      "queue_mm": 14.96
     }
   }
 }
