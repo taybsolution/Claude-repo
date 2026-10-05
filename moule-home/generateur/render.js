@@ -50,8 +50,16 @@ function render(objs, cam, opt) {
   for (const o of objs) {
     if (o.noCast) continue;
     const t = o.tris;
+    // piece en cours d'impression (capFn) : seule la partie sous le plan de coupe porte ombre
+    const cl = o.capFn ? o.clip : null;
     for (let k = 0; k < t.length; k += 9) {
       const A = toL([t[k], t[k + 1], t[k + 2]]), B = toL([t[k + 3], t[k + 4], t[k + 5]]), C = toL([t[k + 6], t[k + 7], t[k + 8]]);
+      if (cl) {
+        const h0 = t[k] * cl.n[0] + t[k + 1] * cl.n[1] + t[k + 2] * cl.n[2] - cl.d, h1 = t[k + 3] * cl.n[0] + t[k + 4] * cl.n[1] + t[k + 5] * cl.n[2] - cl.d, h2 = t[k + 6] * cl.n[0] + t[k + 7] * cl.n[1] + t[k + 8] * cl.n[2] - cl.d;
+        if (h0 > 0 && h1 > 0 && h2 > 0) continue;
+        raster(A, B, C, S, S, (px, py, w0, w1, w2) => { if (w0 * h0 + w1 * h1 + w2 * h2 > 0) return; const d = w0 * A[2] + w1 * B[2] + w2 * C[2]; const i = py * S + px; if (d < sm[i]) sm[i] = d; });
+        continue;
+      }
       raster(A, B, C, S, S, (px, py, w0, w1, w2) => { const d = w0 * A[2] + w1 * B[2] + w2 * C[2]; const i = py * S + px; if (d < sm[i]) sm[i] = d; });
     }
   }
@@ -84,13 +92,33 @@ function render(objs, cam, opt) {
       const hv = norm3([L[0] + vdir[0], L[1] + vdir[1], L[2] + vdir[2]]);
       const sp1 = Math.pow(Math.max(0, dot3(nn, hv)), 40) * spec;
       const sky = 0.5 + 0.5 * nn[1];
+      const capMode = cutFace && o.capFn;
       raster(sp[0], sp[1], sp[2], W, H, (px, py, w0, w1, w2) => {
         const iz = w0 / sp[0][2] + w1 / sp[1][2] + w2 / sp[2][2];
         const z = 1 / iz, i = py * W + px;
-        if (z >= zb[i]) return;
+        if (!capMode && z >= zb[i]) return;
         const a0 = w0 / sp[0][2] * z, a1 = w1 / sp[1][2] * z, a2 = w2 / sp[2][2] * z;
         const wp = [P0[0] * a0 + P1[0] * a1 + P2[0] * a2, P0[1] * a0 + P1[1] * a1 + P2[1] * a2, P0[2] * a0 + P1[2] * a1 + P2[2] * a2];
         if (o.clip && dot3(wp, o.clip.n) > o.clip.d) return;
+        if (capMode) {
+          // dessus de la piece coupee : point du plan de coupe vu par ce pixel, eclaire comme une face
+          // capFn(p) donne sa couleur, ou null si p est hors de la matiere (rien n'y est dessine)
+          const cn = o.clip.n, dv = sub3(wp, cam.eye);
+          const tt = (o.clip.d - dot3(cam.eye, cn)) / dot3(dv, cn);
+          if (!(tt > 0 && tt < 1)) return;
+          const cp = [cam.eye[0] + dv[0] * tt, cam.eye[1] + dv[1] * tt, cam.eye[2] + dv[2] * tt], zc = z * tt;
+          if (zc >= zb[i]) return;
+          const cc = o.capFn(cp);
+          if (!cc) return;
+          zb[i] = zc;
+          const cd = Math.max(0, dot3(cn, L)), cd2 = Math.max(0, dot3(cn, L2));
+          const csh = cd > 0 ? shadow([cp[0] + cn[0] * 0.3, cp[1] + cn[1] * 0.3, cp[2] + cn[2] * 0.3]) : 0;
+          const chv = norm3([L[0] - dv[0] / len3(dv), L[1] - dv[1] / len3(dv), L[2] - dv[2] / len3(dv)]);
+          const csp = Math.pow(Math.max(0, dot3(cn, chv)), 40) * spec;
+          const camb = 0.30 + 0.16 * (0.5 + 0.5 * cn[1]);
+          for (let c = 0; c < 3; c++) col[i * 3 + c] = cc[c] * (camb + 0.68 * cd * csh + 0.16 * cd2) + csp * csh;
+          return;
+        }
         zb[i] = z;
         if (cutFace) { const cc = o.cutColor || [0.2, 0.2, 0.25]; for (let c = 0; c < 3; c++) col[i * 3 + c] = cc[c]; return; }
         const sh = dif > 0 ? shadow([wp[0] + nn[0] * 0.3, wp[1] + nn[1] * 0.3, wp[2] + nn[2] * 0.3]) : 0;

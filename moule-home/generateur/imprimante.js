@@ -22,31 +22,10 @@ const B = all.letters[big].B;
 const mold = all.letters[big].mold;
 const bx = mold.box, wx = bx.bx1 - bx.bx0, wy = bx.by1 - bx.by0;
 
-// ---------- imprimante simplifiee (mm), x largeur, y profondeur (avant = 0), z hauteur
-const FRAME = [0.20, 0.21, 0.23], BASE = [0.27, 0.28, 0.30], PLASTIC = [0.13, 0.13, 0.14], METAL = [0.72, 0.73, 0.75];
-const BED = [0.09, 0.09, 0.10], SCREEN = [0.36, 0.55, 0.75];
-const cx = 174.5, cyBed = 182, bedTop = 92, g = 300; // g : hauteur du portique, tete garee en haut
-const parts = [
-  ...[[8, 20], [311, 20], [8, 316], [311, 316]].map(([x, y]) => ({ t: U.boxTris(x, y, 0, x + 30, y + 30, 8), c: PLASTIC })),
-  { t: U.boxTris(5, 14, 8, 344, 350, 75), c: BASE },
-  { t: U.boxTris(268, 0, 22, 349, 16, 80), c: PLASTIC },              // ecran a l'avant droite
-  { t: U.boxTris(278, -1, 32, 339, 0.2, 70), c: SCREEN, spec: 0.5 },
-  { t: U.cylY(325, -1.2, 0.6, 51, 7, 24), c: METAL },                 // molette
-  { t: U.boxTris(62, 70, 80, 287, 294, 86), c: METAL, spec: 0.4 },    // chariot Y
-  { t: U.boxTris(cx - 117.5, cyBed - 117.5, 86, cx + 117.5, cyBed + 117.5, bedTop), c: BED, spec: 0.25 }, // plateau 235 mm
-  { t: U.boxTris(14, 190, 75, 34, 230, 470), c: FRAME },              // montants
-  { t: U.boxTris(315, 190, 75, 335, 230, 470), c: FRAME },
-  { t: U.boxTris(14, 190, 470, 335, 230, 490), c: FRAME },            // traverse du haut
-  { t: U.cylZ(46, 210, 75, 462, 4, 20), c: METAL, spec: 0.6 },        // vis Z
-  { t: U.cylZ(303, 210, 75, 462, 4, 20), c: METAL, spec: 0.6 },
-  { t: U.boxTris(34, 195, g, 315, 225, g + 40), c: FRAME },           // portique X
-  { t: U.boxTris(8, 184, g - 12, 52, 236, g + 52), c: PLASTIC },
-  { t: U.boxTris(297, 184, g - 12, 341, 236, g + 52), c: PLASTIC },
-  { t: U.boxTris(142, 150, g - 48, 207, 196, g + 46), c: PLASTIC },   // tete d'impression
-  { t: U.cylY(174.5, 148.8, 150.2, g - 6, 17, 32), c: [0.24, 0.25, 0.27] }, // ventilateur
-  { t: U.latheTris([[0, -10], [1, -10], [4, 0], [0, 0]], 16, p => [p[0] + 172, p[1] + 172, p[2] + g - 48]), c: [0.75, 0.6, 0.25], spec: 0.6 }, // buse
-];
-const objs = parts.map(p => ({ tris: p.t, color: p.c, spec: p.spec == null ? 0.15 : p.spec }));
+// ---------- imprimante simplifiee (machine.js), tete garee en haut
+const MA = require('./machine.js');
+const { cx, top: bedTop } = MA.BEDINFO, cyBed = 182;
+const objs = MA.printer({ headX: 172, tipZ: 242, bedY: cyBed });
 // moule du M imprime, centre sur le plateau (repere physique : miroir x, triangles retournes)
 const moldObj = { tris: R.meshTris(mold.mesh, p => [bx.bx1 - p[0] - wx / 2 + cx, p[1] - bx.by0 - wy / 2 + cyBed, p[2] + bedTop]), color: [0.30, 0.52, 0.82], spec: 0.3 };
 moldObj.tris = (() => { const t = moldObj.tris; for (let k = 0; k < t.length; k += 9) for (let q = 0; q < 3; q++) { const a = t[k + 3 + q]; t[k + 3 + q] = t[k + 6 + q]; t[k + 6 + q] = a; } return t; })();
