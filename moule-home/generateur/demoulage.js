@@ -171,7 +171,7 @@ const id = p => p;
     { tris: R.meshTris(moldH.mesh, H.toPhys, true), color: PLA, spec: 0.3 },
     { tris: R.meshTris(posH.mesh, H.toPhys, true), color: PLATRE, spec: 0.08 },
     pinInMold('H', p1, 62, id),
-    pinLying('longue', H.wx + 30, H.wy + 95, Math.PI * 0.93),
+    pinLying('H', H.wx + 30, H.wy + 95, Math.PI * 0.93),
     table(-900, -700, 1100, 1100),
   ];
   shoot('demoulage-2-retirer-tiges.png', objs,
@@ -189,8 +189,8 @@ const id = p => p;
     { tris: R.meshTris(moldH.mesh, p => hinge(flip(H.toPhys(p))), true), color: PLA, spec: 0.3 },
     { tris: R.meshTris(posH.mesh, p => flip(H.toPhys(p)), true), color: PLATRE, spec: 0.05 },
     { tris: boxTris(-70, -60, 0, H.wx + 70, H.wy + 40, towelH), color: [0.8, 0.83, 0.86], colorFn: cloth, spec: 0.0, isTowel: true },
-    pinLying('longue', H.wx + 120, 40, Math.PI * 0.5),
-    pinLying('longue', H.wx + 165, 30, Math.PI * 0.53),
+    pinLying('H', H.wx + 120, 40, Math.PI * 0.5),
+    pinLying('H', H.wx + 165, 30, Math.PI * 0.53),
     table(-900, -800, 1100, 1100),
   ];
   const towel = objs.find(o => o.isTowel);
@@ -207,8 +207,8 @@ const id = p => p;
   const objs = [
     st.obj,
     { tris: R.meshTris(moldH.mesh, p => add(rotZ(-0.35)(H.toPhys(p)), [moldX + 40, moldY, 0]), true), color: PLA, spec: 0.3 },
-    pinLying('longue', 120, -10, Math.PI * 0.62),
-    pinLying('longue', 150, 25, Math.PI * 0.66),
+    pinLying('H', 120, -10, Math.PI * 0.62),
+    pinLying('H', 150, 25, Math.PI * 0.66),
     table(-1100, -900, 900, 900),
   ];
   shoot('demoulage-4-lettre-sortie.png', objs,

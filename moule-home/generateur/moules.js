@@ -9,8 +9,8 @@ const { Mesh, checkMesh, stlBuffer, cross2, dot2, norm2 } = G;
 
 // ---------------------------------------------------------------- parametres
 const P = {
-  H: 180,          // hauteur des lettres (mm)
-  D: 50,           // epaisseur de la lettre (face avant -> dos)
+  H: 146,          // hauteur des lettres (mm), le H fait 147
+  D: 42,           // epaisseur de la lettre (face avant -> dos), non donnee sur la photo
   draftDeg: 3,     // depouille des parois (degres), sauf la base (0)
   floor: 2.4,      // epaisseur du fond du moule sous les cotes
   eps: 0.3,        // petit decroche entre les cotes et la bordure plate
@@ -24,7 +24,7 @@ const P = {
 const TAN = Math.tan(P.draftDeg * Math.PI / 180);
 const snap = v => Math.round(v * 1e9) / 1e9;
 
-function insideLetter(loops, x, y, margin) {
+function insideLetter(loops, x, y, margin, Hh) {
   let inside = false, dmin = Infinity;
   for (const L of loops) {
     const n = L.n;
@@ -36,43 +36,51 @@ function insideLetter(loops, x, y, margin) {
       dmin = Math.min(dmin, Math.hypot(x - a[0] - t * ex, y - a[1] - t * ey));
     }
   }
-  return inside && (dmin >= margin || y > P.H - margin);
+  return inside && (dmin >= margin || y > Hh - margin);
 }
 
 // ---------------------------------------------------------------- lettres (vue de face, mm)
 // coins [x, y, rayon] dans le sens trigonometrique
 const LETTERS = {
   H: {
-    corners: [[0, 0, 4], [48, 0, 4], [48, 76, 3], [79, 76, 3], [79, 0, 4], [127, 0, 4], [127, 180, 4], [79, 180, 4], [79, 128, 3], [48, 128, 3], [48, 180, 4], [0, 180, 4]],
-    Rf: 2, Kf: 4, rib: { type: 'vertical', pitch: 4.5, depth: 1.3, samples: 12 },
-    pins: [{ x: 24, kind: 'longue' }, { x: 103, kind: 'longue' }],
-    color: [0.93, 0.92, 0.89],
+    Hh: 147,
+    // jambes de 38 mm, ecart de 44 mm, barre de 58 a 105 mm
+    corners: [[0, 0, 4], [38, 0, 4], [38, 58, 5], [82, 58, 5], [82, 0, 4], [120, 0, 4], [120, 147, 4], [82, 147, 4], [82, 105, 3], [38, 105, 3], [38, 147, 4], [0, 147, 4]],
+    Rf: 2, Kf: 4, rib: { type: 'vertical', pitch: 4, depth: 1.2, samples: 12 },
+    pins: [{ x: 19, kind: 'H' }, { x: 101, kind: 'H' }],
+    color: [0.36, 0.27, 0.20],
   },
   O: {
-    mode: 'arch', archH: 16, zcRel: 31,
-    o: { a: 83.5, b: 91, n: 2.3, yFlat: 90, ai: 17.5, bi: 38.5, ni: 2.0 },
-    rib: { type: 'rings', n: 14, depth: 0.9, pitch: 3.2, samples: 10 },
-    pins: [{ x: 0, kind: 'courte' }],
-    color: [0.80, 0.52, 0.33],
+    Hh: 146, mode: 'arch', archH: 13, zcRel: 24,
+    // 15 x 14,6 cm, trou de 3,7 x 5,6 cm
+    o: { a: 75, b: 74.5, n: 2.5, yFlat: 73, ai: 18.5, bi: 28, ni: 2.5 },
+    rib: { type: 'rings', n: 13, depth: 0.8, pitch: 3.2, samples: 10 },
+    pins: [{ x: 0, kind: 'O' }],
+    color: [0.86, 0.56, 0.24],
   },
   M: {
-    // fentes du bas jusqu'a 108 mm, fente du haut jusqu'a 107 mm (sommets arrondis compenses)
-    corners: [[0, 0, 4], [27, 0, 4], [27, 143, 4], [56, 3, 4], [92, 3, 4], [121, 143, 4], [121, 0, 4], [148, 0, 4], [148, 180, 4], [89, 180, 4], [74, 85.6, 4], [59, 180, 4], [0, 180, 4]],
-    Rf: 2, Kf: 4, rib: { type: 'vertical', pitch: 4.5, depth: 1.3, samples: 12 },
-    pins: [{ x: 29.5, kind: 'moyenne' }, { x: 118.5, kind: 'moyenne' }],
-    color: [0.88, 0.76, 0.58],
+    Hh: 146,
+    // 15 cm en bas, 12,5 cm en haut : jambes inclinees, pointe du milieu posee au sol (comme le M de McDo)
+    // fentes du bas jusqu'a 89 mm, V du haut jusqu'a 84 mm (sommets arrondis compenses)
+    corners: [[0, 0, 4], [27.6, 0, 3], [40, 123, 4.5], [56.6, 0, 3], [93.4, 0, 3], [110, 123, 4.5], [122.4, 0, 3], [150, 0, 4], [137.5, 146, 5], [88.5, 146, 4], [75, 70, 3], [61.5, 146, 4], [12.5, 146, 5]],
+    Rf: 2, Kf: 4, rib: { type: 'vertical', pitch: 4, depth: 1.2, samples: 12 },
+    pins: [{ x: 37, kind: 'M' }, { x: 113, kind: 'M' }],
+    color: [0.93, 0.89, 0.72],
   },
   E: {
-    corners: [[0, 0, 8], [116, 0, 10], [116, 38, 5], [78, 38, 7], [78, 53, 7], [116, 53, 5], [116, 106, 5], [78, 106, 7], [78, 121, 7], [116, 121, 5], [116, 180, 8], [0, 180, 8]],
-    Rf: 2, Kf: 4, rib: { type: 'vertical', pitch: 4.5, depth: 1.3, samples: 12 },
-    pins: [{ x: 39, kind: 'longue' }],
-    color: [0.90, 0.66, 0.68],
+    Hh: 146,
+    // 11 cm de large, angles bien arrondis, deux fentes fines de 12 mm
+    corners: [[0, 0, 10], [110, 0, 16], [110, 37.5, 5], [80, 37.5, 5.8], [80, 49.5, 5.8], [110, 49.5, 5], [110, 89.8, 5], [80, 89.8, 5.8], [80, 101.8, 5.8], [110, 101.8, 5], [110, 146, 20], [0, 146, 12]],
+    Rf: 2, Kf: 4, rib: { type: 'vertical', pitch: 4, depth: 1.2, samples: 12 },
+    pins: [{ x: 40, kind: 'E' }],
+    color: [0.36, 0.45, 0.27],
   },
 };
 const PIN_KIND = {
-  longue: { L: 100, r: 15, rTip: 11 },   // H et E : trou de 30 mm, 10 cm de profondeur
-  moyenne: { L: 60, r: 15, rTip: 12 },   // M : trou de 30 mm, 6 cm (s'arrete au-dessus des fentes)
-  courte: { L: 36, r: 10, rTip: 8.5 },   // O : trou de 20 mm, 3,6 cm
+  H: { L: 90, r: 12, rTip: 9 },     // trou de 24 mm, 9 cm de profondeur (2 par H)
+  M: { L: 45, r: 15, rTip: 12 },    // trou de 30 mm, 4,5 cm (s'arrete au-dessus des fentes)
+  E: { L: 80, r: 15, rTip: 11 },    // trou de 30 mm, 8 cm
+  O: { L: 30, r: 10, rTip: 8 },     // trou de 20 mm, 3 cm
 };
 
 // ---------------------------------------------------------------- contours
@@ -114,7 +122,7 @@ function dedupe(pts) {
 }
 
 function oPolylines(o) {
-  const { a, b, n, yFlat, ai, bi, ni } = o, cy = 90;
+  const { a, b, n, yFlat, ai, bi, ni } = o, cy = yFlat;
   const se = (A, B, N, t) => [A * Math.sign(Math.cos(t)) * Math.pow(Math.abs(Math.cos(t)), 2 / N), B * Math.sign(Math.sin(t)) * Math.pow(Math.abs(Math.sin(t)), 2 / N)];
   const tf = Math.asin(Math.pow(yFlat / b, n / 2));
   const step = 2.5 * Math.PI / 180, th = [];
@@ -140,27 +148,18 @@ function oPolylines(o) {
 }
 
 function makeLoop(pts, isHole) {
-  const n = pts.length, nrm = [], c0 = [], base = [], w = new Array(n).fill(1);
+  // depouille par arete : pleine (1) sur les faces tournees vers le haut ou les cotes,
+  // nx^2 sur les faces tournees vers le bas. Les bases (normale vers le bas) restent donc droites :
+  // la lettre tient debout sans pencher, et le passage est continu (pas de cassure dans les arrondis).
+  const n = pts.length, nrm = [], c0 = [], w = [];
   for (let i = 0; i < n; i++) {
     const a = pts[i], b = pts[(i + 1) % n];
     const t = norm2([b[0] - a[0], b[1] - a[1]]);
     const nv = [t[1], -t[0]];
     nrm.push(nv); c0.push(nv[0] * a[0] + nv[1] * a[1]);
-    base.push(!isHole && Math.abs(a[1]) < 1e-9 && Math.abs(b[1]) < 1e-9 && b[0] > a[0]);
+    w.push(isHole || nv[1] >= 0 ? 1 : nv[0] * nv[0]);
   }
-  for (let e = 0; e < n; e++) {
-    if (!base[e]) continue;
-    w[e] = 0;
-    for (const dir of [1, -1]) for (let k = 1; k < n; k++) {
-      const f = (e + dir * k + n * 4) % n;
-      if (base[f] || nrm[f][1] >= -1e-9) break;
-      const g = (f - dir + n * 4) % n; // arete precedente dans le sens du parcours
-      const turn = dir > 0 ? cross2(nrm[g], nrm[f]) : cross2(nrm[f], nrm[g]);
-      if (turn < -1e-12) throw new Error('coin concave dans une zone de base (depouille nulle impossible)');
-      w[f] = Math.abs(nrm[f][0]);
-    }
-  }
-  return { pts, n, nrm, c0, base, w, isHole };
+  return { pts, n, nrm, c0, w, isHole };
 }
 
 function offsetLoop(L, U, Dr) {
@@ -247,7 +246,7 @@ function buildLetter(name) {
     let found = -1;
     for (let i = 0; i < L.n; i++) {
       const a = L.pts[i], b = L.pts[(i + 1) % L.n];
-      if (Math.abs(a[1] - P.H) < 1e-9 && Math.abs(b[1] - P.H) < 1e-9 && Math.min(a[0], b[0]) < pin.x && Math.max(a[0], b[0]) > pin.x) found = i;
+      if (Math.abs(a[1] - def.Hh) < 1e-9 && Math.abs(b[1] - def.Hh) < 1e-9 && Math.min(a[0], b[0]) < pin.x && Math.max(a[0], b[0]) > pin.x) found = i;
     }
     if (found < 0) throw new Error(`pas d'arete pour la tige ${name} x=${pin.x}`);
     for (const k of [iK, iTop]) {
@@ -258,8 +257,8 @@ function buildLetter(name) {
     if (zc - rh < levels[iK].z + 0.5 || zc + rh > ztop - 3) throw new Error(`trou mal place en profondeur ${name}`);
     // il doit rester au moins 6 mm de matiere autour du trou, dans le plan de la lettre
     const minClear = 6;
-    for (let y = P.H - pk.L; y <= P.H - 1; y += 2) for (let x = pin.x - pk.r; x <= pin.x + pk.r + 1e-9; x += 2) {
-      if (!insideLetter(loops, x, y, minClear)) throw new Error(`le trou de ${name} x=${pin.x} sort de la lettre vers (${x.toFixed(1)}, ${y.toFixed(1)})`);
+    for (let y = def.Hh - pk.L; y <= def.Hh - 1; y += 2) for (let x = pin.x - pk.r; x <= pin.x + pk.r + 1e-9; x += 2) {
+      if (!insideLetter(loops, x, y, minClear, def.Hh)) throw new Error(`le trou de ${name} x=${pin.x} sort de la lettre vers (${x.toFixed(1)}, ${y.toFixed(1)})`);
     }
     pin.edge = found; pin.zc = zc;
   });
@@ -521,7 +520,7 @@ function buildMold(B) {
   for (const h of holes) {
     h.pin.yRootEnd = Math.min(...h.loop.map(p => p[1])) - 1.0;   // la queue cylindrique depasse de 1 mm dans l'empreinte
     h.pin.root = by1 - h.pin.yRootEnd;
-    h.pin.toTipCenter = by1 - (P.H - h.pin.L + h.pin.rTip);
+    h.pin.toTipCenter = by1 - (B.def.Hh - h.pin.L + h.pin.rTip);
   }
   return { mesh: m, box: { bx0, bx1, by0, by1, zt }, holes };
 }
@@ -535,7 +534,7 @@ function buildPositive(B, mold) {
   triPlanar(m, outer[0], inner, [0, 1], [0, 0, 1]);
   for (const h of holes) {
     const pk = PIN_KIND[h.pin.kind], xp = h.pin.x, zc = h.pin.zc, r = pk.r, rt = pk.rTip;
-    const yTip = P.H - pk.L, yTc = yTip + rt;
+    const yTip = B.def.Hh - pk.L, yTc = yTip + rt;
     const N = h.loop.length;
     const ring = (y, rad) => h.loop.map((_, j) => { const th = 2 * Math.PI * j / N; return [xp + rad * Math.cos(th), y, zc + rad * Math.sin(th)]; });
     const rings = [h.loop, ring(h.pin.yRootEnd, r), ring(yTc, rt)];
