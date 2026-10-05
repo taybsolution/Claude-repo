@@ -53,6 +53,12 @@ La tige doit entrer dans le trou du moule, côté haut de la lettre, jusqu'au di
 6. **Démouler.** Après 1 heure, retourner le moule sur un chiffon et tapoter le fond. La lettre sort. Ne jamais forcer avec un outil en métal.
 7. **Sécher** 3 à 7 jours avant de peindre. Poncer légèrement les arêtes du dos.
 
+### Le démoulage en images
+
+Images 3D faites à partir des fichiers des moules. Ce ne sont pas des photos réelles.
+
+![Démoulage étape par étape](apercu/demoulage-planche.jpg)
+
 ### Quantités par lettre (10 % de marge comprise)
 
 | Lettre | Volume | Plâtre | Eau | Poids sec environ |
@@ -91,4 +97,4 @@ Prévoir un sac de 5 kg minimum, ou 10 kg pour avoir de quoi faire un essai.
 
 ## 5. Modifier les dimensions
 
-Le dossier `generateur/` contient le programme qui a créé ces fichiers (Node.js, sans dépendance). Les paramètres sont en haut de `moules.js`. La commande `node moules.js sortie` regénère les fichiers STL, et `node apercu.js sortie` regénère les images.
+Le dossier `generateur/` contient le programme qui a créé ces fichiers (Node.js, sans dépendance). Les paramètres sont en haut de `moules.js`. La commande `node moules.js sortie` regénère les fichiers STL, `node apercu.js sortie` regénère les images, et `node demoulage.js sortie` regénère les images du démoulage.

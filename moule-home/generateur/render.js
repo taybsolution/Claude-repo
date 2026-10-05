@@ -43,7 +43,7 @@ function render(objs, cam, opt) {
   const lz = [-L[0], -L[1], -L[2]];
   let lx = norm3(cross3(Math.abs(lz[1]) > 0.9 ? [1, 0, 0] : [0, 1, 0], lz)); const ly = cross3(lz, lx);
   let mn = [Infinity, Infinity], mx = [-Infinity, -Infinity];
-  for (const o of objs) for (let k = 0; k < o.tris.length; k += 3) { const p = [o.tris[k], o.tris[k + 1], o.tris[k + 2]]; const a = dot3(p, lx), b = dot3(p, ly); mn = [Math.min(mn[0], a), Math.min(mn[1], b)]; mx = [Math.max(mx[0], a), Math.max(mx[1], b)]; }
+  for (const o of objs) if (!o.noCast) for (let k = 0; k < o.tris.length; k += 3) { const p = [o.tris[k], o.tris[k + 1], o.tris[k + 2]]; const a = dot3(p, lx), b = dot3(p, ly); mn = [Math.min(mn[0], a), Math.min(mn[1], b)]; mx = [Math.max(mx[0], a), Math.max(mx[1], b)]; }
   const sc = (S - 4) / Math.max(mx[0] - mn[0], mx[1] - mn[1]);
   const sm = new Float32Array(S * S).fill(Infinity);
   const toL = p => [(dot3(p, lx) - mn[0]) * sc + 2, (dot3(p, ly) - mn[1]) * sc + 2, dot3(p, lz)];
@@ -95,7 +95,8 @@ function render(objs, cam, opt) {
         if (cutFace) { const cc = o.cutColor || [0.2, 0.2, 0.25]; for (let c = 0; c < 3; c++) col[i * 3 + c] = cc[c]; return; }
         const sh = dif > 0 ? shadow([wp[0] + nn[0] * 0.3, wp[1] + nn[1] * 0.3, wp[2] + nn[2] * 0.3]) : 0;
         const amb = 0.30 + 0.16 * sky;
-        for (let c = 0; c < 3; c++) col[i * 3 + c] = base[c] * (amb + 0.68 * dif * sh + 0.16 * dif2) + sp1 * sh;
+        const bc = o.colorFn ? o.colorFn(wp) : base;
+        for (let c = 0; c < 3; c++) col[i * 3 + c] = bc[c] * (amb + 0.68 * dif * sh + 0.16 * dif2) + sp1 * sh;
       });
     }
   }
@@ -104,7 +105,8 @@ function render(objs, cam, opt) {
   for (let y = 0; y < opt.h; y++) for (let x = 0; x < opt.w; x++) for (let c = 0; c < 3; c++) {
     let s = 0;
     for (let dy = 0; dy < ss; dy++) for (let dx = 0; dx < ss; dx++) s += col[((y * ss + dy) * W + x * ss + dx) * 3 + c];
-    const v = s / (ss * ss);
+    let v = s / (ss * ss);
+    if (opt.vignette) { const dx = (x / opt.w - 0.5) * 2, dy = (y / opt.h - 0.5) * 2; v *= 1 - opt.vignette * (dx * dx + dy * dy) / 2; }
     out[(y * opt.w + x) * 3 + c] = Math.max(0, Math.min(255, Math.round(255 * Math.pow(Math.max(0, v), 1 / 1.15))));
   }
   return out;
