@@ -14,45 +14,66 @@ const P = {
   draftDeg: 3,     // depouille des parois (degres), sauf la base (0)
   floor: 2.4,      // epaisseur du fond du moule sous les cotes
   eps: 0.3,        // petit decroche entre les cotes et la bordure plate
-  border: 1.5,     // bordure plate entre les cotes et l'arrondi
+  border: 0.8,     // bordure plate entre les cotes et l'arrondi
   wallSide: 7, wallBase: 7, wallTop: 12,   // parois de la boite du moule
-  pinR: 10,        // rayon de la tige (trou a fleurs = 20 mm)
   pinClear: 0.25,  // jeu radial dans le trou de la paroi
-  flangeR: 18, flangeT: 5,
+  flangeExtra: 8, flangeT: 5,
   arcStepDeg: 5,
   pinSeg: 48,
 };
 const TAN = Math.tan(P.draftDeg * Math.PI / 180);
 const snap = v => Math.round(v * 1e9) / 1e9;
 
+function insideLetter(loops, x, y, margin) {
+  let inside = false, dmin = Infinity;
+  for (const L of loops) {
+    const n = L.n;
+    for (let i = 0; i < n; i++) {
+      const a = L.pts[i], b = L.pts[(i + 1) % n];
+      if ((a[1] > y) !== (b[1] > y) && x < a[0] + (y - a[1]) * (b[0] - a[0]) / (b[1] - a[1])) inside = !inside;
+      const ex = b[0] - a[0], ey = b[1] - a[1], l2 = ex * ex + ey * ey;
+      let t = ((x - a[0]) * ex + (y - a[1]) * ey) / l2; t = Math.max(0, Math.min(1, t));
+      dmin = Math.min(dmin, Math.hypot(x - a[0] - t * ex, y - a[1] - t * ey));
+    }
+  }
+  return inside && (dmin >= margin || y > P.H - margin);
+}
+
 // ---------------------------------------------------------------- lettres (vue de face, mm)
 // coins [x, y, rayon] dans le sens trigonometrique
 const LETTERS = {
   H: {
-    corners: [[0, 0, 6], [50, 0, 6], [50, 67, 4], [89, 67, 4], [89, 0, 6], [139, 0, 6], [139, 180, 6], [89, 180, 6], [89, 125, 4], [50, 125, 4], [50, 180, 6], [0, 180, 6]],
-    Rf: 4, Kf: 6, rib: { type: 'vertical', pitch: 5, depth: 1.4, samples: 12 },
-    pins: [{ x: 25, L: 100, kind: 'longue' }, { x: 114, L: 100, kind: 'longue' }],
+    corners: [[0, 0, 4], [48, 0, 4], [48, 76, 3], [79, 76, 3], [79, 0, 4], [127, 0, 4], [127, 180, 4], [79, 180, 4], [79, 128, 3], [48, 128, 3], [48, 180, 4], [0, 180, 4]],
+    Rf: 2, Kf: 4, rib: { type: 'vertical', pitch: 4.5, depth: 1.3, samples: 12 },
+    pins: [{ x: 24, kind: 'longue' }, { x: 103, kind: 'longue' }],
     color: [0.93, 0.92, 0.89],
   },
   O: {
-    Rf: 12, Kf: 12, rib: { type: 'rings', n: 8, depth: 0.8, pitch: 3.5, samples: 10 },
-    pins: [{ x: 0, L: 36, kind: 'courte' }],
+    mode: 'arch', archH: 16, zcRel: 31,
+    o: { a: 83.5, b: 91, n: 2.3, yFlat: 90, ai: 17.5, bi: 38.5, ni: 2.0 },
+    rib: { type: 'rings', n: 14, depth: 0.9, pitch: 3.2, samples: 10 },
+    pins: [{ x: 0, kind: 'courte' }],
     color: [0.80, 0.52, 0.33],
   },
   M: {
-    corners: [[0, 0, 6], [40, 0, 6], [40, 60, 4], [68, 3, 6], [102, 3, 6], [130, 60, 4], [130, 0, 6], [170, 0, 6], [170, 180, 6], [102, 180, 6], [85, 108, 4], [68, 180, 6], [0, 180, 6]],
-    Rf: 4, Kf: 6, rib: { type: 'vertical', pitch: 5, depth: 1.4, samples: 12 },
-    pins: [{ x: 32, L: 100, kind: 'longue' }, { x: 138, L: 100, kind: 'longue' }],
+    // fentes du bas jusqu'a 108 mm, fente du haut jusqu'a 107 mm (sommets arrondis compenses)
+    corners: [[0, 0, 4], [27, 0, 4], [27, 143, 4], [56, 3, 4], [92, 3, 4], [121, 143, 4], [121, 0, 4], [148, 0, 4], [148, 180, 4], [89, 180, 4], [74, 85.6, 4], [59, 180, 4], [0, 180, 4]],
+    Rf: 2, Kf: 4, rib: { type: 'vertical', pitch: 4.5, depth: 1.3, samples: 12 },
+    pins: [{ x: 29.5, kind: 'moyenne' }, { x: 118.5, kind: 'moyenne' }],
     color: [0.88, 0.76, 0.58],
   },
   E: {
-    corners: [[0, 0, 10], [130, 0, 22], [130, 50, 9], [82, 50, 7], [82, 65, 7], [130, 65, 9], [130, 115, 9], [82, 115, 7], [82, 130, 7], [130, 130, 9], [130, 180, 22], [0, 180, 10]],
-    Rf: 4, Kf: 6, rib: { type: 'vertical', pitch: 5, depth: 1.4, samples: 12 },
-    pins: [{ x: 30, L: 100, kind: 'longue' }],
+    corners: [[0, 0, 8], [116, 0, 10], [116, 38, 5], [78, 38, 7], [78, 53, 7], [116, 53, 5], [116, 106, 5], [78, 106, 7], [78, 121, 7], [116, 121, 5], [116, 180, 8], [0, 180, 8]],
+    Rf: 2, Kf: 4, rib: { type: 'vertical', pitch: 4.5, depth: 1.3, samples: 12 },
+    pins: [{ x: 39, kind: 'longue' }],
     color: [0.90, 0.66, 0.68],
   },
 };
-const PIN_KIND = { longue: { L: 100, rTip: 7.5 }, courte: { L: 36, rTip: 9 } };
+const PIN_KIND = {
+  longue: { L: 100, r: 15, rTip: 11 },   // H et E : trou de 30 mm, 10 cm de profondeur
+  moyenne: { L: 60, r: 15, rTip: 12 },   // M : trou de 30 mm, 6 cm (s'arrete au-dessus des fentes)
+  courte: { L: 36, r: 10, rTip: 8.5 },   // O : trou de 20 mm, 3,6 cm
+};
 
 // ---------------------------------------------------------------- contours
 function sampleArc(a1, sweep) {
@@ -92,8 +113,8 @@ function dedupe(pts) {
   return out;
 }
 
-function oPolylines() {
-  const a = 83, b = 91, n = 2.3, yFlat = 90, cy = 90, ai = 19, bi = 37, ni = 2.0;
+function oPolylines(o) {
+  const { a, b, n, yFlat, ai, bi, ni } = o, cy = 90;
   const se = (A, B, N, t) => [A * Math.sign(Math.cos(t)) * Math.pow(Math.abs(Math.cos(t)), 2 / N), B * Math.sign(Math.sin(t)) * Math.pow(Math.abs(Math.sin(t)), 2 / N)];
   const tf = Math.asin(Math.pow(yFlat / b, n / 2));
   const step = 2.5 * Math.PI / 180, th = [];
@@ -183,7 +204,7 @@ function buildLetter(name) {
   const def = Object.assign({ name }, LETTERS[name]);
   let loops, oMap = null;
   if (name === 'O') {
-    const o = oPolylines();
+    const o = oPolylines(def.o);
     loops = [makeLoop(o.outer, false), makeLoop(o.inner, true)];
     oMap = o.map;
   } else {
@@ -192,29 +213,36 @@ function buildLetter(name) {
   let minX = Infinity, maxX = -Infinity;
   for (const L of loops) for (const p of L.pts) { minX = Math.min(minX, p[0]); maxX = Math.max(maxX, p[0]); }
   def.ribCenter = (minX + maxX) / 2;
-  const A = def.rib.depth, z0 = P.floor + A + P.eps, ztop = z0 + P.D;
+  const A = def.rib.depth, arch = def.mode === 'arch';
+  const z0 = arch ? P.floor + A : P.floor + A + P.eps, ztop = z0 + P.D;
   const levels = [];
-  for (let k = 0; k <= def.Kf; k++) {
-    const phi = Math.PI / 2 * k / def.Kf;
-    const e = def.Rf * (1 - Math.sin(phi)), u = def.Rf * (1 - Math.cos(phi));
-    levels.push({ U: -e, Dr: u * TAN, z: z0 + u });
+  if (arch) {
+    levels.push({ U: 0, Dr: def.archH * TAN, z: z0 + def.archH });
+  } else {
+    for (let k = 0; k <= def.Kf; k++) {
+      const phi = Math.PI / 2 * k / def.Kf;
+      const e = def.Rf * (1 - Math.sin(phi)), u = def.Rf * (1 - Math.cos(phi));
+      levels.push({ U: -e, Dr: u * TAN, z: z0 + u });
+    }
   }
   levels.push({ U: 0, Dr: P.D * TAN, z: ztop });
-  const iK = def.Kf, iTop = levels.length - 1;
+  const iK = arch ? 0 : def.Kf, iTop = levels.length - 1;
   const L3 = loops.map((L, li) => levels.map((lv, k) => {
     const off = offsetLoop(L, lv.U, lv.Dr);
     validateOffset(L, off, `${name} boucle ${li} niveau ${k}`);
     return off.map(p => [p[0], p[1], lv.z]);
   }));
-  const Cr = loops.map((L, li) => {
+  const Cr = arch ? null : loops.map((L, li) => {
     const off = offsetLoop(L, -(def.Rf + P.border), 0).map(p => [snap(p[0]), snap(p[1])]);
     validateOffset(L, off, `${name} panneau ${li}`);
     return off;
   });
   // tiges : arete droite du haut contenant x
-  const rh = P.pinR + P.pinClear;
-  const zc = z0 + P.D / 2;
+  const zc = z0 + (def.zcRel != null ? def.zcRel : P.D / 2);
   def.pins.forEach(pin => {
+    const pk = PIN_KIND[pin.kind];
+    pin.r = pk.r; pin.L = pk.L; pin.rTip = pk.rTip;
+    const rh = pk.r + P.pinClear;
     const L = loops[0];
     let found = -1;
     for (let i = 0; i < L.n; i++) {
@@ -227,7 +255,12 @@ function buildLetter(name) {
       const lo = Math.min(a[0], b[0]), hi = Math.max(a[0], b[0]);
       if (pin.x - rh < lo + 0.5 || pin.x + rh > hi - 0.5) throw new Error(`trou trop large pour l'arete ${name} x=${pin.x}`);
     }
-    if (zc - rh < levels[iK].z + 0.5) throw new Error(`trou trop bas ${name}`);
+    if (zc - rh < levels[iK].z + 0.5 || zc + rh > ztop - 3) throw new Error(`trou mal place en profondeur ${name}`);
+    // il doit rester au moins 6 mm de matiere autour du trou, dans le plan de la lettre
+    const minClear = 6;
+    for (let y = P.H - pk.L; y <= P.H - 1; y += 2) for (let x = pin.x - pk.r; x <= pin.x + pk.r + 1e-9; x += 2) {
+      if (!insideLetter(loops, x, y, minClear)) throw new Error(`le trou de ${name} x=${pin.x} sort de la lettre vers (${x.toFixed(1)}, ${y.toFixed(1)})`);
+    }
     pin.edge = found; pin.zc = zc;
   });
   return { def, name, loops, levels, L3, Cr, z0, ztop, iK, iTop, oMap };
@@ -365,13 +398,18 @@ function triPlanar(mesh, outer, holes, axes, want) {
   for (const p of outer) { data.push(p[axes[0]], p[axes[1]]); all.push(p); }
   for (const h of holes) { holeIdx.push(all.length); for (const p of h) { data.push(p[axes[0]], p[axes[1]]); all.push(p); } }
   const t = earcut(data, holeIdx.length ? holeIdx : null);
-  for (let k = 0; k < t.length; k += 3) mesh.tri(all[t[k]], all[t[k + 1]], all[t[k + 2]], want);
+  // earcut rend des triangles tous dans le meme sens (trigonometrique dans le plan projete) :
+  // on choisit le sens une seule fois, ce qui garde aussi les triangles plats (points alignes)
+  const ax = 3 - axes[0] - axes[1];
+  const hand = (axes[0] === 0 && axes[1] === 2) ? -1 : 1;
+  const flip = want[ax] * hand < 0;
+  for (let k = 0; k < t.length; k += 3) mesh.triRaw(all[t[k]], all[t[k + 1]], all[t[k + 2]], flip);
   return t.length / 3;
 }
 
 // ---------------------------------------------------------------- surfaces de l'empreinte
 // sgn = +1 : normales vers l'empreinte (moule) ; -1 : vers l'exterieur de la lettre (tirage)
-function cavity(mesh, B, sgn, holeR) {
+function cavity(mesh, B, sgn, clear) {
   const { def, loops, L3, Cr, z0, iK, iTop } = B;
   const up = [0, 0, sgn];
   const leftOf = (a, b) => { const t = norm2([b[0] - a[0], b[1] - a[1]]); return [-t[1] * sgn, t[0] * sgn, 0]; };
@@ -396,30 +434,36 @@ function cavity(mesh, B, sgn, holeR) {
         zipChains(mesh, [C0[i], C0[(i + 1) % L.n]], ch, up);
       }
     });
-  } else {
-    // anneaux concentriques (O)
-    const hr = ringProfile(def);
+  } else if (def.mode === 'arch') {
+    // O en beignet : face avant bombee (demi-ellipse) couverte d'anneaux concentriques
     const io = loops.findIndex(L => !L.isHole), ii = loops.findIndex(L => L.isHole);
-    const CO = Cr[io], CI = Cr[ii], n = CO.length;
-    const T = def.rib.n * def.rib.samples;
-    const rings = [];
-    for (let k = 0; k <= T; k++) {
-      const t = k / T, z = hr(t);
-      rings.push(CO.map((p, i) => { const q = CI[B.oMap(i)]; return [(1 - t) * p[0] + t * q[0], (1 - t) * p[1] + t * q[1], z]; }));
-    }
-    for (let k = 0; k < T; k++) for (let i = 0; i < n; i++) {
-      const i1 = (i + 1) % n;
-      mesh.quad(rings[k][i], rings[k][i1], rings[k + 1][i1], rings[k + 1][i], up);
-    }
-    const bottom = [rings[0], CI.map((_, j) => rings[T][B.oMap(j)])]; // meme ordre que les boucles
-    [io, ii].forEach((li, s) => {
-      const L = loops[li], low = bottom[s], top0 = Cr[li].map(p => [p[0], p[1], z0]), C0 = L3[li][0];
-      for (let i = 0; i < L.n; i++) {
-        const i1 = (i + 1) % L.n;
-        mesh.quad(low[i], low[i1], top0[i1], top0[i], leftOf(low[i], low[i1]));
-        mesh.quad(C0[i], C0[i1], top0[i1], top0[i], up);
-      }
+    const CO = L3[io][0], CIm = L3[ii][0].map((_, j) => L3[ii][0][B.oMap(j)]), n = CO.length;
+    const zs = B.levels[0].z, Ha = def.archH, A = def.rib.depth, N = def.rib.n, p = def.rib.pitch;
+    const R = ((p / 2) ** 2 + A * A) / (2 * A);
+    const rib = t => { const u = t * N - Math.floor(t * N + 1e-12); const d = (u - 0.5) * p; return A - (R - Math.sqrt(Math.max(0, R * R - d * d))); };
+    const ts = [];
+    for (let k = 0; k <= N * def.rib.samples; k++) ts.push(k / (N * def.rib.samples));
+    for (let k = 0; k <= 48; k++) ts.push((1 - Math.cos(Math.PI * k / 48)) / 2);
+    ts.sort((a, b) => a - b);
+    const T = ts.filter((t, i) => i === 0 || t - ts[i - 1] > 1e-7);
+    T[0] = 0; T[T.length - 1] = 1;
+    const rings = T.map((t, k) => {
+      if (k === 0) return CO;
+      if (k === T.length - 1) return CIm;
+      const z = zs - Ha * Math.sqrt(Math.max(0, 1 - (2 * t - 1) ** 2)) - Math.max(0, rib(t));
+      return CO.map((q, i) => { const w = CIm[i]; return [(1 - t) * q[0] + t * w[0], (1 - t) * q[1] + t * w[1], z]; });
     });
+    for (let k = 0; k < rings.length - 1; k++) {
+      const tm = (T[k] + T[k + 1]) / 2, th = Math.acos(Math.max(-1, Math.min(1, 1 - 2 * tm)));
+      for (let i = 0; i < n; i++) {
+        const i1 = (i + 1) % n;
+        const dx = CIm[i][0] - CO[i][0], dy = CIm[i][1] - CO[i][1], dl = Math.hypot(dx, dy) || 1;
+        const Lb = dl / 2;
+        const ws = Ha * Math.cos(th), wz = Lb * Math.sin(th) + 0.05 * Lb;
+        const want = [sgn * ws * dx / dl, sgn * ws * dy / dl, sgn * wz];
+        mesh.quad(rings[k][i], rings[k][i1], rings[k + 1][i1], rings[k + 1][i], want);
+      }
+    }
   }
   // conge (arrondi avant) + depouille
   const holes = [];
@@ -436,7 +480,8 @@ function cavity(mesh, B, sgn, holeR) {
         const loop = [];
         for (let j = 0; j < P.pinSeg; j++) {
           const th = 2 * Math.PI * j / P.pinSeg;
-          const x = pin.x + holeR * Math.cos(th), z = pin.zc + holeR * Math.sin(th);
+          const hr = pin.r + clear;
+          const x = pin.x + hr * Math.cos(th), z = pin.zc + hr * Math.sin(th);
           loop.push([x, yAt(z), z]);
         }
         holes.push({ pin, loop });
@@ -451,8 +496,7 @@ function cavity(mesh, B, sgn, holeR) {
 // ---------------------------------------------------------------- moule
 function buildMold(B) {
   const m = new Mesh('moule-' + B.name);
-  const rh = P.pinR + P.pinClear;
-  const holes = cavity(m, B, +1, rh);
+  const holes = cavity(m, B, +1, P.pinClear);
   const top = B.L3.map(Ls => Ls[B.iTop]);
   let minX = Infinity, maxX = -Infinity, maxY = -Infinity, minY = Infinity;
   for (const L of top) for (const p of L) { minX = Math.min(minX, p[0]); maxX = Math.max(maxX, p[0]); maxY = Math.max(maxY, p[1]); minY = Math.min(minY, p[1]); }
@@ -474,23 +518,27 @@ function buildMold(B) {
       m.quad(W[j], W[j1], X[j1], X[j], [-Math.cos(th), 0, -Math.sin(th)]);
     }
   });
-  const yWallMin = Math.min(...holes.map(h => Math.min(...h.loop.map(p => p[1]))));
-  return { mesh: m, box: { bx0, bx1, by0, by1, zt }, holes, yRootEnd: yWallMin - 1.0 };
+  for (const h of holes) {
+    h.pin.yRootEnd = Math.min(...h.loop.map(p => p[1])) - 1.0;   // la queue cylindrique depasse de 1 mm dans l'empreinte
+    h.pin.root = by1 - h.pin.yRootEnd;
+    h.pin.toTipCenter = by1 - (P.H - h.pin.L + h.pin.rTip);
+  }
+  return { mesh: m, box: { bx0, bx1, by0, by1, zt }, holes };
 }
 
 // ---------------------------------------------------------------- tirage (lettre finie)
 function buildPositive(B, mold) {
   const m = new Mesh('lettre-' + B.name);
-  const holes = cavity(m, B, -1, P.pinR);
+  const holes = cavity(m, B, -1, 0);
   const top = B.L3.map(Ls => Ls[B.iTop]);
   const outer = top.filter((_, li) => !B.loops[li].isHole), inner = top.filter((_, li) => B.loops[li].isHole);
   triPlanar(m, outer[0], inner, [0, 1], [0, 0, 1]);
   for (const h of holes) {
-    const pk = PIN_KIND[h.pin.kind], xp = h.pin.x, zc = h.pin.zc, r = P.pinR, rt = pk.rTip;
+    const pk = PIN_KIND[h.pin.kind], xp = h.pin.x, zc = h.pin.zc, r = pk.r, rt = pk.rTip;
     const yTip = P.H - pk.L, yTc = yTip + rt;
     const N = h.loop.length;
     const ring = (y, rad) => h.loop.map((_, j) => { const th = 2 * Math.PI * j / N; return [xp + rad * Math.cos(th), y, zc + rad * Math.sin(th)]; });
-    const rings = [h.loop, ring(mold.yRootEnd, r), ring(yTc, rt)];
+    const rings = [h.loop, ring(h.pin.yRootEnd, r), ring(yTc, rt)];
     const S = 8;
     for (let s = 1; s < S; s++) { const ph = Math.PI / 2 * s / S; rings.push(ring(yTc - rt * Math.sin(ph), rt * Math.cos(ph))); }
     for (let k = 0; k < rings.length - 1; k++) for (let j = 0; j < N; j++) {
@@ -506,12 +554,12 @@ function buildPositive(B, mold) {
 }
 
 // ---------------------------------------------------------------- tiges
-function buildPin(kind, Lroot) {
+function buildPin(kind, geo) {
   const pk = PIN_KIND[kind], m = new Mesh('tige-' + kind);
-  const r = P.pinR, rt = pk.rTip, T = P.flangeT;
-  // longueur depuis la face exterieure du moule jusqu'au centre de l'hemisphere
-  const prof = [[0, 0], [P.flangeR - 0.8, 0], [P.flangeR, 0.8], [P.flangeR, T], [r, T], [r, T + Lroot.root]];
-  const zTc = T + Lroot.toTipCenter(pk);
+  const r = pk.r, rt = pk.rTip, T = P.flangeT, rf = r + P.flangeExtra;
+  // geo : { root, toTipCenter } mesures depuis la face exterieure du moule
+  const prof = [[0, 0], [rf - 0.8, 0], [rf, 0.8], [rf, T], [r, T], [r, T + geo.root]];
+  const zTc = T + geo.toTipCenter;
   prof.push([rt, zTc]);
   const S = 10;
   for (let s = 1; s < S; s++) { const ph = Math.PI / 2 * s / S; prof.push([rt * Math.cos(ph), zTc + rt * Math.sin(ph)]); }
@@ -532,31 +580,42 @@ function buildPin(kind, Lroot) {
   return { mesh: m, length: zTc + rt };
 }
 
-module.exports = { P, TAN, LETTERS, PIN_KIND, buildLetter, buildMold, buildPositive, buildPin, checkMesh, stlBuffer, Mesh };
-
-// ---------------------------------------------------------------- main
-if (require.main === module) {
-  const out = process.argv[2] || 'out';
-  fs.mkdirSync(path.join(out, 'stl'), { recursive: true });
-  const report = { parametres: P, lettres: {} };
-  let Lroot = null;
-  const results = {};
+// construit tout : lettres, moules, tirages, tiges (une geometrie par type de tige)
+function buildAll() {
+  const letters = {}, geo = {};
   for (const name of ['H', 'O', 'M', 'E']) {
     const B = buildLetter(name);
     const mold = buildMold(B);
     const pos = buildPositive(B, mold);
-    const lr = mold.box.by1 - mold.yRootEnd;
-    if (Lroot && Math.abs(Lroot.root - lr) > 1e-6) throw new Error('longueur de tige differente ' + name);
-    Lroot = { root: lr, by1: mold.box.by1, toTipCenter: pk => mold.box.by1 - (P.H - pk.L + pk.rTip) };
+    letters[name] = { B, mold, pos };
+    for (const pin of B.def.pins) {
+      const g = { root: pin.root, toTipCenter: pin.toTipCenter };
+      if (geo[pin.kind] && (Math.abs(geo[pin.kind].root - g.root) > 1e-6 || Math.abs(geo[pin.kind].toTipCenter - g.toTipCenter) > 1e-6)) throw new Error('tiges ' + pin.kind + ' incompatibles entre lettres');
+      geo[pin.kind] = g;
+    }
+  }
+  const pins = {};
+  for (const kind of Object.keys(geo)) pins[kind] = buildPin(kind, geo[kind]);
+  return { letters, pins, geo };
+}
+
+module.exports = { P, TAN, LETTERS, PIN_KIND, buildLetter, buildMold, buildPositive, buildPin, buildAll, checkMesh, stlBuffer, Mesh };
+
+// ---------------------------------------------------------------- main
+if (require.main === module) {
+  const out = process.argv[2] || 'out';
+  fs.mkdirSync(path.join(out, 'stl', 'option-lettres-directes'), { recursive: true });
+  const report = { parametres: P, lettres: {} };
+  const all = buildAll();
+  for (const name of ['H', 'O', 'M', 'E']) {
+    const { B, mold, pos } = all.letters[name];
     const cm = checkMesh(mold.mesh), cp = checkMesh(pos.mesh);
-    results[name] = { B, mold, pos };
-    // moule reel = miroir en x ; tirage a imprimer = face avant vers le haut
     const bx = mold.box;
     const moldOut = mold.mesh.transformed(p => [bx.bx1 - p[0], p[1] - bx.by0, p[2]], true, 'moule-' + name);
     const pmin = Math.min(...pos.mesh.v.map(p => p[0]));
     const posOut = pos.mesh.transformed(p => [p[0] - pmin, p[1], B.ztop - p[2]], true, 'lettre-' + name);
     fs.writeFileSync(path.join(out, 'stl', `moule-${name}.stl`), stlBuffer(moldOut));
-    fs.writeFileSync(path.join(out, 'stl', `lettre-${name}-impression-directe.stl`), stlBuffer(posOut));
+    fs.writeFileSync(path.join(out, 'stl', 'option-lettres-directes', `lettre-${name}-impression-directe.stl`), stlBuffer(posOut));
     report.lettres[name] = {
       moule: { tris: cm.tris, ouvertes: cm.open, doublons: cm.dup, degeneres: cm.degenerate, ambigus: cm.ambiguous, volume_cm3: +(cm.vol / 1000).toFixed(1),
         taille_mm: [bx.bx1 - bx.bx0, bx.by1 - bx.by0, bx.zt].map(v => +v.toFixed(1)) },
@@ -568,13 +627,14 @@ if (require.main === module) {
     if (cm.open || cm.dup) console.log('moule', name, 'aretes ouvertes', cm.openEdges.slice(0, 4));
     if (cp.open || cp.dup) console.log('lettre', name, 'aretes ouvertes', cp.openEdges.slice(0, 4));
   }
-  for (const kind of ['longue', 'courte']) {
-    const pin = buildPin(kind, Lroot);
+  report.tiges = {};
+  for (const kind of Object.keys(all.pins)) {
+    const pin = all.pins[kind];
     const c = checkMesh(pin.mesh);
     fs.writeFileSync(path.join(out, 'stl', `tige-${kind}.stl`), stlBuffer(pin.mesh));
-    report['tige_' + kind] = { tris: c.tris, ouvertes: c.open, doublons: c.dup, volume_cm3: +(c.vol / 1000).toFixed(2), longueur_mm: +pin.length.toFixed(1) };
+    report.tiges[kind] = { tris: c.tris, ouvertes: c.open, doublons: c.dup, volume_cm3: +(c.vol / 1000).toFixed(2), longueur_mm: +pin.length.toFixed(1),
+      diametre_mm: 2 * PIN_KIND[kind].r, collerette_mm: 2 * (PIN_KIND[kind].r + P.flangeExtra), queue_mm: +all.geo[kind].root.toFixed(2) };
   }
-  report.longueur_queue_tige_mm = +Lroot.root.toFixed(2);
   fs.writeFileSync(path.join(out, 'rapport.json'), JSON.stringify(report, null, 2));
-  console.log(JSON.stringify(report, (k, v) => k === 'parametres' ? undefined : v, 1));
+  console.log(JSON.stringify(report, (k, v) => k === 'parametres' ? undefined : v));
 }

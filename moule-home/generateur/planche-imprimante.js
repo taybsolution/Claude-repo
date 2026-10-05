@@ -6,7 +6,9 @@ const { chromium } = require(process.env.PLAYWRIGHT_PATH || 'playwright');
 const dir = path.join(process.argv[2] || 'out', 'apercu');
 const info = JSON.parse(fs.readFileSync(path.join(dir, 'imprimante-points.json'), 'utf8'));
 const img = 'data:image/png;base64,' + fs.readFileSync(path.join(dir, 'imprimante-et-moule.png')).toString('base64');
-const { W, H, pts, mold } = info;
+const { W, H, pts, mold, big, sizes } = info;
+const cm = v => (v / 10).toFixed(1).replace('.', ',');
+const cm0 = v => Math.round(v / 10);
 
 function dim(a, b, label, off) {
   const [x1, y1] = a, [x2, y2] = b;
@@ -27,7 +29,7 @@ const overlay = `<svg viewBox="0 0 ${W} ${H}" class="ov">
   ${dim(pts.hA, pts.hB, '49 cm', [-58, 0])}
   ${dim(pts.wA, pts.wB, '35 cm', [0, 40])}
   ${dim(pts.dA, pts.dB, '36 cm', [-62, 6])}
-  ${tag(pts.mold, ['Moule du M', '19 × 20 cm, haut de 5,4 cm'])}
+  ${tag(pts.mold, ['Moule du ' + big, cm0(sizes[big][0]) + ' × ' + cm0(sizes[big][1]) + ' cm, haut de ' + cm(sizes[big][2]) + ' cm'])}
   ${tag(pts.bed, ['Plateau 22 × 22 cm'], 4)}
   ${tag(pts.spool, ['Bobine de PLA 1 kg', 'Ø 20 cm'], -4)}
 </svg>`;
@@ -36,22 +38,22 @@ const overlay = `<svg viewBox="0 0 ${W} ${H}" class="ov">
 const s = 2, bed = 220, pad = 100, ox = pad, oy = 60;
 const mx0 = (bed - mold.wx) / 2, my0 = (bed - mold.wy) / 2;
 const X = x => ox + x * s, Y = y => oy + (bed - y) * s;
-const cav = mold.top.map(([x, y]) => `${X(mx0 + x).toFixed(1)},${Y(my0 + y).toFixed(1)}`).join(' ');
+const cavs = (mold.tops || [mold.top]).map(t => t.map(([x, y]) => `${X(mx0 + x).toFixed(1)},${Y(my0 + y).toFixed(1)}`).join(' '));
 const vbW = bed * s + 2 * pad, vbH = bed * s + oy + 130;
 const topSvg = `<svg viewBox="0 0 ${vbW} ${vbH}" class="top">
   <rect x="${X(-7.5)}" y="${Y(227.5)}" width="${235 * s}" height="${235 * s}" rx="8" class="plate"/>
   <rect x="${X(0)}" y="${Y(bed)}" width="${bed * s}" height="${bed * s}" class="zone"/>
   <rect x="${X(mx0)}" y="${Y(my0 + mold.wy)}" width="${mold.wx * s}" height="${mold.wy * s}" rx="3" class="mold"/>
-  <polygon points="${cav}" class="cav"/>
+  <polygon points="${cavs[0]}" class="cav"/>${cavs.slice(1).map(c => `<polygon points="${c}" class="isl"/>`).join('')}
   <line x1="${X(0)}" y1="${Y(110)}" x2="${X(mx0)}" y2="${Y(110)}" class="mg"/>
   <line x1="${X(mx0 + mold.wx)}" y1="${Y(110)}" x2="${X(bed)}" y2="${Y(110)}" class="mg"/>
-  <text x="${X(-7.5) - 10}" y="${Y(110) + 6}" class="mt" text-anchor="end">15 mm</text>
-  <text x="${X(227.5) + 10}" y="${Y(110) + 6}" class="mt">15 mm</text>
+  <text x="${X(-7.5) - 10}" y="${Y(110) + 6}" class="mt" text-anchor="end">${Math.round(mx0)} mm</text>
+  <text x="${X(227.5) + 10}" y="${Y(110) + 6}" class="mt">${Math.round(mx0)} mm</text>
   <line x1="${X(bed / 2)}" y1="${Y(bed)}" x2="${X(bed / 2)}" y2="${Y(bed - my0)}" class="mg"/>
   <line x1="${X(bed / 2)}" y1="${Y(my0)}" x2="${X(bed / 2)}" y2="${Y(0)}" class="mg"/>
-  <text x="${X(bed / 2)}" y="${Y(227.5) - 12}" class="mt" text-anchor="middle">9 mm</text>
-  <text x="${X(bed / 2)}" y="${Y(-7.5) + 28}" class="mt" text-anchor="middle">9 mm</text>
-  <text x="${X(bed / 2)}" y="${Y(-7.5) + 68}" text-anchor="middle" class="cap">Zone d'impression 220 × 220 mm · moule du M 189 × 202 mm</text>
+  <text x="${X(bed / 2)}" y="${Y(227.5) - 12}" class="mt" text-anchor="middle">${Math.round(my0)} mm</text>
+  <text x="${X(bed / 2)}" y="${Y(-7.5) + 28}" class="mt" text-anchor="middle">${Math.round(my0)} mm</text>
+  <text x="${X(bed / 2)}" y="${Y(-7.5) + 68}" text-anchor="middle" class="cap">Zone d'impression 220 × 220 mm · moule du ${big} ${Math.round(mold.wx)} × ${Math.round(mold.wy)} mm</text>
   <text x="${X(bed / 2)}" y="${Y(-7.5) + 96}" text-anchor="middle" class="cap2">↓ avant de la machine</text>
 </svg>`;
 
@@ -76,7 +78,7 @@ const html = `<!doctype html><html><head><meta charset="utf-8"><style>
   .card h2 { margin: 0 0 10px; font-size: 21px; }
   .top { width: 100%; display: block; }
   .plate { fill: #1d1f22; } .zone { fill: #2a2d31; stroke: #8b949e; stroke-width: 2; stroke-dasharray: 8 6; }
-  .mold { fill: #4d84cf; } .cav { fill: #9cc0ee; stroke: #2c5fa8; stroke-width: 2; }
+  .mold { fill: #4d84cf; } .cav { fill: #9cc0ee; stroke: #2c5fa8; stroke-width: 2; } .isl { fill: #4d84cf; stroke: #2c5fa8; stroke-width: 2; }
   .mg { stroke: #f97316; stroke-width: 4; } .mt { font-size: 20px; font-weight: 700; fill: #c2410c; }
   .cap { font-size: 17px; fill: #222b33; } .cap2 { font-size: 15px; fill: #6b737a; }
   table { border-collapse: collapse; width: 100%; font-size: 18px; }
@@ -86,7 +88,7 @@ const html = `<!doctype html><html><head><meta charset="utf-8"><style>
   .note { margin: 14px 0 0; font-size: 16px; line-height: 1.5; color: #39434c; }
 </style></head><body><div class="wrap">
   <h1>Taille de l'imprimante comparée au moule</h1>
-  <p class="sub">Creality Ender-3 V3 SE avec le plus grand moule, le M, posé sur le plateau. Image 3D simplifiée, à l'échelle.</p>
+  <p class="sub">Creality Ender-3 V3 SE avec le plus grand moule, celui du ${big}, posé sur le plateau. Image 3D simplifiée, à l'échelle.</p>
   <div class="hero"><img src="${img}">${overlay}</div>
   <div class="row">
     <div class="card"><h2>Le plateau vu de dessus</h2>${topSvg}</div>
@@ -95,10 +97,7 @@ const html = `<!doctype html><html><head><meta charset="utf-8"><style>
         <tr><td>Imprimante Ender-3 V3 SE, largeur × profondeur × hauteur</td><td>35 × 36 × 49 cm</td></tr>
         <tr><td>Poids de l'imprimante</td><td>7,1 kg</td></tr>
         <tr><td>Zone d'impression</td><td>22 × 22 × 25 cm</td></tr>
-        <tr><td>Moule du M, le plus grand</td><td>18,9 × 20,2 × 5,4 cm</td></tr>
-        <tr><td>Moule du O</td><td>18,5 × 20,2 × 5,4 cm</td></tr>
-        <tr><td>Moule du H</td><td>15,8 × 20,2 × 5,4 cm</td></tr>
-        <tr><td>Moule du E</td><td>14,9 × 20,2 × 5,4 cm</td></tr>
+        ${['H', 'O', 'M', 'E'].sort((a, b) => sizes[b][0] - sizes[a][0]).map(n => `<tr><td>Moule du ${n}${n === big ? ', le plus grand' : ''}</td><td>${cm(sizes[n][0])} × ${cm(sizes[n][1])} × ${cm(sizes[n][2])} cm</td></tr>`).join('')}
       </table>
       <p class="note">Les 4 moules passent, un par impression. Prévoir de la place devant et derrière la machine : le plateau avance et recule pendant l'impression.</p>
     </div>

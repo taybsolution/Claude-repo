@@ -32,6 +32,12 @@ class Mesh {
     if (d < 0) this.f.push([ia, ic, ib]); else this.f.push([ia, ib, ic]);
   }
   quad(a, b, c, d, want) { this.tri(a, b, c, want); this.tri(a, c, d, want); }
+  // triangle deja oriente (triangulation plane coherente) : garde aussi les triangles plats
+  triRaw(a, b, c, flip) {
+    const ia = this.vid(a), ib = this.vid(b), ic = this.vid(c);
+    if (ia === ib || ib === ic || ia === ic) return;
+    this.f.push(flip ? [ia, ic, ib] : [ia, ib, ic]);
+  }
   // append another mesh (no welding across)
   transformed(fn, flip, name) {
     const m = new Mesh(name || this.name);

@@ -1,6 +1,6 @@
 # Moules HOME : lettres-vases à côtes (impression 3D)
 
-Moules rigides pour couler soi-même, en plâtre, les 4 lettres-vases H, O, M, E de la photo : style nordique à côtes, trou pour les fleurs sur le dessus. Pas besoin de silicone. Chaque moule est un bac imprimé en PLA, et la lettre est coulée face contre le fond.
+Moules rigides pour couler soi-même, en plâtre, les 4 lettres-vases H, O, M, E de la photo de l'annonce. Les formes ont été mesurées sur la photo : H carré, O en beignet couvert d'anneaux, M à fentes hautes, E à fentes fines. Pas besoin de silicone. Chaque moule est un bac imprimé en PLA, et la lettre est coulée face contre le fond.
 
 ![Résultat attendu](apercu/resultat-HOME.png)
 
@@ -14,14 +14,15 @@ Moules rigides pour couler soi-même, en plâtre, les 4 lettres-vases H, O, M, E
 
 | Fichier | Quantité | Taille (mm) | Rôle |
 |---|---|---|---|
-| `moule-H.stl` | 1 | 158 × 202 × 54 | moule du H |
-| `moule-O.stl` | 1 | 185 × 202 × 54 | moule du O |
-| `moule-M.stl` | 1 | 189 × 202 × 54 | moule du M |
-| `moule-E.stl` | 1 | 149 × 202 × 54 | moule du E |
-| `tige-longue.stl` | 5 | Ø 36 × 120 | fait le trou à fleurs : 2 pour le H, 2 pour le M, 1 pour le E |
-| `tige-courte.stl` | 1 | Ø 36 × 56 | fait le trou à fleurs du O |
+| `moule-H.stl` | 1 | 146 × 202 × 54 | moule du H |
+| `moule-O.stl` | 1 | 186 × 202 × 53 | moule du O |
+| `moule-M.stl` | 1 | 167 × 202 × 54 | moule du M |
+| `moule-E.stl` | 1 | 135 × 202 × 54 | moule du E |
+| `tige-longue.stl` | 3 | Ø 46 × 120 | trou à fleurs : 2 pour le H, 1 pour le E |
+| `tige-moyenne.stl` | 2 | Ø 46 × 80 | trou à fleurs du M |
+| `tige-courte.stl` | 1 | Ø 36 × 56 | trou à fleurs du O |
 
-Pour couler une seule lettre à la fois, 2 tiges longues et 1 courte suffisent. Une tige de rechange est utile.
+Pour couler une seule lettre à la fois, il suffit d'avoir les tiges de cette lettre. Une tige de rechange est utile.
 
 ### Réglages
 
@@ -35,7 +36,7 @@ Pour couler une seule lettre à la fois, 2 tiges longues et 1 courte suffisent. 
 
 ### Contrôle après impression
 
-La tige doit entrer dans le trou du moule, côté haut de la lettre, jusqu'au disque. Si c'est trop serré, poncer légèrement le trou ou la tige.
+Chaque tige doit entrer dans son trou du moule, côté haut de la lettre, jusqu'au disque. Si c'est trop serré, poncer légèrement le trou ou la tige. Le haut des trous de 30 mm peut s'affaisser un peu à l'impression : l'ébavurer au cutter.
 
 ![Mise en place des tiges](apercu/mise-en-place-tiges.png)
 
@@ -59,15 +60,25 @@ Images 3D faites à partir des fichiers des moules. Ce ne sont pas des photos r�
 
 ![Démoulage étape par étape](apercu/demoulage-planche.jpg)
 
+### Si la lettre ne sort pas
+
+1. Vérifier que toutes les tiges sont sorties.
+2. Retourner le moule sur un chiffon plié et taper tout autour du fond et des bords avec un maillet en caoutchouc.
+3. Souffler de l'air entre la paroi et le plâtre avec un compresseur ou une pompe à vélo.
+4. Tremper le moule 5 minutes dans l'eau chaude du robinet, ou chauffer les parois au sèche-cheveux. Ne pas dépasser 55 °C.
+5. En dernier recours, couper le moule et le réimprimer : la lettre est sauvée.
+
+Pour éviter le problème : poncer l'intérieur des parois au papier fin (grain 240 à 400) et bien graisser. Les languettes fines du moule du M sont fragiles : démouler doucement.
+
 ### Quantités par lettre (10 % de marge comprise)
 
 | Lettre | Volume | Plâtre | Eau | Poids sec environ |
 |---|---|---|---|---|
-| H | 1,03 L | 1,05 kg | 0,73 L | 1,2 kg |
-| O | 1,15 L | 1,17 kg | 0,82 L | 1,3 kg |
-| M | 1,41 L | 1,43 kg | 1,00 L | 1,6 kg |
-| E | 1,12 L | 1,14 kg | 0,80 L | 1,3 kg |
-| **Total** | **4,7 L** | **4,8 kg** | **3,35 L** | |
+| H | 0,91 L | 0,92 kg | 0,65 L | 1,05 kg |
+| O | 1,12 L | 1,13 kg | 0,79 L | 1,3 kg |
+| M | 1,09 L | 1,10 kg | 0,77 L | 1,25 kg |
+| E | 0,99 L | 1,01 kg | 0,71 L | 1,15 kg |
+| **Total** | **4,1 L** | **4,2 kg** | **2,9 L** | |
 
 Prévoir un sac de 5 kg minimum, ou 10 kg pour avoir de quoi faire un essai.
 
@@ -77,11 +88,12 @@ Prévoir un sac de 5 kg minimum, ou 10 kg pour avoir de quoi faire un essai.
 
 ## 3. À savoir
 
-- **Eau et fleurs fraîches :** le plâtre n'est pas étanche. Glisser un tube à essai en verre de 18 mm maximum dans le trou, ou vernir l'intérieur. Pour des fleurs séchées ou artificielles, rien à faire.
+- **Eau et fleurs fraîches :** le plâtre n'est pas étanche. Glisser un tube à essai en verre dans le trou, de 25 mm maximum pour le H, le M et le E, de 18 mm pour le O. Ou vernir l'intérieur. Pour des fleurs séchées ou artificielles, rien à faire.
 - **Pas de résine époxy** dans ces moules. Elle chauffe, déforme le PLA et colle au plastique.
 - **Béton possible** (ciment blanc et sable fin). Tourner les tiges toutes les heures pendant la prise, les retirer après 6 à 8 heures, démouler après 24 heures. Les lettres pèsent alors deux fois plus lourd.
 - **Le E est inversé dans son moule.** C'est normal : la lettre est coulée face contre le fond, elle sort à l'endroit.
 - **Le dos des lettres est plat.** C'est la face coulée à l'air libre. Les côtes sont sur la face avant.
+- **Les côtés sont lisses.** Sur la photo, les côtes continuent sur les côtés. Un moule rigide ne permet pas ce détail : il faudrait un moule en silicone.
 
 ![Coupes : la tige dans le moule, et le trou à fleurs dans la lettre](apercu/coupes.png)
 
@@ -89,12 +101,13 @@ Prévoir un sac de 5 kg minimum, ou 10 kg pour avoir de quoi faire un essai.
 
 ## 4. Caractéristiques
 
-- **Lettres :** 18 cm de haut, 5 cm d'épaisseur plus les côtes. Bords avant arrondis.
-- **Décor :** côtes verticales de 5 mm sur H, M et E. Huit anneaux concentriques sur le O.
-- **Trou à fleurs :** Ø 20 mm, 10 cm de profondeur (3,6 cm pour le O).
+- **Lettres :** 18 cm de haut, 5 cm d'épaisseur plus les côtes. Largeurs : H 13 cm, O 17 cm, M 15 cm, E 12 cm.
+- **Décor :** côtes verticales de 4,5 mm sur H, M et E. Le O a une face avant bombée en beignet, couverte de 14 anneaux concentriques.
+- **Trous à fleurs :** Ø 30 mm sur 10 cm de profondeur pour le H et le E, Ø 30 mm sur 6 cm pour le M, Ø 20 mm sur 3,6 cm pour le O.
 - **Démoulage :** dépouille de 3° sur les parois, sauf sous la base, pour que la lettre tienne bien droite.
 - **Option sans plâtre :** le dossier `stl/option-lettres-directes/` contient les lettres elles-mêmes. On peut les imprimer directement en plastique, couchées sur le dos, sans support, puis les peindre.
+- **Taille de l'imprimante :** voir `apercu/taille-imprimante.jpg` (Creality Ender-3 V3 SE avec le plus grand moule sur le plateau).
 
 ## 5. Modifier les dimensions
 
-Le dossier `generateur/` contient le programme qui a créé ces fichiers (Node.js, sans dépendance). Les paramètres sont en haut de `moules.js`. La commande `node moules.js sortie` regénère les fichiers STL, `node apercu.js sortie` regénère les images, et `node demoulage.js sortie` regénère les images du démoulage.
+Le dossier `generateur/` contient le programme qui a créé ces fichiers (Node.js, sans dépendance). Les formes des lettres et les paramètres sont en haut de `moules.js`. La commande `node moules.js sortie` regénère les fichiers STL, `node apercu.js sortie` regénère les images, et `node demoulage.js sortie` regénère les images du démoulage.

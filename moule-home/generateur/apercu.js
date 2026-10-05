@@ -6,16 +6,10 @@ const R = require('./render.js');
 const out = process.argv[2] || 'out';
 fs.mkdirSync(path.join(out, 'apercu'), { recursive: true });
 
-const data = {};
-let Lroot;
-for (const name of ['H', 'O', 'M', 'E']) {
-  const B = M.buildLetter(name);
-  const mold = M.buildMold(B);
-  const pos = M.buildPositive(B, mold);
-  data[name] = { B, mold, pos };
-  Lroot = { root: mold.box.by1 - mold.yRootEnd, toTipCenter: pk => mold.box.by1 - (M.P.H - pk.L + pk.rTip) };
-}
-const pins = { longue: M.buildPin('longue', Lroot).mesh, courte: M.buildPin('courte', Lroot).mesh };
+const all = M.buildAll();
+const data = all.letters;
+const pins = {};
+for (const k of Object.keys(all.pins)) pins[k] = all.pins[k].mesh;
 
 // ---------- 1. HOME debout (lettres finies)
 {

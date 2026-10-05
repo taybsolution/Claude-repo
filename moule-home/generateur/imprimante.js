@@ -9,8 +9,17 @@ const U = require('./scene-utils.js');
 const out = process.argv[2] || 'out';
 fs.mkdirSync(path.join(out, 'apercu'), { recursive: true });
 
-const B = M.buildLetter('M');
-const mold = M.buildMold(B);
+// le plus grand moule (celui qui occupe le plus le plateau)
+const all = M.buildAll();
+const sizes = {};
+let big = null;
+for (const n of ['H', 'O', 'M', 'E']) {
+  const b = all.letters[n].mold.box;
+  sizes[n] = [b.bx1 - b.bx0, b.by1 - b.by0, b.zt];
+  if (!big || sizes[n][0] * sizes[n][1] > sizes[big][0] * sizes[big][1]) big = n;
+}
+const B = all.letters[big].B;
+const mold = all.letters[big].mold;
 const bx = mold.box, wx = bx.bx1 - bx.bx0, wy = bx.by1 - bx.by0;
 
 // ---------- imprimante simplifiee (mm), x largeur, y profondeur (avant = 0), z hauteur
@@ -71,6 +80,7 @@ const pts = {
   spool: pr([500, 120, 66]),
 };
 // contour du moule du M vu de dessus (pour le schema)
-const top = B.L3[0][B.iTop].map(p => [bx.bx1 - p[0], p[1] - bx.by0]);
-fs.writeFileSync(path.join(out, 'apercu', 'imprimante-points.json'), JSON.stringify({ W, H, pts, mold: { wx, wy, top } }));
+const tops = B.L3.map(L => L[B.iTop].map(p => [bx.bx1 - p[0], p[1] - bx.by0]));
+const top = tops[0];
+fs.writeFileSync(path.join(out, 'apercu', 'imprimante-points.json'), JSON.stringify({ W, H, pts, big, sizes, mold: { wx, wy, top, tops } }));
 console.log('ok', wx.toFixed(1), wy.toFixed(1));

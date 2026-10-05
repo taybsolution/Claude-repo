@@ -8,16 +8,9 @@ const out = process.argv[2] || 'out';
 fs.mkdirSync(path.join(out, 'apercu'), { recursive: true });
 
 // ---------- geometrie
-const L = {};
-let Lroot;
-for (const name of ['H', 'O', 'M', 'E']) {
-  const B = M.buildLetter(name);
-  const mold = M.buildMold(B);
-  const pos = M.buildPositive(B, mold);
-  L[name] = { B, mold, pos };
-  Lroot = { root: mold.box.by1 - mold.yRootEnd, toTipCenter: pk => mold.box.by1 - (M.P.H - pk.L + pk.rTip) };
-}
-const PIN = { longue: M.buildPin('longue', Lroot), courte: M.buildPin('courte', Lroot) };
+const all = M.buildAll();
+const L = all.letters;
+const PIN = all.pins;
 
 // ---------- couleurs / matieres
 const PLA = [0.30, 0.52, 0.82], ORANGE = [0.95, 0.52, 0.15], PLATRE = [0.95, 0.945, 0.92];
@@ -79,7 +72,7 @@ function pinInMold(name, pin, pull, post) {
 }
 // tige couchee sur la table (repose sur le disque et sur le bout)
 function pinLying(kind, X, Y, ang) {
-  const len = PIN[kind].length, rt = M.PIN_KIND[kind].rTip, rf = M.P.flangeR;
+  const len = PIN[kind].length, rt = M.PIN_KIND[kind].rTip, rf = M.PIN_KIND[kind].r + M.P.flangeExtra;
   const phi = Math.atan((rf - rt) / (len - rt));
   const d = [Math.cos(phi), 0, -Math.sin(phi)], v = [0, 1, 0], u = [-Math.sin(phi), 0, -Math.cos(phi)];
   const oz = rf * Math.cos(phi) + M.P.flangeT * Math.sin(phi);
